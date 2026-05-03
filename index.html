@@ -3,187 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aji's Mango Farm — Lakeside Cottages in Sri Lanka</title>
-  <meta name="description" content="Four private cottages on a 15-acre mango farm beside a lake in Embilipitiya, Sri Lanka. Breakfast included. Direct booking — no fees." />
+  <title>Aji's Mango Farm — Lakeside Cottages, Sri Lanka</title>
+  <meta name="description" content="Four private cottages on a 15-acre mango farm beside a lake in Embilipitiya, Sri Lanka. Breakfast included. Book direct with Aji." />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
 
   <!-- NAV -->
-  <nav>
-    <span class="nav-name">Aji's Mango Farm</span>
-    <a class="nav-book" href="https://wa.me/94XXXXXXXXX?text=Hi%20Aji%2C%20I%20found%20your%20farm%20online%20and%20I%27d%20love%20to%20book%20a%20stay.%20Could%20you%20tell%20me%20about%20availability%3F" target="_blank">Book a Stay</a>
-  </nav>
+  <header class="nav">
+    <a href="#" class="nav-logo">Aji's Mango Farm</a>
+    <nav class="nav-links">
+      <a href="#welcome">The Farm</a>
+      <a href="#explore">Explore</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Find Us</a>
+    </nav>
+    <a class="nav-wa" href="https://wa.me/94705065061?text=Hi%20Aji%2C%20I%20found%20your%20farm%20online%20and%20I%27d%20love%20to%20book%20a%20stay.%20Could%20you%20tell%20me%20about%20availability%3F" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.776a.5.5 0 0 0 .612.612l5.918-1.476A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.877 9.877 0 0 1-5.031-1.378l-.36-.214-3.732.931.949-3.461-.235-.376A9.855 9.855 0 0 1 2.1 12c0-5.468 4.432-9.9 9.9-9.9s9.9 4.432 9.9 9.9-4.432 9.9-9.9 9.9z"/></svg>
+      Book Direct
+    </a>
+  </header>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="hero-image">
-      <img src="photos/hero.jpg" alt="Aji's Mango Farm — lake view at dawn" />
+      <img src="photos/hero.jpg" alt="Aji's Mango Farm at dawn" />
     </div>
     <div class="hero-content">
-      <h1>Aji's Mango Farm</h1>
-      <p class="tagline">Sleep in a mango orchard.<br>Wake up to the lake.</p>
-      <a class="btn-book" href="https://wa.me/94XXXXXXXXX?text=Hi%20Aji%2C%20I%20found%20your%20farm%20online%20and%20I%27d%20love%20to%20book%20a%20stay.%20Could%20you%20tell%20me%20about%20availability%3F" target="_blank">Book Direct — No Fees</a>
+      <p class="hero-label">Embilipitiya &nbsp;·&nbsp; Sri Lanka</p>
+      <h1>Aji's<br>Mango Farm</h1>
+      <p class="hero-tagline">Sleep in a mango orchard.<br>Wake up to the lake.</p>
+    </div>
+    <a class="hero-scroll" href="#welcome" aria-label="Scroll down">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+  </section>
+
+  <!-- 01 WELCOME -->
+  <section class="split" id="welcome">
+    <div class="split-text">
+      <span class="label">01 &mdash; WELCOME</span>
+      <h2>A Family Farm,<br>Open to the World</h2>
+      <p>Fifteen acres of mango trees. A lake at the edge of the orchard. And four private cottages that Ajith built himself, placing each one carefully so the farm stayed a farm.</p>
+      <p>This isn't a resort. There's no lobby, no pool, no package tours. What there is: clean, beautiful rooms, a family that treats you like you've always known them, and a kind of quiet that's hard to find anywhere.</p>
+      <p>Embilipitiya is not on the tourist trail. That's the point.</p>
+    </div>
+    <div class="split-image">
+      <img src="photos/farm-wide.jpg" alt="The mango farm and lake" />
     </div>
   </section>
 
-  <!-- INTRO STRIP -->
-  <div class="strip">
-    <div class="strip-inner">
-      <span>📍 Embilipitiya, Sri Lanka</span>
-      <span>🥭 15-acre mango farm</span>
-      <span>🌊 Lakeside</span>
-      <span>🌿 4 private cottages</span>
-      <span>🍳 Breakfast included</span>
+  <!-- 02 THE COTTAGES -->
+  <section class="cottages" id="cottages">
+    <div class="cottages-header">
+      <span class="label">02 &mdash; THE COTTAGES</span>
+      <h2>Four Private Rooms</h2>
+      <p class="cottages-sub">Each cottage is completely separate. Your own veranda, your own view, your own piece of the farm.</p>
     </div>
-  </div>
-
-  <!-- THE PLACE -->
-  <section class="story" id="story">
-    <div class="container">
-      <div class="story-grid">
-        <div class="story-text">
-          <h2>The Place</h2>
-          <p>This is a 15-acre mango farm in Embilipitiya — deep in Sri Lanka's south, far from the tourist trail. Ajith built four private lakeside cottages himself, placing each one carefully among the mango trees so the orchard stays intact and the farm stays a farm.</p>
-          <p>Each cottage sits completely on its own, surrounded by trees, with a private veranda facing the water. Raw concrete walls, warm wooden ceiling, sliding glass doors. And a bathroom open to the sky — you shower outside, under the stars.</p>
-          <p>This isn't a resort. There's no lobby, no pool, no gift shop. What there is: a real lake, a working mango orchard, fireflies after dark, and a family that will make you feel like you've been here before.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-img">
+          <img src="photos/cottage-exterior.jpg" alt="Cottage exterior" loading="lazy" />
         </div>
-        <div class="story-image">
-          <img src="photos/cottage-exterior.jpg" alt="One of the four lakeside cottages" />
+        <div class="card-body">
+          <h3>The Cottage</h3>
+          <p>Raw concrete, warm wood, vaulted ceiling. Large sliding doors open onto a private covered veranda facing the lake.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img">
+          <img src="photos/cottage-interior.jpg" alt="Cottage interior" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <h3>The Room</h3>
+          <p>A queen bed with fresh white linens, a mini fridge, a wardrobe. Simple and well made. Air conditioning for hot nights.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img">
+          <img src="photos/bathroom.jpg" alt="Open-air bathroom" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <h3>The Bathroom</h3>
+          <p>Open to the sky. You shower outside, under the trees. Every guest mentions it — a small, unforgettable thing.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MEET AJI -->
-  <section class="owner" id="aji">
-    <div class="container">
-      <div class="owner-grid">
-        <div class="owner-image">
-          <img src="photos/aji.jpg" alt="Ajith — the owner" />
+  <!-- 03 THE SETTING -->
+  <section class="split split--reverse" id="setting">
+    <div class="split-image">
+      <img src="photos/lake.jpg" alt="The lake at Aji's Mango Farm" />
+    </div>
+    <div class="split-text">
+      <span class="label">03 &mdash; THE SETTING</span>
+      <h2>A Lake, a Farm,<br>and Fireflies at Night</h2>
+      <p>The cottages sit at the edge of the lake, each one surrounded by mango trees. In the morning there's mist on the water. At night there are fireflies.</p>
+      <p>Udawalawe National Park — one of Sri Lanka's best elephant sanctuaries — is 45 minutes away. The farm is close enough to visit, far enough to feel like you've left everything behind.</p>
+      <p>Guests consistently say: they wish they'd stayed longer.</p>
+    </div>
+  </section>
+
+  <!-- 04 EXPLORE -->
+  <section class="explore" id="explore">
+    <div class="explore-header">
+      <span class="label">04 &mdash; EXPLORE</span>
+      <h2>From the Farm</h2>
+    </div>
+    <div class="activities">
+      <div class="activity">
+        <div class="activity-img">
+          <img src="photos/kayak.jpg" alt="Kayaking on the lake" loading="lazy" />
+          <div class="activity-overlay">
+            <span>On the property</span>
+          </div>
         </div>
-        <div class="owner-text">
-          <h2>Meet Aji</h2>
-          <p>Ajith grew up on this land. The farm, the lake, the mango trees — this is where he's from. He designed the cottages himself, built them with his own hands, and thought carefully about how guests could feel at home in a place that has always been his home.</p>
-          <p>He'll cook Sri Lankan meals if you ask the day before — rice and curry that guests write about long after they've left. He'll get you on a kayak, point you toward a safari at Udawalawe National Park, or simply leave you alone if that's what you need.</p>
-          <p>He has two kids, and a warmth that guests consistently call the best thing about the stay.</p>
+        <h3>Kayaking</h3>
+        <p>Aji has kayaks available on the lake. Early morning on the still water, with the mango trees behind you, is something worth waking up for.</p>
+      </div>
+      <div class="activity">
+        <div class="activity-img">
+          <img src="photos/udawalawe.jpg" alt="Udawalawe National Park" loading="lazy" />
+          <div class="activity-overlay">
+            <span>45 min away</span>
+          </div>
         </div>
+        <h3>Udawalawe Safari</h3>
+        <p>One of Sri Lanka's best national parks for elephants. A day trip from the farm — Aji can help you arrange a jeep safari.</p>
+      </div>
+      <div class="activity">
+        <div class="activity-img">
+          <img src="photos/horses.jpg" alt="Horse riding nearby" loading="lazy" />
+          <div class="activity-overlay">
+            <span>Nearby</span>
+          </div>
+        </div>
+        <h3>Horse Riding</h3>
+        <p>A horse riding farm a short drive away. A different way to see the landscape of this quiet corner of Sri Lanka.</p>
       </div>
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section class="gallery" id="gallery">
-    <div class="container">
-      <h2>The Farm</h2>
-      <div class="gallery-grid">
-        <figure class="gallery-item" data-src="photos/gallery-lake.jpg">
-          <img src="photos/gallery-lake.jpg" alt="Lake view from the veranda" loading="lazy" />
-        </figure>
-        <figure class="gallery-item" data-src="photos/gallery-bathroom.jpg">
-          <img src="photos/gallery-bathroom.jpg" alt="Open-air bathroom under the sky" loading="lazy" />
-        </figure>
-        <figure class="gallery-item" data-src="photos/gallery-interior.jpg">
-          <img src="photos/gallery-interior.jpg" alt="Cottage interior — wood and concrete" loading="lazy" />
-        </figure>
-        <figure class="gallery-item" data-src="photos/gallery-mangos.jpg">
-          <img src="photos/gallery-mangos.jpg" alt="The mango orchard" loading="lazy" />
-        </figure>
-        <figure class="gallery-item" data-src="photos/gallery-veranda.jpg">
-          <img src="photos/gallery-veranda.jpg" alt="Private veranda with lake view" loading="lazy" />
-        </figure>
-        <figure class="gallery-item" data-src="photos/gallery-kayak.jpg">
-          <img src="photos/gallery-kayak.jpg" alt="Kayaking on the lake" loading="lazy" />
-        </figure>
-      </div>
+  <!-- 05 THE FOOD -->
+  <section class="split" id="food">
+    <div class="split-text">
+      <span class="label">05 &mdash; THE FOOD</span>
+      <h2>Breakfast Every Morning.<br>Sri Lankan on Request.</h2>
+      <p>Breakfast is included. Every morning Aji's family puts out a spread — fresh fruit from the farm, eggs, tea.</p>
+      <p>If you ask the day before, they'll cook a full Sri Lankan meal. Rice and curry that guests write about long after they've left. Fresh mangos when they're in season. All of it made on the farm, by the family.</p>
+      <p>There's no restaurant nearby. You won't miss it.</p>
+    </div>
+    <div class="split-image">
+      <img src="photos/food.jpg" alt="Sri Lankan breakfast at the farm" />
     </div>
   </section>
 
-  <!-- WHAT TO EXPECT -->
-  <section class="expect" id="expect">
-    <div class="container">
-      <h2>What to Expect</h2>
-      <div class="expect-grid">
-        <div class="expect-col expect-yes">
-          <h3>What you get</h3>
-          <ul>
-            <li>🛏 Queen bed, fresh linens and towels</li>
-            <li>🌿 Open-air bathroom — shower under the sky</li>
-            <li>🏡 Completely private cottage, surrounded by trees</li>
-            <li>🌊 Veranda with lake view</li>
-            <li>❄️ Air conditioning</li>
-            <li>📶 WiFi</li>
-            <li>🍳 Breakfast included every morning</li>
-            <li>🍛 Sri Lankan meals on request (advance notice)</li>
-            <li>🥭 Fresh mangos in season</li>
-            <li>🚣 Kayaking on the lake</li>
-            <li>🐘 Safari at Udawalawe National Park nearby</li>
-            <li>🚗 Free parking</li>
-          </ul>
-        </div>
-        <div class="expect-col expect-honest">
-          <h3>Good to know</h3>
-          <ul>
-            <li>🌿 This is a working farm — nature is close</li>
-            <li>🚿 Cold-water showers (the open-air kind)</li>
-            <li>📍 Not in a tourist area — the nearest town is Embilipitiya</li>
-            <li>🌙 Quiet nights, early mornings, and the occasional frog</li>
-            <li>🍛 For meals: give Aji a heads up the day before</li>
-          </ul>
-          <p class="honest-note">If you're looking for a resort, this isn't it. If you're looking for something real — this is exactly it.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
+  <!-- 06 REVIEWS -->
   <section class="reviews" id="reviews">
-    <div class="container">
-      <h2>What Guests Say</h2>
-      <p class="reviews-sub">5.0 ★ on Airbnb &mdash; Guest Favorite</p>
-      <div class="reviews-grid">
-        <blockquote>
-          <p>"This was probably the best Airbnb we've ever stayed at. The calmness and nature are breathtaking. The highlight is the bathroom with open sky — and the fireflies by night."</p>
-          <cite>— Sarah & Felix</cite>
-        </blockquote>
-        <blockquote>
-          <p>"We felt like a part of the family from the first moment. The outdoor shower is a small highlight in itself. Ajith takes care of his guests with so much dedication."</p>
-          <cite>— Katharina</cite>
-        </blockquote>
-        <blockquote>
-          <p>"A real haven of peace. The view over the lake is breathtaking, especially during sunrise. If we had known, we would have extended our stay."</p>
-          <cite>— Pierre</cite>
-        </blockquote>
-      </div>
+    <span class="label">06 &mdash; WHAT GUESTS SAY</span>
+    <div class="testimonial" id="testimonial">
+      <blockquote id="quote-text">"This was probably the best Airbnb we've ever stayed at. The calmness and nature are breathtaking. The highlight is the bathroom with open sky — and the fireflies by night."</blockquote>
+      <cite id="quote-author">— Sarah & Felix, Germany</cite>
     </div>
+    <div class="testimonial-dots" id="dots">
+      <button class="dot active" data-index="0"></button>
+      <button class="dot" data-index="1"></button>
+      <button class="dot" data-index="2"></button>
+    </div>
+    <p class="reviews-rating">★★★★★ &nbsp; 5.0 on Airbnb &nbsp;·&nbsp; Guest Favorite</p>
   </section>
 
-  <!-- BOOK -->
-  <section class="book" id="book">
-    <div class="container">
-      <h2>Book Directly with Aji</h2>
-      <p>No platform fees. No middleman. Just a message to Aji on WhatsApp — he'll get back to you fast.</p>
-      <a class="btn-book btn-book--large" href="https://wa.me/94XXXXXXXXX?text=Hi%20Aji%2C%20I%20found%20your%20farm%20online%20and%20I%27d%20love%20to%20book%20a%20stay.%20Could%20you%20tell%20me%20about%20availability%3F" target="_blank">
-        Message Aji on WhatsApp
-      </a>
-      <p class="book-note">Tell him your dates, how many guests, and whether you'd like meals arranged.</p>
+  <!-- 07 FIND US -->
+  <section class="contact" id="contact">
+    <div class="contact-info">
+      <span class="label label--light">07 &mdash; FIND US</span>
+      <h2>Aji's Mango Farm</h2>
+      <address>
+        Embilipitiya<br>
+        Sabaragamuwa Province<br>
+        Sri Lanka
+      </address>
+      <div class="contact-wa">
+        <p>Book directly with Aji on WhatsApp — no fees, no platform.</p>
+        <a class="btn-wa" href="https://wa.me/94705065061?text=Hi%20Aji%2C%20I%20found%20your%20farm%20online%20and%20I%27d%20love%20to%20book%20a%20stay.%20Could%20you%20tell%20me%20about%20availability%3F" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.776a.5.5 0 0 0 .612.612l5.918-1.476A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.877 9.877 0 0 1-5.031-1.378l-.36-.214-3.732.931.949-3.461-.235-.376A9.855 9.855 0 0 1 2.1 12c0-5.468 4.432-9.9 9.9-9.9s9.9 4.432 9.9 9.9-4.432 9.9-9.9 9.9z"/></svg>
+          +94 70 506 5061
+        </a>
+      </div>
+    </div>
+    <div class="contact-map">
+      <iframe
+        src="https://maps.google.com/maps?q=Embilipitiya,+Sabaragamuwa,+Sri+Lanka&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        title="Aji's Mango Farm location">
+      </iframe>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>Aji's Mango Farm &mdash; Embilipitiya, Sabaragamuwa Province, Sri Lanka</p>
+    <p>Aji's Mango Farm &mdash; Embilipitiya, Sri Lanka</p>
     <p class="footer-small">Site by <a href="https://github.com/yfelig/stay-barters" target="_blank">Stay Barters</a></p>
   </footer>
 
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
-    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
-  </div>
+  <!-- FLOATING WHATSAPP -->
+  <a class="wa-float" href="https://wa.me/94705065061?text=Hi%20Aji%2C%20I%20found%20your%20farm%20online%20and%20I%27d%20love%20to%20book%20a%20stay.%20Could%20you%20tell%20me%20about%20availability%3F" target="_blank" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.776a.5.5 0 0 0 .612.612l5.918-1.476A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.877 9.877 0 0 1-5.031-1.378l-.36-.214-3.732.931.949-3.461-.235-.376A9.855 9.855 0 0 1 2.1 12c0-5.468 4.432-9.9 9.9-9.9s9.9 4.432 9.9 9.9-4.432 9.9-9.9 9.9z"/></svg>
+  </a>
 
   <script src="script.js"></script>
 </body>
