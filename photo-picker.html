@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>בחירת תמונות — Aji Fruit Farm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: #f5f3ee;
+      color: #1a1a1a;
+      padding: 40px 24px 80px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 20px;
+      margin-top: 56px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #fff;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    .card.selected { border-color: #1b3826; }
+    .card.selected .check { display: flex; }
+    .check {
+      display: none;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      background: #1b3826;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      z-index: 2;
+    }
+    .card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body {
+      padding: 16px;
+    }
+    .card-filename {
+      font-size: 0.72rem;
+      color: #aaa;
+      margin-bottom: 6px;
+      direction: ltr;
+      text-align: left;
+    }
+    .card-role {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1b3826;
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.6;
+    }
+    .badge {
+      display: inline-block;
+      background: #f0ede4;
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 2px;
+      color: #666;
+      margin-top: 8px;
+    }
+    .badge.current { background: #d4edda; color: #1b3826; }
+    .badge.unused { background: #fff3cd; color: #856404; }
+
+    .summary {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #1b3826;
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+    .summary strong { font-size: 1rem; }
+    #selected-list { color: rgba(255,255,255,0.7); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+  <h1>בחירת תמונות לאתר</h1>
+  <p class="subtitle">
+    לחצי על תמונה כדי לסמן אותה. בסוף תגידי לי אילו תמונות תבחרי לאיזה מקום באתר.<br>
+    <strong>ירוק = כרגע באתר &nbsp;|&nbsp; צהוב = לא בשימוש כרגע</strong>
+  </p>
+
+  <!-- SECTION: HERO -->
+  <div class="section-title">תמונת פתיחה ראשית (Hero)</div>
+  <div class="grid">
+    <div class="card" onclick="toggle(this, 'hero.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/hero.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">hero.jpg</div>
+        <div class="card-role">תמונת הפתיחה — רואים אותה ראשונה</div>
+        <div class="card-desc">שביל אבן בין עצי דקל גבוהים שמוביל לכיוון האגם. תמונת הכניסה לאתר — הרושם הראשון.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: THE FARM -->
+  <div class="section-title">01 — קבלת פנים (The Farm)</div>
+  <div class="grid">
+    <div class="card" onclick="toggle(this, 'farm-wide.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/farm-wide.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">farm-wide.jpg</div>
+        <div class="card-role">תצוגה כללית של החווה</div>
+        <div class="card-desc">שני קוטג'ים עם גגות אדומים בתוך ירק סבוך. מראה של החווה מבחוץ.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: YOUR HOST -->
+  <div class="section-title">02 — המארח (Aji)</div>
+  <div class="grid">
+    <div class="card" onclick="toggle(this, 'aji.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/aji.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">aji.jpg</div>
+        <div class="card-role">תמונת אג'ית והמשפחה</div>
+        <div class="card-desc">אג'ית, הבת שלו, והכלב — צוחקים ביחד. הלב של הסיפור.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: THE SETTING / LAKE -->
+  <div class="section-title">04 — הסביבה (The Setting)</div>
+  <div class="grid">
+    <div class="card" onclick="toggle(this, 'lake.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/lake.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">lake.jpg</div>
+        <div class="card-role">תמונת האגם</div>
+        <div class="card-desc">נדנדת עץ תלויה מעל אגם שמשקף כמו מראה. שקטה ומדהימה.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: EXPLORE -->
+  <div class="section-title">05 — פעילויות (Explore)</div>
+  <div class="grid">
+    <div class="card" onclick="toggle(this, 'kayak.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/kayak.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">kayak.jpg</div>
+        <div class="card-role">קיאק על האגם</div>
+        <div class="card-desc">סירה ירוקה קטנה מושכת לחוף מתחת לעצי דקל. תמונה לפעילות הקיאקינג.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+    <div class="card" onclick="toggle(this, 'udawalawe.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/udawalawe.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">udawalawe.jpg</div>
+        <div class="card-role">ספארי אודואלאווה</div>
+        <div class="card-desc">פיל ואיילה ליד מאגר מים עם הרים ברקע. תמונה מוויקיפדיה — לא מהצילומים שלך.</div>
+        <span class="badge unused">לא הצילומים שלנו</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: FOOD -->
+  <div class="section-title">06 — האוכל (The Food)</div>
+  <div class="grid">
+    <div class="card" onclick="toggle(this, 'food.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/food.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">food.jpg</div>
+        <div class="card-role">ארוחת בוקר</div>
+        <div class="card-desc">מפרשת בוקר על השולחן — ביצים, קומקום, פירות. תמונת האוכל.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: THE ROOM (index teaser + slider) -->
+  <div class="section-title">03 — הקוטג' (The Room) — אלו מופיעות בסליידר ובתצוגה המקדימה</div>
+  <div class="grid">
+    <div class="card" onclick="toggle(this, 'room-doorway.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/room-doorway.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">room-doorway.jpg</div>
+        <div class="card-role">פתיחת הסליידר + תמונה ראשית בתצוגה המקדימה</div>
+        <div class="card-desc">דלת פתוחה למחצה — מבעדה רואים את המיטה ואת האגם ברקע. מאוד ציורי.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+    <div class="card" onclick="toggle(this, 'cottage-exterior.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/cottage-exterior.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">cottage-exterior.jpg</div>
+        <div class="card-role">חיצוני הקוטג'</div>
+        <div class="card-desc">קוטג' לבנים עם דלתות זכוכית גדולות, מוקף בעצים.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+    <div class="card" onclick="toggle(this, 'room-full.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/room-full.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">room-full.jpg</div>
+        <div class="card-role">חדר שינה — תמונה כוללת</div>
+        <div class="card-desc">זווית רחבה של כל חדר השינה. אווירה כהה ומיוחדת.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+    <div class="card" onclick="toggle(this, 'room-bed.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/room-bed.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">room-bed.jpg</div>
+        <div class="card-role">המיטה</div>
+        <div class="card-desc">מיטה זוגית עם מסגרת טיק עבודת יד וכרים לבנים.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+    <div class="card" onclick="toggle(this, 'cottage-interior.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/cottage-interior.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">cottage-interior.jpg</div>
+        <div class="card-role">פינת ישיבה + תמונה ב-Index</div>
+        <div class="card-desc">כורסאות קטיפה מול קיר בטון. גם בתצוגה המקדימה של הקוטג' בדף הראשי.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+    <div class="card" onclick="toggle(this, 'room-view.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/room-view.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">room-view.jpg</div>
+        <div class="card-role">הנוף מהחדר</div>
+        <div class="card-desc">מבפנים, מבט דרך הדלתות הפתוחות אל האגם.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+    <div class="card" onclick="toggle(this, 'bathroom.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/bathroom.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">bathroom.jpg</div>
+        <div class="card-role">מקלחת — גם ב-Index וגם בסליידר</div>
+        <div class="card-desc">מקלחת פתוחה לשמיים עם עץ גדול. תמונה מאוד חזקה — מופיעה בשניים מקומות.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+    <div class="card" onclick="toggle(this, 'room-bathroom-sky.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/room-bathroom-sky.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">room-bathroom-sky.jpg</div>
+        <div class="card-role">מבט למעלה דרך המקלחת</div>
+        <div class="card-desc">מסתכלים ישר למעלה מהמקלחת — רואים עצי דקל ושמיים.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+    <div class="card" onclick="toggle(this, 'room-vanity.jpg')">
+      <div class="check">✓</div>
+      <img src="photos/room-vanity.jpg" alt="" />
+      <div class="card-body">
+        <div class="card-filename">room-vanity.jpg</div>
+        <div class="card-role">כיור הרחצה</div>
+        <div class="card-desc">כיור לבן עגול עם ברז שחור — נקי ומינימליסטי.</div>
+        <span class="badge current">כרגע בשימוש</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY BAR -->
+  <div class="summary">
+    <div>
+      <strong>תמונות שסימנת: <span id="count">0</span></strong><br>
+      <span id="selected-list">לא סימנת כלום עדיין</span>
+    </div>
+    <div style="font-size:0.85rem; color:rgba(255,255,255,0.6);">לחצי על תמונה לסימון / ביטול</div>
+  </div>
+
+  <script>
+    const selected = new Set();
+
+    function toggle(card, name) {
+      if (selected.has(name)) {
+        selected.delete(name);
+        card.classList.remove('selected');
+      } else {
+        selected.add(name);
+        card.classList.add('selected');
+      }
+      document.getElementById('count').textContent = selected.size;
+      document.getElementById('selected-list').textContent =
+        selected.size === 0 ? 'לא סימנת כלום עדיין' : Array.from(selected).join(' · ');
+    }
+  </script>
+
+</body>
+</html>
