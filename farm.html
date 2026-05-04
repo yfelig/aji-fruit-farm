@@ -86,6 +86,45 @@
     }
     .photo-grid-2 div:hover img { transform: scale(1.03); }
 
+    .photo-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+      height: 52vh;
+      min-height: 320px;
+    }
+    .photo-grid-3 div { overflow: hidden; }
+    .photo-grid-3 img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.7s ease;
+    }
+    .photo-grid-3 div:hover img { transform: scale(1.03); }
+
+    /* FOOD SCROLL CAROUSEL */
+    .food-carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 4px;
+      height: 52vh;
+      min-height: 320px;
+      scrollbar-width: none;
+    }
+    .food-carousel::-webkit-scrollbar { display: none; }
+    .food-carousel-slide {
+      flex: 0 0 62vw;
+      scroll-snap-align: start;
+      overflow: hidden;
+    }
+    .food-carousel-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.7s ease;
+    }
+    .food-carousel-slide:hover img { transform: scale(1.02); }
+
     /* BOOK STRIP */
     .book-cta {
       padding: var(--gap) var(--side);
@@ -99,6 +138,9 @@
     @media (max-width: 860px) {
       .photo-grid-2 { grid-template-columns: 1fr; height: auto; }
       .photo-grid-2 div { height: 48vw; min-height: 220px; }
+      .photo-grid-3 { grid-template-columns: 1fr; height: auto; }
+      .photo-grid-3 div { height: 48vw; min-height: 220px; }
+      .food-carousel-slide { flex: 0 0 85vw; }
     }
   </style>
 </head>
@@ -143,13 +185,16 @@
     </div>
   </section>
 
-  <!-- PHOTO GRID: two images side by side -->
-  <div class="photo-grid-2">
+  <!-- PHOTO GRID: farm atmosphere — three images -->
+  <div class="photo-grid-3">
     <div>
-      <img src="photos/cottage-exterior.jpg" alt="Cottage among the trees" loading="lazy" />
+      <img src="photos/farm-branch-lake.jpg" alt="Sitting in the orchard above the lake" loading="lazy" />
     </div>
     <div>
-      <img src="photos/room-view.jpg" alt="View from the cottage to the lake" loading="lazy" />
+      <img src="photos/farm-swing.jpg" alt="Lakeside table and swing in the orchard" loading="lazy" />
+    </div>
+    <div>
+      <img src="photos/farm-gazebo.jpg" alt="The gazebo at the water's edge" loading="lazy" />
     </div>
   </div>
 
@@ -206,13 +251,13 @@
     </div>
   </section>
 
-  <!-- PHOTO GRID: farm + food -->
+  <!-- PHOTO GRID: farm character -->
   <div class="photo-grid-2">
     <div>
-      <img src="photos/bathroom.jpg" alt="Open-sky bathroom" loading="lazy" />
+      <img src="photos/farm-mangos.jpg" alt="Freshly bagged mangos from the orchard" loading="lazy" />
     </div>
     <div>
-      <img src="photos/food.jpg" alt="Breakfast at the farm" loading="lazy" />
+      <img src="photos/farm-path.jpg" alt="Stone path through the mango grove" loading="lazy" />
     </div>
   </div>
 
@@ -229,6 +274,28 @@
       <img src="photos/room-doorway.jpg" alt="The cottage door open to the farm" loading="lazy" />
     </div>
   </section>
+
+  <!-- FOOD PHOTO CAROUSEL — scroll sideways -->
+  <div class="food-carousel">
+    <div class="food-carousel-slide">
+      <img src="photos/food-table.jpg" alt="Full Sri Lankan breakfast spread" loading="lazy" />
+    </div>
+    <div class="food-carousel-slide">
+      <img src="photos/food-hopper-juice.jpg" alt="Hopper and fresh green juice" loading="lazy" />
+    </div>
+    <div class="food-carousel-slide">
+      <img src="photos/food-papaya.jpg" alt="Fresh papaya from the farm" loading="lazy" />
+    </div>
+    <div class="food-carousel-slide">
+      <img src="photos/food-hoppers.jpg" alt="Fresh hoppers for breakfast" loading="lazy" />
+    </div>
+    <div class="food-carousel-slide">
+      <img src="photos/food-eggs.jpg" alt="Eggs and legumes, farm breakfast" loading="lazy" />
+    </div>
+    <div class="food-carousel-slide">
+      <img src="photos/food-fruits.jpg" alt="Fresh tropical fruits from the orchard" loading="lazy" />
+    </div>
+  </div>
 
   <!-- BOOK CTA -->
   <section class="book-cta">
