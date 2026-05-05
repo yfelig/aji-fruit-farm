@@ -17,6 +17,18 @@ const quotes = [
   {
     text: '"A real haven of peace. The view over the lake is breathtaking, especially during sunrise. If we had known, we would have extended our stay."',
     author: '— Pierre, France'
+  },
+  {
+    text: '"This is the best farm stay. A wonderful mango farm at the foot of the lake. The family is very kind and the food is delicious. I don\'t think there is any other place like this."',
+    author: '— Momoyo, Japan'
+  },
+  {
+    text: '"Beautiful and serene location to enjoy a relaxed time at the lake. The host and his family are very warm and welcoming — they make sure you have a pleasant stay and don\'t lack anything."',
+    author: '— Sjak, Netherlands'
+  },
+  {
+    text: '"Like in the Garden of Eden. Located in the middle of the farm by a beautiful lake where you can also swim. Breakfast and dinner were delicious. We\'d love to come back!"',
+    author: '— Ronald & Anni, Germany'
   }
 ];
 

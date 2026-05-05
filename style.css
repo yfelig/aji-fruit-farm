@@ -272,12 +272,12 @@ p + p { margin-top: 16px; }
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 8px;
+  height: clamp(260px, 38vw, 500px);
   margin-bottom: 20px;
 }
 
 .teaser-main {
   overflow: hidden;
-  aspect-ratio: 16/10;
 }
 .teaser-main img {
   width: 100%;
@@ -407,10 +407,12 @@ cite {
   text-transform: uppercase;
   color: var(--muted);
   font-style: normal;
+  transition: opacity 0.4s;
 }
 
 .testimonial-dots {
   display: flex;
+  justify-content: center;
   gap: 10px;
   margin-bottom: 40px;
 }
@@ -428,12 +430,33 @@ cite {
 .dot.active { background: var(--text); border-color: var(--text); }
 
 .reviews-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.rating-stars {
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+}
+
+.rating-score {
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
-  max-width: none;
+}
+
+.rating-count {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.75;
 }
 
 /* CONTACT */
@@ -577,6 +600,12 @@ footer {
 
   .nav-links { display: none; }
 
+  .nav-wa {
+    font-size: 0;
+    padding: 10px 14px;
+  }
+  .nav-wa svg { width: 20px; height: 20px; }
+
   .split,
   .contact { grid-template-columns: 1fr; }
 
@@ -602,4 +631,16 @@ footer {
   .activities { grid-template-columns: 1fr; }
 
   .hero-content h1 { letter-spacing: 0; }
+
+  .teaser-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 6px;
+  }
+  .teaser-main { aspect-ratio: 4/3; }
+  .teaser-side {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+  .teaser-side img { aspect-ratio: 1/1; height: auto; }
 }
