@@ -1,6 +1,6 @@
 # Aji Fruit Farm — Website
 
-Static marketing site for Ajith's guesthouse on a mango farm in Embilipitiya, Sri Lanka. Live at: **https://yfelig.github.io/ajis-mango-farm/**
+Static marketing site for Ajith's guesthouse on a fruit farm in Embilipitiya, Sri Lanka. Live at: **https://yfelig.github.io/ajis-mango-farm/**
 
 Custom domain purchased: `aji-fruit-farm.lk` (DNS not yet configured).
 

@@ -1,5 +1,5 @@
 /* ============================================
-   AJI'S MANGO FARM
+   AJI'S FRUIT FARM
    Inspired by The Farm Resorts aesthetic
    ============================================ */
 
@@ -32,7 +32,7 @@ body {
   color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.75;
 }
 
@@ -221,6 +221,28 @@ p + p { margin-top: 16px; }
   50%       { transform: translateX(-50%) translateY(6px); }
 }
 
+/* HERO CTA BUTTON */
+.hero-cta {
+  display: inline-block;
+  margin-top: 36px;
+  padding: 14px 40px;
+  border: 1px solid rgba(255,255,255,0.48);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+.hero-cta:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.88);
+  color: #fff;
+}
+
+/* ANCHOR SCROLL OFFSET — compensate for fixed nav */
+section[id] { scroll-margin-top: 80px; }
+
 /* SPLIT SECTION */
 .split {
   display: grid;
@@ -365,7 +387,8 @@ p + p { margin-top: 16px; }
   padding: 6px 12px;
 }
 
-.activity h3 { margin-bottom: 8px; }
+.activity { padding-bottom: 16px; }
+.activity h3 { margin-bottom: 14px; }
 .activity p { max-width: none; }
 
 /* REVIEWS */
@@ -397,6 +420,18 @@ blockquote {
   color: var(--text);
   margin-bottom: 24px;
   transition: opacity 0.4s;
+}
+
+.testimonial blockquote::before {
+  content: '\201C';
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  line-height: 0.6;
+  color: var(--border);
+  display: block;
+  margin-bottom: 16px;
+  font-style: normal;
+  opacity: 0.9;
 }
 
 cite {
@@ -437,9 +472,9 @@ cite {
 }
 
 .rating-stars {
-  font-size: 1.05rem;
-  letter-spacing: 0.06em;
-  color: var(--text);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  color: #c8952e;
 }
 
 .rating-score {
@@ -536,12 +571,14 @@ cite {
 /* HOST QUOTE */
 .host-quote {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.22rem;
   font-style: italic;
   font-weight: 300;
   color: var(--text);
   margin-top: 24px;
   max-width: none;
+  border-left: 3px solid var(--bg-dark);
+  padding-left: 20px;
 }
 
 /* FOOTER */
@@ -609,7 +646,7 @@ footer {
   .split,
   .contact { grid-template-columns: 1fr; }
 
-  .split-image { aspect-ratio: 16/9; min-height: unset; }
+  .split-image { aspect-ratio: 4/3; min-height: unset; }
   .split-image img { height: 100%; }
 
   .split--reverse .split-text { order: 1; }
