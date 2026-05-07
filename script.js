@@ -50,7 +50,7 @@ const quotes = [
     author: '— Pierre, France'
   },
   {
-    text: '"This is <strong>the best farm stay</strong>. A wonderful mango farm at the foot of the lake. The family is very kind and the food is delicious. I don\'t think there is any other place like this."',
+    text: '"This is <strong>the best farm stay</strong>. A wonderful mango farm at the foot of the lake. The family is very kind and the food is delicious. <strong>I don\'t think there is any other place like this.</strong>"',
     author: '— Momoyo, Japan'
   },
   {
