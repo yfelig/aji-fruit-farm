@@ -895,25 +895,34 @@ footer {
   :root { --side: 40px; --gap: 80px; }
 }
 
+/* TABLET / SMALL LAPTOP */
 @media (max-width: 860px) {
   :root { --side: 28px; --gap: 64px; }
 
+  /* Nav: hide links (focus on logo + Book Direct), keep BOOK DIRECT
+     visible as a real text pill (the WhatsApp icon was removed earlier
+     so we can't fall back to icon-only). */
   .nav-links { display: none; }
+  .nav-wa { font-size: 0.65rem; padding: 6px 12px; letter-spacing: 0.08em; }
 
-  .nav-wa {
-    font-size: 0;
-    padding: 10px 14px;
-  }
-  .nav-wa svg { width: 20px; height: 20px; }
-
+  /* Splits stack — let content drive height. The 100svh viewport rule
+     would force every section to be a full screen TWICE (text + photo)
+     which feels endless on mobile. Auto height is the right read here. */
   .split,
-  .contact { grid-template-columns: 1fr; }
-
+  .contact {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
   .split-image { aspect-ratio: 4/3; min-height: unset; }
   .split-image img { height: 100%; }
-
   .split--reverse .split-text { order: 1; }
   .split--reverse .split-image { order: 2; }
+
+  /* Image sliders inherit the .split-image aspect ratio on mobile —
+     full-bleed photo, smaller controls. */
+  .slider-arrow { width: 34px; height: 34px; }
+  .slider-arrow--prev { left: 10px; }
+  .slider-arrow--next { right: 10px; }
 
   .cards,
   .activities { grid-template-columns: 1fr 1fr; }
@@ -921,17 +930,80 @@ footer {
   .contact-map { height: 320px; position: relative; }
   .contact-map iframe { position: static; height: 320px; }
 
-  footer { flex-direction: column; gap: 8px; text-align: center; }
+  /* Testimonial — arrows on the sides of the quote can crowd on
+     narrower screens; tighten the gap and shrink the arrow icons. */
+  .testimonial-row { gap: 16px; }
+  .testimonial-arrow { width: 28px; height: 28px; }
+  .testimonial-arrow svg { width: 16px; height: 16px; }
+  .testimonial { min-height: 200px; padding: 0 4px; }
+  blockquote { font-size: 1rem; }
+
+  /* Hero — pull title back to natural flow on mobile (the desktop
+     -100px lift looks oversized at this width). */
+  .hero-content { padding: 0 24px 80px; }
+  .hero-content h1 { margin-top: 0; letter-spacing: 0.02em; }
+  .hero-cta { padding: 12px 24px; font-size: 0.7rem; }
+
+  /* Book CTA + Find Us info — tighter padding so the strip never
+     dominates the bottom of the page on a phone. */
+  .book-cta { padding: 26px var(--side); }
+  .contact-info { padding: 28px var(--side); }
+
+  footer {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 18px var(--side);
+  }
+  .footer-small { margin-right: 0; }
+
+  /* Floating WhatsApp — tiny lift so it never sits on top of the
+     fixed-iframe controls (Google Maps zoom buttons, etc). */
+  .wa-float { bottom: 22px; right: 14px; width: 50px; height: 50px; }
+  .wa-float svg { width: 24px; height: 24px; }
 }
 
+/* PHONE */
 @media (max-width: 560px) {
   :root { --side: 20px; }
 
   .cards,
   .activities { grid-template-columns: 1fr; }
 
-  .hero-content h1 { letter-spacing: 0; }
+  .hero-content h1 {
+    /* Cap a bit lower so "AJI FRUIT FARM" never overflows on narrow
+       portrait phones. */
+    font-size: clamp(2.2rem, 11vw, 4.5rem);
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .hero-tagline { font-size: clamp(1rem, 4.5vw, 1.4rem); }
 
+  /* Section labels + h2 a touch smaller for better mobile rhythm. */
+  h2 { font-size: clamp(1.7rem, 6.5vw, 2.4rem); }
+
+  /* Reviews internals — smaller stars + denser rating line. */
+  .rating-stars { font-size: 1.05rem; }
+  .rating-score { font-size: 0.66rem; letter-spacing: 0.06em; }
+  .reviews-rating { gap: 8px; }
+  blockquote { font-size: 0.95rem; line-height: 1.5; }
+
+  /* Testimonial arrows even smaller — they share the row with the
+     quote so leave most of the room for the words. */
+  .testimonial-row { gap: 10px; }
+  .testimonial-arrow { width: 26px; height: 26px; }
+  .testimonial-arrow svg { width: 14px; height: 14px; }
+
+  /* Single-column features list at phone width keeps each line readable. */
+  .features-list { grid-template-columns: 1fr; gap: 10px; }
+  .features-list li { font-size: 0.92rem; }
+
+  /* Book CTA more compact still. */
+  .book-cta { padding: 22px var(--side); }
+  .book-cta .btn-wa { font-size: 0.78rem; padding: 9px 20px; }
+
+  /* Old teaser grid (kept for safety in case the cottages section is
+     ever restored to its original form). */
   .teaser-grid {
     grid-template-columns: 1fr;
     height: auto;
