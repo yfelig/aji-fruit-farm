@@ -35,6 +35,16 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
+// ─── NAV-ABLE REGISTRY ────────────────────────────────────────────
+// Every interactive nav-able element (image sliders + the testimonial
+// carousel) registers itself; the global keyboard handler routes
+// ArrowLeft/ArrowRight to whichever nav-able is most centered in the
+// current viewport, so multiple sliders on a page never compete.
+const navables = [];
+function registerNavable(element, api) {
+  if (element) navables.push({ element, api });
+}
+
 // Testimonial carousel
 const quotes = [
   {
@@ -122,16 +132,65 @@ if (quoteText && quoteAuthor) {
   // Manual prev/next arrows — no auto-rotation, the visitor decides.
   const prevBtn = document.getElementById('quote-prev');
   const nextBtn = document.getElementById('quote-next');
-  function gotoPrev() { showQuote((current - 1 + quotes.length) % quotes.length, 'prev'); }
-  function gotoNext() { showQuote((current + 1) % quotes.length, 'next'); }
+  const gotoPrev = () => showQuote((current - 1 + quotes.length) % quotes.length, 'prev');
+  const gotoNext = () => showQuote((current + 1) % quotes.length, 'next');
   if (prevBtn) prevBtn.addEventListener('click', gotoPrev);
   if (nextBtn) nextBtn.addEventListener('click', gotoNext);
 
-  // Keyboard support — arrow keys navigate between quotes.
-  document.addEventListener('keydown', (e) => {
-    const tag = (e.target.tagName || '').toLowerCase();
-    if (tag === 'input' || tag === 'textarea') return;
-    if (e.key === 'ArrowLeft')  gotoPrev();
-    if (e.key === 'ArrowRight') gotoNext();
-  });
+  // Register the testimonial as a navable so the global keyboard handler
+  // can route arrow keys to it when the reviews section is in view.
+  registerNavable(document.querySelector('.reviews'), { prev: gotoPrev, next: gotoNext });
 }
+
+// ─── IMAGE CAROUSELS ──────────────────────────────────────────────
+document.querySelectorAll('.image-slider').forEach((slider) => {
+  const slides  = slider.querySelectorAll('.slide');
+  const prev    = slider.querySelector('.slider-arrow--prev');
+  const next    = slider.querySelector('.slider-arrow--next');
+  const counter = slider.querySelector('.slider-counter');
+  const total   = slides.length;
+  let current = 0;
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = (n + total) % total;
+    slides[current].classList.add('active');
+    if (counter) counter.textContent = `${current + 1} / ${total}`;
+  }
+  const api = { prev: () => show(current - 1), next: () => show(current + 1) };
+
+  if (prev) prev.addEventListener('click', api.prev);
+  if (next) next.addEventListener('click', api.next);
+
+  let startX = 0;
+  slider.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  slider.addEventListener('touchend', (e) => {
+    const dx = startX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) (dx > 0 ? api.next : api.prev)();
+  });
+
+  registerNavable(slider, api);
+});
+
+// Pick the nav-able whose center is closest to the viewport center.
+function activeNavable() {
+  const vpCenter = window.innerHeight / 2;
+  let best = null;
+  let bestDist = Infinity;
+  for (const { element, api } of navables) {
+    const r = element.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) continue;
+    const d = Math.abs((r.top + r.bottom) / 2 - vpCenter);
+    if (d < bestDist) { bestDist = d; best = api; }
+  }
+  return best;
+}
+
+document.addEventListener('keydown', (e) => {
+  const tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea') return;
+  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+  const target = activeNavable();
+  if (!target) return;
+  e.key === 'ArrowLeft' ? target.prev() : target.next();
+});
