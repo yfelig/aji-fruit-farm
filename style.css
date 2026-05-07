@@ -841,7 +841,7 @@ footer {
 .wa-float {
   position: fixed;
   bottom: 44px;
-  right: 28px;
+  right: 16px;
   z-index: 80;
   width: 56px;
   height: 56px;
