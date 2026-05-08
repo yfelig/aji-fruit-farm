@@ -1,2 +1,9 @@
 node_modules/
 photos-orig/
+
+# Local dev / QA tooling — not part of the deployed site
+dev-server.js
+qa-*.js
+qa-screenshots/
+QA-REPORT-*.md
+SEO-PLAN.md

@@ -4,6 +4,151 @@ Running log of work sessions. Newest entries on top. Used by `/wrap-session` and
 
 ---
 
+## 2026-05-08 — pre-launch UX pass: 5 רעיונות + 4 תיקונים + 2 בונוסים (Rivka + נתנאלה)
+
+### What we did
+
+המשך ישיר לסשן הלילה (אותו יום, אחרי שינה קצרה). רבק'לה התעוררה, קראה את `QA-REPORT-2026-05-08.md`, אישרה — ואמרה "תכלס". מ-02:30 עד ~06:00 הוריד את כל ההמלצות מהדוח לקוד.
+
+**Photo additions:**
+- 2 תמונות קוטג' חיצוני נוספו לסליידר ב-rooms.html: `cottage-palms.jpg` (קוטג' בין דקלים) + `cottage-brick-veranda.jpg` (מרפסת לבנים עם כיסאות עץ). הסליידר עלה מ-5 ל-7 שקופיות.
+
+**4 תיקונים טכניים:** מחיקת inline scripts כפולים ב-rooms+farm; חיצי slider במובייל 38→44px; חיצי testimonial 28→44px; חץ scroll בהירו מוסתר במובייל; סליידר Lake בfarm נוקה (פילים+סוסים הוסרו, נשארו 4 שקופיות אגם בלבד); inline CSS של slider ב-rooms+farm נמחק כדי שה-mobile media query יתפוס.
+
+**5 רעיונות UX (פסיכולוגיה + מחקר):**
+1. **Date-aware WhatsApp picker** ב-Find Us — 3 שדות (arrival/nights/guests) שבונים הודעת WA דינמית. anchoring + commitment + reduces friction.
+2. **סיפור אג'י** ב-MEET AJI — נכתב מחדש: "Sri Lanka's #1 commercial fruit farm in 2018 → 2020 nearly broke him → didn't sell → built four cottages". authority + narrative transportation.
+3. **Social proof density** — חיזוק כותרת ל-"60+ guests · 5.0 across Airbnb, Booking & Tripadvisor"; שורה אלגנטית "Recent guests from Germany · France · Japan · Netherlands"; מיקרו-ציטוט "Like in the Garden of Eden — Ronald & Anni" בסקציית Setting.
+4. **"Three days at the farm" itinerary** — סקציה חדשה (05) עם 3 cards: Arrive at sunset / Dawn on the lake / Slow morning. narrative transportation + endowment effect.
+5. **Same-day reply signal** — כל ה-CTAs עכשיו אומרים "Aji usually replies the same day — a question is welcome too". מקטין commitment friction.
+
+**2 בונוסים:**
+- **Price floor** — "From $40/night · breakfast included · full board available" מתחת ל-hero CTA; אותו עקרון ב-rooms.html. רבקה אישרה $40 כעונת בסיס. מטפל ב-#1 abandonment driver לפי מחקר.
+- **Getting here** — בלוק practical בתוך Find Us: ~5h Colombo, ~4.5h airport, 45min Udawalawe, חניה חינם + Aji can arrange driver/pickup.
+- **Food section** עודכן לכלול full board: כותרת ל-"Breakfast Every Morning. Full Board on Request." + פסקה ברורה על 3 ארוחות ביום בבקשה מוקדמת.
+
+**הסכמת אורחים:** רבקה אישרה שיש הסכמה מהאורחים לשימוש בשמותיהם — Sarah & Felix, Katharina, Pierre, Momoyo, Sjak, Ronald & Anni נשארים כמו שהם.
+
+**QA סופי:** 4 עמודים × 2 viewports = 8 ריצות, 0 שגיאות JS, 0 תמונות שבורות, 0 horizontal overflow, 0 failed requests. הדף הראשי גדל מ-6990px (לפני) ל-8275px בדסקטופ — הסקציה Itinerary החדשה.
+
+### Where we are
+
+האתר מוכן ל-launch סופי. כל ההמלצות מהדוח יושמו, כולל הבונוסים. השינויים יתבצעו בcommit אחד מסודר עם הודעת commit מקיפה ב-CHANGES.md. ה-`.gitignore` עודכן כך שכלי ה-QA המקומיים (qa-*.js, qa-screenshots/, dev-server.js, QA-REPORT-*.md) לא ייכנסו לריפו.
+
+### Files touched
+
+- `index.html` — 5 רעיונות + 2 בונוסים + עדכוני food + מספור סקציות חדש (05-09)
+- `rooms.html` — 2 תמונות חדשות בסליידר, price line, מחיקת inline script+CSS
+- `farm.html` — סליידר Lake נקי, מחיקת inline script+CSS
+- `story.html` — book-cta copy
+- `style.css` — סקציות חדשות: `.dp-*` (date picker), `.itinerary*` / `.day*`, `.micro-quote`, `.rating-origins`, `.hero-price`, `.rooms-price`, `.getting-here`. mobile fixes 44×44.
+- `script.js` — `dp-*` listeners + buildMessage לוגיקה
+- `photos/cottage-palms.jpg`, `photos/cottage-brick-veranda.jpg` — חדשים
+- `CHANGES.md` — רשומה חדשה מקיפה
+- `.gitignore` — exclusion של qa-* / dev-server / QA-REPORT
+- `SESSION-LOG.md` — רשומה זו
+
+### Git state
+
+- Branch: `main`. עץ עבודה: 9 modified + 2 new photos. כל הקבצים האחרים (qa scripts, screenshots, dev-server, QA-REPORT) ב-gitignore.
+- מתבצע commit + push בעקבות הסשן הזה.
+
+---
+
+## 2026-05-08 — לילה של QA + מחקר UX לקראת launch (נתנאלה, סולו)
+
+### What we did
+
+- רבק'לה נכנסה לסשן ב-`/המשך-פרויקט`, ראתה שיש drift גדול מאז 2026-05-07 (12 commits לא מתועדים מאת יאיר/סשן אחר), וביקשה QA מקיף + מחקר UX יצירתי לפני launch סופי. הלכה לישון, נתנה לי את כל הלילה.
+- **QA מקיף** עם Playwright (התקנתי ב-`--no-save`) על האתר החי `aji-fruit-farm.lk`:
+  - 4 עמודים × 2 viewports (desktop 1440 + iPhone 13) = 8 ריצות
+  - 3 סקריפטי בדיקה: `qa-run.js` (גלובלי), `qa-deep.js` (גלילה איטית + image-load wait + slider-loop), `qa-shots.js` (צילומים נקיים), `qa-interactive.js` (סימולציית clicks).
+  - **תוצאה: אפס שגיאות JS, אפס תמונות שבורות בפועל, כל ה-sliders עובדים נכון, כל הקישורים תקינים, אין overflow.**
+  - ממצאים נמוכים בלבד: touch targets < 40px במובייל, סקריפט carousel inline שמשוכפל ב-rooms.html ו-farm.html, חיכוך קל ב-anchor scroll מ-#contact (timing artifact).
+- **מחקר UX מעמיק** — 8 חיפושי web + 6 WebFetches על Hoshino Resorts, Nihi Sumba, Bawah Reserve, Plum Guide, Teardrop Hotels (סרי לנקה), + Booking.com case study + מחקרים אקדמיים על narrative transportation, peak-end rule, loss aversion, scarcity, social proof.
+- **דוח שלם** נכתב ב-`QA-REPORT-2026-05-08.md` בשורש הפרויקט. כולל:
+  - ממצאי QA (8 פריטים, מ-info ועד low)
+  - בנצ'מארק של 6 אתרים בתחום
+  - 5 רעיונות UX מבוססי פסיכולוגיה (date-aware WA picker, סיפור אג'י על ה-home, social proof density, "3 days at the farm" itinerary, reply-time signal)
+  - לכל רעיון: מה / למה זה עובד / איך מיישמים / מאמץ / קישורי מקורות
+  - 2 רעיונות בונוס (price floor, "how to get here")
+  - 5 תיקונים טכניים מומלצים
+  - סדר עבודה מוצע ל-yom האחרון
+
+### Where we are
+
+האתר מוכן ל-launch. אפס bugs קריטיים, ויזואלית מצוין בכל ה-viewports. 12 commits של היום מאוד שיפרו (mobile responsive, breakfast slider, WA float positioning). הפער עכשיו הוא לא טכני אלא הזדמנויות UX לא מנוצלות — בעיקר חוסר בכלי המרה (אין מחיר, אין תאריכים, אין reply-time signal). הכל מפורט בדוח.
+
+לא נגעתי בקוד עצמו — רבק'לה ביקשה דוח, לא commit. הסקריפטים הוסיפו 4 קבצים ל-root: `qa-run.js`, `qa-deep.js`, `qa-shots.js`, `qa-interactive.js`, וגם תיקיה `qa-screenshots/` עם 32 צילומים + JSON של findings. אם רבק'לה לא רוצה אותם בריפו — לא לכלול ב-commit, או למחוק.
+
+### Open threads
+
+- **רבק'לה צריכה לקרוא את הדוח** ולבחור אילו מ-5 הרעיונות ליישם לפני launch. ההמלצה שלי: רעיונות 1+5 לבד יביאו 80% מההשפעה (עליה משוערת 15-25% ב-conversion).
+- **אם רוצה שאעשה זה בעצמי** — Date-aware WA picker (רעיון 1) הוא הכי בטוח להפעיל אוטומטית: שינוי לוקאלי בלבד ב-`index.html` + js קצר, אין קונפליקטים עם הקוד הקיים.
+- **לא נגעתי ב-`SESSION-LOG.md` (modified)** — היה כבר modified כשנכנסתי, השארתי. רבק'לה תחליט אם להוסיף או לזרוק.
+- **לא נגעתי ב-`CHANGES.md`** — לא היה מתאים מבלי commit.
+- **תיקונים טכניים נמוכי-חומרה** (5 פריטים) ממתינים לרבק'לה.
+
+### Files touched
+
+- `QA-REPORT-2026-05-08.md` — חדש, דוח מלא
+- `qa-run.js` / `qa-deep.js` / `qa-shots.js` / `qa-interactive.js` — סקריפטי QA, חדשים
+- `qa-screenshots/` — 32 צילומי PNG + 9 JSON של audit/findings
+- `node_modules/` — playwright הותקן עם `--no-save` (לא ב-`package.json`, לא ב-git index)
+- `SESSION-LOG.md` — הוספת רשומה זו
+
+### Git state
+
+- Branch: `main`. עץ עבודה: `SESSION-LOG.md` modified (נשאר כפי שהיה כשנכנסתי + רשומה זו).
+- **Uncommitted (לא commitתי כלום):** הסקריפטים, התיקיה qa-screenshots, הדוח, וה-SESSION-LOG.
+- אין local commits ahead of origin.
+
+---
+
+## 2026-05-07 — index hero polish (Rivka pass 1) + collaborator handshake blocker
+
+### What we did
+
+- Rivka opened a fresh visual-design pass on the site (her words: "כובע של מעצבת אתרים מקצועית עם עין חדה לסימטריה ויופי"). I cloned the repo locally for the first time, read the README and SESSION-LOG, oriented around the open items.
+- First pass on `index.html` hero per Rivka's eye-test from the live site:
+  - Removed the small `EMBILIPITIYA · SRI LANKA` label above the H1 — felt redundant against the page title and the breadcrumb-feel didn't fit the editorial direction.
+  - Forced "AJI FRUIT FARM" onto a single line. Dropped the explicit `<br>`, added `white-space: nowrap`, retuned the H1 clamp from `clamp(4rem, 12vw, 9rem)` to `clamp(2.6rem, 9vw, 8rem)` so the title lands as one row at desktop widths and scales down cleanly on mobile.
+  - Strengthened the tagline ("Sleep in a fruit orchard. Wake up to the lake.") against the foliage gradient — opacity 0.85 → 0.96, weight 300 → 400, added `text-shadow: 0 1px 14px rgba(0,0,0,0.45)`. The italic Cormorant reads cleanly through the photo now.
+  - Thinned the sticky nav: `padding: 20px var(--side)` → `12px var(--side)` (and `10px` once scrolled). Reads as a fine line over the hero rather than a banner.
+- Created `CHANGES.md` (per the README's "after any push, add an entry" rule — file didn't exist yet, so initialized it with the protocol Yair laid out + this session's entry).
+- Locally committed the work as `ae91c94 — design: thinner sticky nav, single-line hero title, stronger tagline`.
+
+### Where we are
+
+The 4 hero changes are **committed locally only** — `git push` returned 403. Verified via `gh api repos/yfelig/ajis-mango-farm` that `rivsh4-a11y` only has `pull: true, push: false` on this repo. Rivka's belief that she had write access turned out to be aspirational; only `yfelig` can push to `main`. The local working tree is clean (commit landed); origin is still at `f763c51` (Yair's last SEO commit). Nothing visible on the live site yet — `https://yfelig.github.io/ajis-mango-farm/` still shows the pre-pass hero.
+
+To unblock, drafted a short message for Yair and put it in a Google Doc Rivka can copy-paste cleanly: **"הודעה ליאיר — Collaborator לריפו של אג'י"** at `https://docs.google.com/document/d/1ebN5ooUMJNbIHUxrCVoqcYOG4P6oHj_EHnu0WEV6bV8/edit`. The ask is one click for Yair: Settings → Collaborators → Add `rivsh4-a11y` with Write scope. Rivka sent it to him and we're parked here.
+
+### Open threads
+
+- **Blocked on Yair adding rivsh4-a11y as Write collaborator.** Once accepted, the next session pushes `ae91c94` and the hero polish goes live within a minute. Rivka was told to ping me with "אני בפנים" after she accepts the invite.
+- **Continue the visual pass on `index.html`.** Only the hero block was reviewed in this session. The rest of the page (welcome split, meet-aji split, the two cottage/farm teasers, food carousel, testimonial, contact, footer) is untouched — Rivka's intent was to go page-by-page on visual finishes, so her next direction probably picks up from welcome down.
+- **Remaining pages** for the same pass: `rooms.html`, `farm.html`, `story.html`.
+- **Carried from the README's open items** (not addressed this session):
+  - DNS for `aji-fruit-farm.lk` (CNAME + 4 A records → GitHub Pages).
+  - 5 placeholder photos still in production: `horses.jpg`, `room-bed.jpg`, `room-view.jpg`, `room-bathroom-sky.jpg`, `room-vanity.jpg`.
+  - Horse-riding card copy says "Ask Aji" — needs the actual farm name + location.
+
+### Files touched
+
+- `index.html` — removed `<p class="hero-label">` and the `<br>` between AJI and FRUIT FARM in the H1.
+- `style.css` — thinned nav padding (20→12, scrolled 20→10), added `padding` to the nav transition; H1 clamp retuned + `white-space: nowrap` + tighter letter-spacing; tagline opacity / weight / text-shadow tweaks.
+- `CHANGES.md` — new file, initialized + first entry.
+
+### Git state
+
+- Branch: `main`. Working tree clean.
+- **Uncommitted:** none.
+- **Local commit ahead of origin:** `ae91c94 — design: thinner sticky nav, single-line hero title, stronger tagline` (waiting on Yair's collaborator invite to push).
+- Origin head: `f763c51 — seo: OG tags, Twitter cards, canonical URLs, JSON-LD, favicon, robots.txt, sitemap`.
+
+---
+
 ## 2026-05-05 — 2-round professional design review + 14 improvements shipped
 
 **What we did:**

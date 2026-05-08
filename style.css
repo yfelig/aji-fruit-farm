@@ -415,6 +415,95 @@ section[id] { scroll-margin-top: 80px; }
 .card-body h3 { margin-bottom: 8px; }
 .card-body p { max-width: none; }
 
+/* ITINERARY — "Three days at the farm" — narrative-transportation
+   block that lets the visitor mentally rehearse the actual stay. */
+.itinerary {
+  padding: 56px var(--side);
+  background: var(--bg-alt);
+  text-align: center;
+}
+.itinerary-header { margin-bottom: 32px; }
+.itinerary-header .label { margin-bottom: 12px; }
+.itinerary-header h2 { margin-bottom: 0; }
+
+.itinerary-days {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.day { display: flex; flex-direction: column; }
+
+.day-img {
+  position: relative;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.day-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.day:hover .day-img img { transform: scale(1.04); }
+
+.day-num {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--bg-dark);
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.day h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.day p {
+  max-width: none;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  /* On mobile the 3 days run horizontally as a swipeable strip — fits
+     in one screen, lets the user thumb through Days 1/2/3 like a story
+     instead of scrolling past three full-height cards. */
+  .itinerary { padding: 48px 0; }
+  .itinerary-header { padding: 0 var(--side); margin-bottom: 24px; }
+  .itinerary-days {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 78%;
+    gap: 14px;
+    max-width: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 var(--side) 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .itinerary-days::-webkit-scrollbar { display: none; }
+  .day { scroll-snap-align: start; }
+  .day-img { aspect-ratio: 4/5; margin-bottom: 14px; }
+  .day h3 { font-size: 1.2rem; margin-bottom: 4px; }
+  .day p { font-size: 0.88rem; }
+}
+
 /* EXPLORE */
 .explore {
   /* One full viewport, matching the splits — heading + 3 photo cards +
@@ -564,6 +653,7 @@ cite {
   justify-content: center;
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
   border: none;
   background: transparent;
   color: var(--muted);
@@ -627,6 +717,50 @@ cite {
   border-radius: 50%;
   background: var(--muted);
   opacity: 0.4;
+}
+
+/* Recent-guest origins line beneath the rating — quiet, ambient
+   social proof showing the geographic spread of recent guests. */
+.rating-origins {
+  margin: 12px auto 0;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  text-align: center;
+  max-width: none;
+}
+
+/* Micro-quote — a small, ambient guest snippet placed inside a content
+   section so the social proof appears throughout the page rather than
+   only in the testimonial carousel. */
+.micro-quote {
+  margin-top: 24px;
+  padding: 14px 18px;
+  border-left: 2px solid rgba(200, 149, 46, 0.55);
+  background: rgba(200, 149, 46, 0.06);
+  max-width: 38ch;
+}
+.micro-quote p {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text);
+  margin: 0 0 6px;
+  max-width: none;
+}
+.micro-quote cite {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
 }
 
 /* CONTACT */
@@ -778,6 +912,165 @@ cite {
 }
 .book-cta .btn-wa { font-size: 0.82rem; padding: 10px 24px; }
 
+/* HERO PRICE — quiet badge below the hero CTA so the budget question
+   is answered before the visitor leaves the first screen. */
+.hero-price {
+  margin-top: 18px;
+  margin-bottom: 0;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+  max-width: none;
+}
+
+/* ROOMS PRICE — anchor line above the "Built for Two" body copy so
+   the rate is visible the moment the cottages page loads. */
+.rooms-price {
+  font-family: var(--font-body);
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bg-dark) !important;
+  margin: 0 0 18px !important;
+  max-width: none !important;
+}
+
+/* GETTING HERE — practical distances inside the dark contact info
+   column. Compact list with hairline dividers, no bullets. */
+.getting-here { margin: 0 0 18px; }
+.gh-heading {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 6px;
+}
+.getting-here ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.getting-here li {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+  padding: 4px 0;
+}
+.getting-here li + li {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* DATE-AWARE WHATSAPP PICKER (contact section, index page) */
+.dp-heading {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,0.92);
+  margin: 4px 0 8px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.date-picker {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+  max-width: 460px;
+}
+
+.dp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dp-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+.dp-field input {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+  min-height: 40px;
+}
+
+.dp-field input:focus {
+  outline: none;
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.13);
+}
+
+/* Calendar/clock icons in dark theme — invert so they're visible */
+.dp-field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.6);
+  cursor: pointer;
+}
+
+.dp-send {
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.dp-send-arrow {
+  transition: transform 0.2s ease;
+}
+.dp-send:hover .dp-send-arrow { transform: translateX(3px); }
+
+.dp-note {
+  color: rgba(255,255,255,0.55) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.5 !important;
+  margin: 0 0 8px !important;
+  max-width: 38ch;
+}
+
+.dp-direct {
+  font-size: 0.78rem !important;
+  color: rgba(255,255,255,0.4) !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+.dp-direct a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.25);
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+.dp-direct a:hover {
+  color: #fff;
+  text-decoration-color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 560px) {
+  .date-picker {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .dp-field:first-child { grid-column: 1 / -1; }
+  .dp-heading { font-size: 1rem; }
+}
+
 /* TEXT LINK — arrow CTA */
 .text-link {
   display: inline-flex;
@@ -919,22 +1212,44 @@ footer {
   .split--reverse .split-image { order: 2; }
 
   /* Image sliders inherit the .split-image aspect ratio on mobile —
-     full-bleed photo, smaller controls. */
-  .slider-arrow { width: 34px; height: 34px; }
+     full-bleed photo. Touch targets at 44px (Apple HIG min). */
+  .slider-arrow { width: 44px; height: 44px; }
+  .slider-arrow svg { width: 18px; height: 18px; }
   .slider-arrow--prev { left: 10px; }
   .slider-arrow--next { right: 10px; }
 
-  .cards,
-  .activities { grid-template-columns: 1fr 1fr; }
+  .cards { grid-template-columns: 1fr 1fr; }
+
+  /* Explore: same swipeable strip pattern as the itinerary so the
+     three activity cards fit in one screen on mobile instead of
+     stacking. */
+  .explore {
+    padding: 48px 0;
+    min-height: auto;
+  }
+  .explore-header { padding: 0 var(--side); margin-bottom: 24px; }
+  .activities {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 78%;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0 var(--side) 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .activities::-webkit-scrollbar { display: none; }
+  .activity { scroll-snap-align: start; }
 
   .contact-map { height: 320px; position: relative; }
   .contact-map iframe { position: static; height: 320px; }
 
-  /* Testimonial — arrows on the sides of the quote can crowd on
-     narrower screens; tighten the gap and shrink the arrow icons. */
-  .testimonial-row { gap: 16px; }
-  .testimonial-arrow { width: 28px; height: 28px; }
-  .testimonial-arrow svg { width: 16px; height: 16px; }
+  /* Testimonial — keep arrows at 44px for fingertip targets, tighten
+     the row gap so the quote still gets most of the width. */
+  .testimonial-row { gap: 12px; }
+  .testimonial-arrow { width: 44px; height: 44px; }
+  .testimonial-arrow svg { width: 18px; height: 18px; }
   .testimonial { min-height: 200px; padding: 0 4px; }
   blockquote { font-size: 1rem; }
 
@@ -943,6 +1258,10 @@ footer {
   .hero-content { padding: 0 24px 80px; }
   .hero-content h1 { margin-top: 0; letter-spacing: 0.02em; }
   .hero-cta { padding: 12px 24px; font-size: 0.7rem; }
+
+  /* Hide the bounce-down scroll arrow on mobile — touch users already
+     know to scroll, and the 28×36 hit area is below the 44×44 minimum. */
+  .hero-scroll { display: none; }
 
   /* Book CTA + Find Us info — tighter padding so the strip never
      dominates the bottom of the page on a phone. */
@@ -967,8 +1286,7 @@ footer {
 @media (max-width: 560px) {
   :root { --side: 20px; }
 
-  .cards,
-  .activities { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
 
   .hero-content h1 {
     /* Cap a bit lower so "AJI FRUIT FARM" never overflows on narrow
@@ -988,11 +1306,10 @@ footer {
   .reviews-rating { gap: 8px; }
   blockquote { font-size: 0.95rem; line-height: 1.5; }
 
-  /* Testimonial arrows even smaller — they share the row with the
-     quote so leave most of the room for the words. */
-  .testimonial-row { gap: 10px; }
-  .testimonial-arrow { width: 26px; height: 26px; }
-  .testimonial-arrow svg { width: 14px; height: 14px; }
+  /* Phone — keep 44×44 fingertip targets, tighten gap further. */
+  .testimonial-row { gap: 6px; }
+  .testimonial-arrow { width: 44px; height: 44px; }
+  .testimonial-arrow svg { width: 16px; height: 16px; }
 
   /* Single-column features list at phone width keeps each line readable. */
   .features-list { grid-template-columns: 1fr; gap: 10px; }

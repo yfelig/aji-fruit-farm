@@ -70,6 +70,14 @@ const quotes = [
   {
     text: '"<strong>Like in the Garden of Eden.</strong> Located in the middle of the farm by a beautiful lake where you can also swim. Breakfast and dinner were delicious. We\'d love to come back!"',
     author: '— Ronald & Anni, Germany'
+  },
+  {
+    text: '"<strong>This is the best place I\'ve ever visited.</strong> I\'ve already started planning my next visit."',
+    author: '— Donovan'
+  },
+  {
+    text: '"A peaceful place, a true haven of peace. <strong>Had we known, we would have extended our stay.</strong>"',
+    author: '— Maxime, Paris'
   }
 ];
 
@@ -194,3 +202,43 @@ document.addEventListener('keydown', (e) => {
   if (!target) return;
   e.key === 'ArrowLeft' ? target.prev() : target.next();
 });
+
+// ─── DATE-AWARE WHATSAPP PICKER ───────────────────────────────────
+// On the index contact section: turns three light inputs (arrival,
+// nights, guests) into a tailored WhatsApp message so Aji doesn't
+// have to ask "when?" before a conversation can start. Pure
+// client-side — the link's href is rebuilt on every input change.
+const dpArrival = document.getElementById('dp-arrival');
+const dpNights  = document.getElementById('dp-nights');
+const dpGuests  = document.getElementById('dp-guests');
+const dpSend    = document.getElementById('dp-send');
+
+if (dpArrival && dpNights && dpGuests && dpSend) {
+  // Block past dates from the calendar picker
+  const today = new Date();
+  dpArrival.min = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+
+  function buildMessage() {
+    const nights = Math.max(1, parseInt(dpNights.value, 10) || 1);
+    const guests = Math.max(1, parseInt(dpGuests.value, 10) || 1);
+    const nightWord = nights === 1 ? 'night' : 'nights';
+    const guestWord = guests === 1 ? 'guest' : 'guests';
+    let msg;
+    if (dpArrival.value) {
+      const d = new Date(dpArrival.value + 'T00:00');
+      const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      msg = `Hi Aji, I'd love to book a cottage from ${dateStr} for ${nights} ${nightWord} (${guests} ${guestWord}). Are dates available?`;
+    } else {
+      msg = `Hi Aji, I'd love to book a cottage for ${guests} ${guestWord}. Could you tell me about availability?`;
+    }
+    return `https://wa.me/94705065061?text=${encodeURIComponent(msg)}`;
+  }
+
+  function updateLink() { dpSend.href = buildMessage(); }
+  ['input', 'change'].forEach(ev => {
+    [dpArrival, dpNights, dpGuests].forEach(el => el.addEventListener(ev, updateLink));
+  });
+  // Final safety on click — guarantees the latest values are used
+  dpSend.addEventListener('click', updateLink);
+  updateLink();
+}
