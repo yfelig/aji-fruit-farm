@@ -4,6 +4,72 @@ Running log of work sessions. Newest entries on top. Used by `/wrap-session` and
 
 ---
 
+## 2026-05-08 (ערב) — photo swaps + section-height fix + WhatsApp polish (Rivka + נתנאלה, sequential pairing)
+
+### What we did
+
+המשך ישיר מהבוקר אבל אחרי הפסקה — רבק'לה חזרה עם הערות נקודתיות אחרי שראתה את האתר באוויר. עברנו תמונה־תמונה והערה־הערה.
+
+**Photo swaps + crops:**
+- THE SETTING (index): שיבצנו זמנית `setting-branch.jpg` (NW6A7184 — איש מהורהר עם הגב למצלמה), ואז רבקה החליטה שעדיף לחזור ל-`lake-swing.jpg` (נדנדת drift wood על המזח). הוספתי `object-position: center bottom` כך שאם נדרש חיתוך, הוא ייעשה מלמעלה.
+- `aji.jpg` בעמוד הבית: הוחלף בגרסת Gemini ללא הכלב (אג'י + הבת מתחת לעץ הבניאן). הוספתי `object-position: 65% center` כדי לצמצם את גזע העץ ולמרכז את הדמויות.
+- swap בין `bathroom-tree.jpg` ל-`bathroom-sapling.jpg`: עץ המנגו עם הדלתות עבר ל-FIFTEEN ACRES ב-farm.html (slot 8); המקלחת הפנימית עם השתיל עברה ל-WHAT'S INCLUDED ב-rooms.html (slot 7). alt-texts עודכנו.
+- `cottage-fridge.jpg`: הוחלף בתמונת portrait חדשה (NW6A7657) — מקרר + מתלה עץ + קיר בטון, פריימינג ארכיטקטוני.
+- יום 2 ב-itinerary של עמוד הבית: `lake-wide.jpg` הוחלף ב-`setting-branch.jpg` (האיש המהורהר), בהתאם להמלצה שלי לאחר שרבקה ביקשה דעה על 3 תמונות.
+- ניסיון: הוספת `lake-figure.jpg` (NW6A7152) ל-farm.html lake slider — נדחה מיד אחרי, התמונה הוסרה והקובץ נמחק.
+
+**WhatsApp polish:**
+- Tooltip בכל 4 העמודים: `"Aji typically replies within hours — text me"` → `"...— say hi"`. הסרת ערבוב גוף שלישי+ראשון; עקבי עם שאר ה-CTA באתר.
+- מיקום הכפתור הצף: דסקטופ מ-`bottom: 44px / right: 14px` → `24/24` (סימטרי); מובייל מ-`22/14` → `20/20`. רבקה ביקשה סימטריה מפורשות.
+
+**Section-height fix (השינוי הגדול):**
+- בעיה: `.split { min-height: 100svh }` היה מאפשר לסקציות עם הרבה טקסט (THE SETTING, THE LAKE ב-farm, A DIFFERENT KIND OF PLACE ב-story) לגדול מעבר ל-100svh, מה שגרם לתחושה ש"הסקציה גדולה ממסך מלא" ולחוסר סימטריה בין עמודת התמונה לעמודת הטקסט.
+- ניסיון ראשון: scoped fix רק ל-`#setting`. רבקה צדקה שזה לא מספיק — הבעיה גלובלית.
+- תיקון סופי ב-`style.css`:
+  - `.split`: `min-height: 100svh` → `height: 100svh; overflow: hidden;` (נעילה קשה + clip לבטיחות).
+  - `.split-text`: `padding: var(--gap) var(--side)` → `padding: clamp(48px, 7vh, var(--gap)) var(--side)` (responsive padding שמתכווץ במסכים קצרים).
+  - הוסר ה-override הספציפי ל-`#setting` (מיותר עכשיו).
+
+**Copy fix:**
+- h2 בסקציית FOOD בעמוד הבית: `"Traditional Sri Lankan, Every Day."` → `"Traditional Sri Lankan Food, Every Day."` (חסרה לרבקה המילה FOOD בכותרת הגדולה).
+
+**Feedback memory:**
+נשמר memory חדש (`feedback_narrate_ux_changes.md`) על הצורך לדגל שינויים ויזואליים/UX **לפני** ביצוע, לא בשקט. זה refinement של ה-feedback מ-04-26 ("default to act") — engineering עדיין: act first, אבל UX = narrate.
+
+### Where we are
+
+כל השינויים **מקומיים בלבד, לא pushed**. רבקה בודקת על ה-live ב-vercel, ולכן עד שלא נדחוף — היא לא יכולה לאמת את התיקון של גובה הסקציות (שהוא הtest הכי חשוב כרגע). הסקציה ב-`A DIFFERENT KIND OF PLACE` ב-story.html עדיין מציגה אסימטריה בלייב כי ה-CSS לא הגיע. הוספתי `overflow: hidden` כביטחון נוסף לכל מקרה.
+
+### Open threads
+
+- **Push לvercel** — זה ה-blocker המיידי. רק אחרי הdeploy רבקה תוכל לאמת אם תיקון גובה הסקציות עבד גלובלית. אם הוא לא עובד באופן מלא — נצטרך לחזור ולחקור (אולי הבעיה במקום אחר ולא ב-min-height).
+- **Typo קיים** ב-`index.html` שורה 233 בסקציית FOOD: `<\strong>` במקום `</strong>`. רבקה לא ענתה אם לתקן בתוך ה-commit.
+- **Untracked photos** שלא טופלו: `photos/bathroom-exterior.jpg` (שם מטעה — בעצם תמונת סירה ירוקה), `photos/lake-boat.jpg`. צריכים החלטה: למחוק, לשבץ באתר, או להשאיר בצד.
+- **`photos/setting-branch.jpg`** — נשאר בשימוש ביום 2 של ה-itinerary בעמוד הבית, untracked, צריך להיכנס ל-commit.
+- **סיכון של overflow: hidden** על `.split`: במסכים קצרים מאוד (≤600px) הטקסט עלול להיחתך. נמתין שרבקה תאמת live; אם זה קורה, נצמצם padding עוד או נוריד font-size.
+
+### Files touched
+
+- `index.html` — setting img + aji img (object-position) + day 2 itinerary img + FOOD h2 + whatsapp tooltip
+- `rooms.html` — bathroom swap (slot 7) + whatsapp tooltip
+- `farm.html` — bathroom swap (slot 8) + whatsapp tooltip + slider counter (זמני 1/7 → חזר ל-1/6)
+- `story.html` — whatsapp tooltip
+- `style.css` — `.split` height/padding/overflow + הסרת `#setting` override + מיקום whatsapp סימטרי
+- `photos/aji.jpg` — מוחלף (Gemini, ללא כלב)
+- `photos/cottage-fridge.jpg` — מוחלף (NW6A7657 portrait)
+- `photos/setting-branch.jpg` — חדש (NW6A7184), בשימוש ביום 2 itinerary
+- `photos-orig/{aji,cottage-fridge,setting-branch}.jpg` — גיבויים אוטומטיים מ-optimize.js
+- `~/.claude/projects/C--Users-Yair-Felig--claude/memory/feedback_narrate_ux_changes.md` — חדש
+- `~/.claude/projects/C--Users-Yair-Felig--claude/memory/MEMORY.md` — נוספה שורה ל-feedback החדש
+
+### Git state
+
+- Branch: `main`. עץ עבודה: 5 modified (farm.html, index.html, rooms.html, story.html, style.css) + photos/aji.jpg modified + 4 untracked (bathroom-exterior, bathroom-sapling, lake-boat, setting-branch).
+- אין local commits ahead of origin. הכל uncommitted.
+- Last commit on origin: `568424d reviews carousel: auto-rotate every 7s, stops permanently on first manual interaction` (מהבוקר).
+
+---
+
 ## 2026-05-08 — pre-launch UX pass: 5 רעיונות + 4 תיקונים + 2 בונוסים (Rivka + נתנאלה)
 
 ### What we did

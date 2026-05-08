@@ -320,13 +320,15 @@ section[id] { scroll-margin-top: 80px; }
 .split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* Exactly one viewport per pair so when the user lands at the top of
-     a section the photo fills the entire side — no strip of the next
-     section bleeding in below, no strip of the previous bleeding in
-     above. Grows if content insists on more, but both columns stay
-     equal height. */
-  min-height: 100svh;
+  /* Locked to exactly one viewport so the image side always fills the
+     entire column, regardless of how much text is in the other column.
+     overflow: hidden clips any text that would otherwise force the
+     section taller than 100svh (belt + suspenders against asymmetry
+     between image and text columns). Padding on .split-text is
+     responsive (clamp) so content fits on shorter laptop screens. */
+  height: 100svh;
   align-items: stretch;
+  overflow: hidden;
 }
 
 .split--reverse .split-text { order: 2; }
@@ -336,7 +338,7 @@ section[id] { scroll-margin-top: 80px; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--gap) var(--side);
+  padding: clamp(48px, 7vh, var(--gap)) var(--side);
 }
 
 .split-image {
@@ -362,6 +364,7 @@ section[id] { scroll-margin-top: 80px; }
   pointer-events: none;
   z-index: 1;
 }
+
 
 /* COTTAGES */
 .cottages {
@@ -1245,8 +1248,8 @@ footer {
 /* FLOATING WHATSAPP */
 .wa-float {
   position: fixed;
-  bottom: 44px;
-  right: 14px;
+  bottom: 24px;
+  right: 24px;
   z-index: 80;
   width: 56px;
   height: 56px;
@@ -1390,7 +1393,7 @@ footer {
 
   /* Floating WhatsApp — tiny lift so it never sits on top of the
      fixed-iframe controls (Google Maps zoom buttons, etc). */
-  .wa-float { bottom: 22px; right: 14px; width: 50px; height: 50px; }
+  .wa-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
   .wa-float svg { width: 24px; height: 24px; }
 }
 
