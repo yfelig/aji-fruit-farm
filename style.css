@@ -775,22 +775,23 @@ cite {
   max-width: none;
 }
 
-/* Micro-quote — a small, ambient guest snippet placed inside a content
-   section so the social proof appears throughout the page rather than
-   only in the testimonial carousel. */
+/* Micro-quote — small ambient guest quote inside a content section.
+   Matches the host-quote / pull-quote pattern (forest-green hairline
+   on the left, italic display type, no background tint) so it sits
+   quietly in the editorial flow instead of reading as a callout box. */
 .micro-quote {
   margin-top: 24px;
-  padding: 14px 18px;
-  border-left: 2px solid rgba(200, 149, 46, 0.55);
-  background: rgba(200, 149, 46, 0.06);
+  padding: 2px 0 2px 18px;
+  border-left: 2px solid var(--bg-dark);
+  background: transparent;
   max-width: 38ch;
 }
 .micro-quote p {
   font-family: var(--font-display);
   font-size: 1.05rem;
   font-style: italic;
-  font-weight: 400;
-  line-height: 1.4;
+  font-weight: 300;
+  line-height: 1.45;
   color: var(--text);
   margin: 0 0 6px;
   max-width: none;
