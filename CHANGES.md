@@ -4,6 +4,19 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-05-08 (evening) — reviews carousel auto-rotate (Rivka)
+**By:** Rivka
+
+- **Reviews carousel now auto-advances every 7s** for the passive visitor — the average traveler reads one quote and scrolls past, missing 7 of 8 voices we've curated. Auto-rotation gives them 3-4 quotes by the time they pass through the section, multiplying social-proof exposure without forcing a click.
+- **Stops permanently the moment the visitor takes manual control** (clicks an arrow, taps a dot, hits an arrow key). The original code comment said "no auto-rotation, the visitor decides" — this preserves that intent: the moment a visitor *decides* to navigate manually, the rotation respects that decision and never resumes.
+- **Respects `prefers-reduced-motion`** — visitors who opted out of motion at the OS level never see an auto-advancing carousel.
+- **Only kicks in once the reviews section is at least 35% in the viewport** (IntersectionObserver) — saves cycles for visitors who never scroll that far down.
+- The `1 / 8` counter added earlier in the day updates with each rotation, keeping discoverability honest.
+
+**Files:** `script.js`.
+
+---
+
 ## 2026-05-08 (evening) — Setting hero swap to driftwood swing (Rivka)
 **By:** Rivka
 

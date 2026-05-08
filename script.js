@@ -139,17 +139,51 @@ if (quoteText && quoteAuthor) {
     dot.addEventListener('click', () => showQuote(+dot.dataset.index));
   });
 
-  // Manual prev/next arrows — no auto-rotation, the visitor decides.
+  // Auto-rotate quotes every 7s for the passive visitor — but the moment
+  // the visitor takes manual control (clicks an arrow, taps a dot, hits
+  // a keyboard arrow), the rotation stops permanently. Respects
+  // prefers-reduced-motion: visitors who opted out of motion never see
+  // an auto-advancing carousel.
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let autoTimer = null;
+  function stopAuto() {
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+  function startAuto() {
+    if (reduced || autoTimer) return;
+    autoTimer = setInterval(() => {
+      showQuote((current + 1) % quotes.length, 'next');
+    }, 7000);
+  }
+
   const prevBtn = document.getElementById('quote-prev');
   const nextBtn = document.getElementById('quote-next');
-  const gotoPrev = () => showQuote((current - 1 + quotes.length) % quotes.length, 'prev');
-  const gotoNext = () => showQuote((current + 1) % quotes.length, 'next');
+  const gotoPrev = () => { stopAuto(); showQuote((current - 1 + quotes.length) % quotes.length, 'prev'); };
+  const gotoNext = () => { stopAuto(); showQuote((current + 1) % quotes.length, 'next'); };
   if (prevBtn) prevBtn.addEventListener('click', gotoPrev);
   if (nextBtn) nextBtn.addEventListener('click', gotoNext);
+  // Manual dot click also stops the auto-rotation.
+  dots.forEach(dot => dot.addEventListener('click', stopAuto));
+
+  // Only kick off the auto-rotation once the reviews section actually
+  // enters the viewport, so the timer doesn't burn cycles on visitors
+  // who never scroll that far down.
+  const reviewsEl = document.querySelector('.reviews');
+  if (reviewsEl && 'IntersectionObserver' in window && !reduced) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { startAuto(); io.disconnect(); }
+      });
+    }, { threshold: 0.35 });
+    io.observe(reviewsEl);
+  }
 
   // Register the testimonial as a navable so the global keyboard handler
   // can route arrow keys to it when the reviews section is in view.
-  registerNavable(document.querySelector('.reviews'), { prev: gotoPrev, next: gotoNext });
+  registerNavable(document.querySelector('.reviews'), {
+    prev: gotoPrev,
+    next: gotoNext
+  });
 }
 
 // ─── IMAGE CAROUSELS ──────────────────────────────────────────────
