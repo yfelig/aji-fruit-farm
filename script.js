@@ -169,24 +169,28 @@ document.querySelectorAll('.image-slider').forEach((slider) => {
     const newSlide = slides[newIdx];
     const dir = direction || 'next';
 
+    // Always snap the incoming slide to its starting side WITHOUT a
+    // transition first, so wrap-arounds (last→first or first→last)
+    // don't accidentally come from the wrong direction because of an
+    // accumulated .prev class from earlier interactions.
+    newSlide.style.transition = 'none';
     if (dir === 'prev') {
-      // Snap new slide onto the LEFT without animation, then animate to center.
-      newSlide.style.transition = 'none';
-      newSlide.classList.add('prev');
-      // Force reflow so the no-transition position takes effect before we
-      // restore transitions and trigger the animation.
-      void newSlide.offsetWidth;
-      newSlide.style.transition = '';
-      newSlide.classList.remove('prev');
-      newSlide.classList.add('active');
-      // Old slide drops .active and slides to its default position (right).
-      oldSlide.classList.remove('active', 'prev');
+      newSlide.classList.add('prev');     // start on the LEFT
     } else {
-      // Forward: new comes from default right position; old exits left.
-      oldSlide.classList.remove('active');
-      oldSlide.classList.add('prev');
-      newSlide.classList.remove('prev');
-      newSlide.classList.add('active');
+      newSlide.classList.remove('prev');  // start on the RIGHT (default)
+    }
+    void newSlide.offsetWidth;            // force reflow
+    newSlide.style.transition = '';
+
+    // Animate: incoming slides to center, outgoing slides exits the
+    // opposite side.
+    newSlide.classList.remove('prev');
+    newSlide.classList.add('active');
+    oldSlide.classList.remove('active');
+    if (dir === 'next') {
+      oldSlide.classList.add('prev');     // exit LEFT
+    } else {
+      oldSlide.classList.remove('prev');  // exit RIGHT (default)
     }
 
     current = newIdx;
