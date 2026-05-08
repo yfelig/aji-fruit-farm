@@ -206,14 +206,12 @@ p + p { margin-top: 16px; }
      single row at typical desktop widths and gracefully scales down on
      mobile. whitespace-nowrap forces the single line; overflow is hidden
      by the hero so we can't break the layout if the viewport is unusually
-     narrow. Negative margin-top lifts the title only — the tagline,
-     CTA and arrow keep their original positions. */
+     narrow. */
   font-size: clamp(2.6rem, 9vw, 8rem);
   font-weight: 300;
   line-height: 0.95;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin-top: -100px;
   margin-bottom: 8px;
   white-space: nowrap;
 }
