@@ -4,6 +4,50 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-05-08 (afternoon) — SEO copy pass + UX trims + photo optimisation (Rivka)
+**By:** Rivka
+
+**SEO copy:**
+- All four `<title>` tags now mention "near Udawalawe" — Udawalawe National Park is the dominant search keyword for the area; "Embilipitiya" alone gets ~10× less search volume. Now anchored.
+- All four meta descriptions rewritten to lead with the proximity to Udawalawe National Park, plus add "Sri Lankan home cooking", pets welcome, full board.
+- Alt text on key images (hero, welcome, cottages teaser, setting, food slider) re-written with "Aji Fruit Farm", "Embilipitiya", "near Udawalawe" — Google indexes alt text for image search.
+- Body copy in farm.html "The Lake. The Fireflies." section now explicitly names "Udawalawe National Park is 45 minutes away" with Aji's jeep-pickup arrangement.
+
+**UX / CTA:**
+- Reply-time copy across all WhatsApp CTAs: "the same day" → "typically replies within hours" (more accurate per Aji's actual response time, stronger pull).
+- Removed the redundant "or text +94 70 506 5061 directly" line from the Find Us picker — the button itself triggers WhatsApp.
+- "BOOK DIRECT" pill in the nav now scrolls to the date picker (#contact) instead of opening a generic WhatsApp message — every booking-intent click now flows through the picker so Aji receives a message that already includes dates/nights/guests.
+- Floating WhatsApp icon stays as the direct-chat path for quick questions.
+- Added "Plan your stay →" CTA to the bottom of the Itinerary section — closes the narrative momentum onto the picker.
+- Food slider trimmed 8 → 7 (removed food-toast — least Sri Lankan).
+
+**Hero positioning:**
+- Removed h1 `margin-top: -100px` lift — content now sits in the natural lower-third of the viewport instead of the middle. Quieter, more "step into the farm" feel.
+- Tried adding a Udawalawe SEO subtitle and a "Check availability" second CTA pill; reverted both — hero became a marketing landing page, lost the editorial entry feel. SEO is unchanged because Udawalawe is anchored in title/meta/alt text/body copy.
+
+**Photo cleanups + additions:**
+- New itinerary Day 1 image: NW6A7768 (path through palms toward the cottage with a person walking in) — narratively matches "Arrive at sunset" much better than the gazebo shot, which stays in the lake slider on farm.html.
+- Lake slider on farm.html: replaced lake-kayaker.jpg with the brighter Gemini-generated version, added lake-beach (swim spot), removed lake-wide (redundant with lake-kayaker), removed farm-branch-lake (was duplicating the home-page Setting section).
+- Cottages exterior slider: added cottage-railing (swimsuits drying on the wooden veranda railing — humanises the cottage as "lived in").
+- Rooms interior slider grew 8 → 10: added bathroom-tree (THE signature feature, mentioned in every other guest review) and cottage-fridge.
+- Farm orchard slider: replaced hero (which was duplicating the homepage hero) with farm-cottages-pavilion (wide property layout shot).
+- Explore "Kayaking" card: kayak.jpg overwritten with NW6A7513 (kayak in the garden with stone path and cottages behind) — shows the kayak in its place, not just an object on a rack.
+
+**Reviews carousel:**
+- Added 2 new quotes from Aji's Airbnb listing (Donovan: "the best place I've ever visited"; Maxime/Paris: "had we known, we would have extended our stay") — 6 → 8 quotes total.
+
+**Slider fixes:**
+- Slider transition changed from opacity fade to horizontal slide. Verified counter cycles 1→N→1 in both directions.
+- Fixed wrap-around bug (slide arriving from wrong side after looping past first/last) — incoming slide now snaps to its correct starting position with no transition before the animation triggers.
+
+**Image optimisation (afternoon batch):**
+- Ran the existing optimize.js pipeline on all 23 newly-added photos — 1920px max width, JPEG q78 with mozjpeg, EXIF stripped. Originals backed up in photos-orig/.
+- Total photos folder dropped from 146MB → 17MB (-89%). Each new image went from 5-13MB raw to 100-550KB. LCP and overall page weight improved dramatically — important both for UX and for Google ranking (Core Web Vitals).
+
+**Files:** `index.html`, `rooms.html`, `farm.html`, `story.html`, `style.css`, `script.js`, plus 23 optimised photos.
+
+---
+
 ## 2026-05-08 — SEO foundations + photo overhaul + repetitions cleanup (Rivka)
 **By:** Rivka
 
