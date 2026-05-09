@@ -1715,7 +1715,7 @@ footer {
   .testimonial-arrow { width: 44px; height: 44px; }
   .testimonial-arrow svg { width: 18px; height: 18px; }
   .testimonial { min-height: 200px; padding: 0 4px; }
-  blockquote { font-size: 1rem; }
+  blockquote { font-size: 1.1rem; }
 
   /* Hero — pull title back to natural flow on mobile (the desktop
      -100px lift looks oversized at this width). */
@@ -1786,7 +1786,7 @@ footer {
   .rating-stars { font-size: 1.05rem; }
   .rating-score { font-size: 0.66rem; letter-spacing: 0.06em; }
   .reviews-rating { gap: 8px; }
-  blockquote { font-size: 0.95rem; line-height: 1.5; }
+  blockquote { font-size: 1.05rem; line-height: 1.5; }
 
   /* Phone — keep 44×44 fingertip targets, tighten gap further. */
   .testimonial-row { gap: 6px; }
