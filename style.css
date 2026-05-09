@@ -597,19 +597,19 @@ section[id] { scroll-margin-top: 80px; }
   .contact { scroll-snap-align: start; }
 }
 
-/* SPLIT SECTION */
+/* SPLIT SECTION
+   The IMAGE drives the section height — aspect-ratio: 3/2 on .split-image
+   matches the natural shape of a landscape photograph, so cover-fit
+   never crops away the photo. Section height becomes (50% of viewport
+   width) × (2/3) — about 480px on a 1440 desktop. Two-ish sections per
+   screen instead of one, but the trade is what Rivka asked for: the
+   ENTIRE photo fits when the section is at the top of the viewport.
+   No more cover-cropping, no more "scrolling through" a section.
+   Mobile breakpoint (≤860px) overrides .split-image to its own ratio. */
 .split {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* Locked to exactly one viewport so the image side always fills the
-     entire column, regardless of how much text is in the other column.
-     overflow: hidden clips any text that would otherwise force the
-     section taller than 100svh (belt + suspenders against asymmetry
-     between image and text columns). Padding on .split-text is
-     responsive (clamp) so content fits on shorter laptop screens. */
-  height: 100svh;
   align-items: stretch;
-  overflow: hidden;
 }
 
 .split--reverse .split-text { order: 2; }
@@ -624,6 +624,11 @@ section[id] { scroll-margin-top: 80px; }
 
 .split-image {
   position: relative;
+  /* The shape that matches Aji's landscape photographs. Setting it
+     here means object-fit: cover on the <img> never has to crop more
+     than minor edge differences — the photo fills the box because
+     the box matches the photo. */
+  aspect-ratio: 3/2;
   overflow: hidden;
 }
 .split-image img {
