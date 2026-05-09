@@ -727,7 +727,7 @@ section[id] { scroll-margin-top: 80px; }
    Same padding as .explore so the two card-trio sections feel like
    one editorial template. */
 .itinerary {
-  padding: 80px var(--side);
+  padding: 56px var(--side);
   background: var(--bg-alt);
   text-align: center;
 }
@@ -851,7 +851,7 @@ section[id] { scroll-margin-top: 80px; }
    grid, content-driven height (no more 100svh lock — the section is
    as tall as it needs to be, not forced to a full screen). */
 .explore {
-  padding: 80px var(--side);
+  padding: 56px var(--side);
 }
 
 .explore-header {
