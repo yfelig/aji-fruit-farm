@@ -1,3 +1,36 @@
+// ─── MOBILE HAMBURGER OVERLAY ─────────────────────────────────────
+// Full-screen menu: burger (in nav) opens it, X (in overlay) or any
+// link click closes it. Body scroll is locked while open so the
+// background doesn't drift. Escape also closes for keyboard users.
+const burger      = document.querySelector('.nav-burger');
+const overlay     = document.getElementById('nav-overlay');
+const overlayClose = overlay && overlay.querySelector('.nav-overlay-close');
+
+function openOverlay() {
+  if (!overlay) return;
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+  if (burger) burger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeOverlay() {
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+  if (burger) burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+if (burger && overlay) {
+  burger.addEventListener('click', openOverlay);
+  if (overlayClose) overlayClose.addEventListener('click', closeOverlay);
+  // Tapping any in-overlay link closes the menu (so same-page anchors
+  // like #contact don't leave the menu sitting on top of the target).
+  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeOverlay));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeOverlay();
+  });
+}
+
 // Nav — hide on scroll down, reveal on scroll up. Always visible near
 // the top so the page never opens with a hidden nav. Special case: when
 // the user is in the hero's bottom fade-to-cream area, the nav stays

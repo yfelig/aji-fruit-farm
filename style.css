@@ -236,6 +236,121 @@ p + p { margin-top: 16px; }
 .nav-wa:hover svg { transform: translate(2px, -2px); }
 .nav-wa:active { transform: scale(0.97); }
 
+/* MOBILE HAMBURGER + FULL-SCREEN MENU
+   Burger sits in the nav (hidden on desktop). Overlay is fixed,
+   full-viewport, with editorial Cormorant links — Vivre/Aēsop pattern.
+   Desktop: both hidden. Mobile: burger replaces the inline nav-links
+   + Book Direct pill in the bar. */
+.nav-burger {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  margin-left: 4px;
+  cursor: pointer;
+  color: var(--text);
+  transition: color 0.2s;
+}
+.nav-burger svg { width: 26px; height: 26px; display: block; }
+.nav.over-hero .nav-burger { color: #fff; }
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(245, 242, 233, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px var(--side) 40px;
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity 0.42s ease, transform 0.42s cubic-bezier(0.22, 0.61, 0.36, 1);
+  visibility: hidden;
+}
+.nav-overlay.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+}
+.nav-overlay-close {
+  position: absolute;
+  top: 18px;
+  right: var(--side);
+  background: transparent;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--text);
+}
+.nav-overlay-close svg { width: 26px; height: 26px; display: block; }
+
+.nav-overlay-links {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.nav-overlay-links a {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  color: var(--bg-dark);
+  line-height: 1;
+  position: relative;
+  width: max-content;
+  padding-bottom: 4px;
+}
+.nav-overlay-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.35s ease-out;
+}
+.nav-overlay-links a:hover::after,
+.nav-overlay-links a:active::after,
+.nav-overlay-links a[aria-current="page"]::after { transform: scaleX(1); }
+.nav-overlay-links a[aria-current="page"] { color: #b8842a; }
+
+.nav-overlay-cta {
+  margin-top: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  padding: 11px 22px;
+  border: 1px solid var(--bg-dark);
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bg-dark);
+  transition: background 0.25s, color 0.25s;
+}
+.nav-overlay-cta svg { width: 16px; height: 16px; }
+.nav-overlay-cta:active { background: var(--bg-dark); color: var(--bg); }
+
+.nav-overlay-meta {
+  margin: 28px 0 0;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 /* OVER-HERO VARIANT — when the nav sits above the hero photo (toggled
    by script.js based on scrollY < hero height), switch every link,
    logo, and the CTA to a light cream so the text reads against the
@@ -1501,11 +1616,11 @@ footer {
   p { line-height: 1.65; font-size: 0.95rem; }
   h2 { margin-bottom: 18px; }
 
-  /* Nav: hide links (focus on logo + Book Direct), keep BOOK DIRECT
-     visible as a real text pill (the WhatsApp icon was removed earlier
-     so we can't fall back to icon-only). */
+  /* Nav: collapse to logo + hamburger only. Book Direct + page links
+     all live inside the full-screen overlay menu now. */
   .nav-links { display: none; }
-  .nav-wa { font-size: 0.65rem; padding: 6px 12px; letter-spacing: 0.08em; }
+  .nav-wa { display: none; }
+  .nav-burger { display: inline-flex; }
 
   /* Splits stack — let content drive height. The 100svh viewport rule
      would force every section to be a full screen TWICE (text + photo)
@@ -1639,9 +1754,21 @@ footer {
   .hero-kicker { font-size: 0.7rem; margin-bottom: 18px; }
 
   /* Section labels + h2 a touch smaller for better mobile rhythm. */
-  h2 { font-size: clamp(1.45rem, 5.6vw, 2rem); margin-bottom: 14px; }
+  h2 { font-size: clamp(1.45rem, 5.6vw, 2rem); margin-bottom: 12px; }
   p { font-size: 0.92rem; line-height: 1.6; }
-  .label { font-size: 0.66rem; margin-bottom: 12px; }
+  p + p { margin-top: 10px; }
+  .label { font-size: 0.66rem; margin-bottom: 10px; }
+
+  /* Tighter section breathing on phones — text columns sit closer to
+     the photo above/below so the editorial rhythm doesn't read as
+     empty bands. */
+  .split-text { padding: 28px var(--side); }
+  .reviews { padding: 32px var(--side); }
+  .testimonial { min-height: 0; }
+  .book-cta { padding: 20px var(--side); }
+  .contact-info { padding: 24px var(--side); }
+  .itinerary { padding: 36px 0; }
+  .explore { padding: 36px 0; }
 
   /* Reviews internals — smaller stars + denser rating line. */
   .rating-stars { font-size: 1.05rem; }
