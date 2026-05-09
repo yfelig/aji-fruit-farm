@@ -582,6 +582,21 @@ a.hero-cta.hero-cta--solid:hover {
 /* ANCHOR SCROLL OFFSET — compensate for fixed nav */
 section[id] { scroll-margin-top: 80px; }
 
+/* SCROLL-SNAP — desktop only.
+   Each .split / .hero / .contact is exactly one viewport tall, so snapping
+   their start edge to the viewport top means a soft scroll always lands
+   on a section boundary instead of catching the photo half-cut. proximity
+   (not mandatory) so a deliberate long scroll isn't fought by the
+   browser; the snap kicks in only when the user is already close to a
+   section edge. Mobile is excluded — section heights vary on mobile and
+   forcing snap there would feel jerky on a touch device. */
+@media (min-width: 861px) {
+  html { scroll-snap-type: y proximity; }
+  .hero,
+  .split,
+  .contact { scroll-snap-align: start; }
+}
+
 /* SPLIT SECTION */
 .split {
   display: grid;
