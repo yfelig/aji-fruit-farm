@@ -643,15 +643,14 @@ section[id] { scroll-margin-top: 80px; }
 .testimonial {
   max-width: 760px;
   margin: 0 auto;
-  /* Reserved height that fits the longest quote (4 lines + author).
-     justify-content flex-start so the gap between label and quote is
-     ALWAYS the same — variability in quote length is absorbed at the
-     bottom of the reserved box, not at the top. */
-  min-height: 170px;
+  /* Reserved height that fits the longest quote (5 lines + author) at
+     all viewports. Content is centered vertically so short quotes don't
+     leave a big empty band before the rating row. */
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 blockquote {
@@ -726,17 +725,6 @@ cite {
 }
 
 .testimonial-dots { display: none; }
-
-.testimonial-counter {
-  display: block;
-  margin-top: 12px;
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  opacity: 0.75;
-}
 
 .dot {
   width: 8px;
@@ -1291,11 +1279,21 @@ footer {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
-@media (hover: hover) {
-  .wa-float:hover .wa-float-tooltip {
-    opacity: 1;
-    transform: translate(0, -50%);
-  }
+/* Speech-bubble tail pointing toward the WhatsApp icon — sits inside
+   the 10px gap between the pill and the icon. */
+.wa-float-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: #fff;
+}
+.wa-float:hover .wa-float-tooltip,
+.wa-float:focus-visible .wa-float-tooltip {
+  opacity: 1;
+  transform: translate(0, -50%);
 }
 
 /* RESPONSIVE */

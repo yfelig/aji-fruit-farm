@@ -4,6 +4,61 @@ Running log of work sessions. Newest entries on top. Used by `/wrap-session` and
 
 ---
 
+## 2026-05-09 — homepage micro-pass: tooltip, reviews jump, kayak photo, hover bug (Rivka + נתנאלה)
+
+### What we did
+
+רבק'לה נכנסה ב-`/המשך-פרויקט` בבוקר. ראיתי drift מיידי מהלוג של 2026-05-08 (ערב): הלוג אמר "לא pushed" אבל הכל כבר ב-origin (commit `4d32095`). גם ה-typo `<\strong>` של FOOD תוקן בשקט. עדכנתי אותה והתחלנו פאס נקודתי על העמוד הראשי על בסיס מה שקפץ לעין שלה.
+
+**3 שינויים בסקציית הביקורות + ה-WhatsApp:**
+
+1. **Tooltip של הוואטסאפ (4 עמודים):** "Aji typically replies within hours — say hi" → **"Wondering about dates or food? Just ask Aji"** (אופציה C מתוך 3 שהצעתי). הסיבה: "typically" היה הגנתי, "say hi" ריק. הניסוח החדש פותח את השיחה במוח של המבקרת ומזמין שאלות ספציפיות.
+2. **קפיצות בקרוסלת הביקורות:** `.testimonial { min-height: 170px → 220px }` כדי לכסות גם את הציטוטים הארוכים (Sarah & Felix, Katharina) ב-5 שורות במובייל. אבל זה יצר בעיה הפוכה — ציטוט קצר (Donovan, 2 שורות) השאיר 140px ריקים בין החתימה לכוכבים. תיקון: `justify-content: flex-start → center`. עכשיו תוכן ממורכז אנכית בקופסה, פערים מתחלקים שווה למעלה+למטה.
+3. **תמונת הקייאקים (index activity card):** `kayak.jpg` (קייאק על דשא, שביל מתחרה, רחוק) → **`lake-kayaker.jpg`** (אישה בבגד-ים אדום חותרת על האגם השקט). זאת *התמונה* של "Kayaking" — פעולה אמיתית על המים, מתאימה לטקסט ("the water is flat"). כבר בשימוש ב-farm.html slider — יוצר עקביות בין סקציה ל-sub-page.
+
+**Cleanups:**
+- הסרת `<span class="testimonial-counter">1 / 8</span>` מ-index.html + הסרת `.testimonial-counter` rule מ-style.css. רבקה אמרה "המיספור מיותר". ה-JS ב-`script.js:134` כבר מוגן ב-`if (quoteCounter)` אז אין מה לתקן בלוגיקה.
+
+**Speech-bubble tail על ה-tooltip:**
+- הצעתי בהתחלה כשיפור ויזואלי, רבקה אישרה. הוספתי `.wa-float-tooltip::after` עם `border: 6px solid transparent; border-left-color: #fff;` שיוצר משולש 6px לבן זהה לרקע ה-pill, יושב ב-gap של 10px בין ה-pill לאייקון, מצביע ימינה אל הוואטסאפ. הופך את התווית מ"שלט" ל"בועת דיבור".
+
+**הבאג של ה-hover (העיקרי):**
+- אחרי הוספת ה-tail, רבקה דיווחה ש"ההודעה ... פתאום לא מופיעה". בדקתי — הקוד החדש תקין, אבל הבעיה הייתה קיימת והופיעה דווקא בגלל שהיא הסתכלה: ה-CSS עטף את הופעת ה-tooltip ב-`@media (hover: hover)`. במכשירי Windows רבים (כולל מחשבים שאינם מסכי-מגע) הדפדפן מדווח על "touch-primary" ואז ה-media query מחזיר `false` ה-hover אף פעם לא מופעל. **הסרתי את ה-gating** וגם הוספתי `:focus-visible` כתחליף נגישות — עכשיו עובד גם במקלדת.
+
+### Where we are
+
+5 קבצים מודיפיים, 0 commits, 0 push. כל השינויים ב-working tree. רבק'לה אישרה אותם תוך כדי הסשן (ראתה live דרך dev-server.js פעיל ב-port 3000). בסוף הסשן ביקשה התקנת MCP ושמרנו לפני יציאה.
+
+**MCP חדש:** `claude mcp add magic --scope user` עם API key של 21st-dev — נוסף ל-`C:\Users\Yair Felig\.claude.json` (user scope, זמין בכל פרויקט). דורש restart של Claude Code (יציאה+כניסה) כדי להיטען.
+
+### Open threads
+
+- **Push לאחר restart:** 5 שינויים מקומיים ממתינים לדחיפה. רבק'לה לא ביקשה commit מפורש בסשן הזה. לפני push, להתייעץ אתה אם רוצה הודעת commit אחת מקיפה או שתיים נפרדות (UI fixes / WhatsApp tooltip).
+- **המשך פאס UX על ה-homepage:** עברנו רק על הביקורות + הקייאקים + ה-tooltip. נשארו: HERO, WELCOME, MEET AJI, COTTAGES + FARM teasers, FOOD, ITINERARY, BOOK CTA, FIND US, FOOTER. רבק'לה אמרה שזה "הולך הלאה" — סדר לא נקבע.
+- **MCP magic:** אחרי restart, בדיקה שהוא נטען נכון ונסיון ראשון של הכלים שלו. רבק'לה היא non-technical אז כדאי שאני אסביר מה הוא עושה לפני שאני קופצת לשימוש.
+- **פריטים מועברים מ-2026-05-08 (ערב) שלא טופלו:**
+  - אימות live של גובה הסקציות אחרי הפוש האחרון (`A DIFFERENT KIND OF PLACE` ב-story.html, `THE LAKE` ב-farm.html)
+  - סיכון `overflow: hidden` במסכים קצרים (≤600px) — צריך אימות
+  - `bathroom-exterior.jpg` + `lake-boat.jpg` — tracked עכשיו אבל לא בשימוש; מחיקה / שיבוץ?
+- **AjiFruit SEO** (memory ישן) — keyword research, on-page copy, GSC, Lighthouse עדיין open.
+
+### Files touched
+
+- `index.html` — wa-float-tooltip text (line 392) + kayak photo swap (line 266) + הסרת `<span class="testimonial-counter">` (was line 307)
+- `rooms.html` — wa-float-tooltip text (line 200)
+- `farm.html` — wa-float-tooltip text (line 164)
+- `story.html` — wa-float-tooltip text (line 124)
+- `style.css` — `.testimonial { min-height: 170px → 220px; justify-content: flex-start → center }`; הוספת `.wa-float-tooltip::after` (speech tail); הסרת `@media (hover: hover)` gate + הוספת `:focus-visible`; הסרת `.testimonial-counter` block
+- `C:\Users\Yair Felig\.claude.json` — נוסף MCP `magic` (user scope, npx @21st-dev/magic, env API_KEY)
+
+### Git state
+
+- Branch: `main`. עץ עבודה: 5 modified (farm.html, index.html, rooms.html, story.html, style.css). אין untracked חדשים בסשן הזה.
+- אין local commits ahead of origin. הכל uncommitted.
+- Last commit on origin: `4d32095 photos + section heights + WhatsApp polish (evening 2026-05-08)`.
+
+---
+
 ## 2026-05-08 (ערב) — photo swaps + section-height fix + WhatsApp polish (Rivka + נתנאלה, sequential pairing)
 
 ### What we did

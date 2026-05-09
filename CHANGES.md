@@ -4,6 +4,20 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-05-09 — homepage micro-pass: tooltip copy + reviews fix + kayak photo + hover bug (Rivka)
+**By:** Rivka
+
+- **WhatsApp tooltip copy across all 4 pages** changed from "Aji typically replies within hours — say hi" to **"Wondering about dates or food? Just ask Aji"**. The previous wording was defensive ("typically" hedges) and ended on an empty filler ("say hi"). The new line plants a concrete question in the visitor's mind and gives her permission to ask anything specific — opens the conversation instead of just inviting a wave.
+- **Reviews carousel jump fixed.** The `.testimonial` reserved box was `min-height: 170px` with `justify-content: flex-start`. Long quotes (Sarah & Felix, Katharina) wrapped to 5 lines on mobile and pushed past 170, growing the section. Short quotes (Donovan, Maxime) sat at the top and left a 140px dead band before the rating row. Bumped `min-height` to 220px so the longest case fits at every viewport, and switched to `justify-content: center` so short quotes are vertically centered — gaps split evenly above and below instead of dumped at the bottom.
+- **Kayak activity card now shows actual kayaking.** Replaced `kayak.jpg` (boat parked on grass with a stone path and gazebos competing for attention) with `lake-kayaker.jpg` (guest in a red swimsuit paddling on the still lake). The new image *is* the activity — flat water, dawn calm, real action — and matches the section copy ("the water is flat and the farm is still quiet"). Already used in farm.html's lake slider, so this also creates visual continuity between the homepage card and the deeper farm page.
+- **Removed the "1/8" counter from the reviews section.** The numbered indicator under the testimonial felt like a system label in an editorial layout. The carousel auto-rotation already telegraphs "more to come"; explicit numbering was just noise.
+- **Speech-bubble tail on the WhatsApp tooltip.** Added a 6px white CSS-triangle (`::after` with `border-left-color: #fff`) sitting in the 10px gap between the pill and the icon, pointing right at the WhatsApp button. Turns the tooltip from a floating sign into an actual speech bubble.
+- **WhatsApp tooltip hover bug fixed.** The tooltip's visibility rule was wrapped in `@media (hover: hover)`. On many Windows machines (including non-touchscreen laptops) the browser reports the device as "touch-primary" and the media query evaluates false — meaning hover never triggered the tooltip at all on those machines. Removed the gate so hover works unconditionally, and added `:focus-visible` as a keyboard-friendly path. (Anyone tabbing through the page now also sees the message when the WhatsApp icon receives focus.)
+
+**Files:** `index.html`, `rooms.html`, `farm.html`, `story.html`, `style.css`.
+
+---
+
 ## 2026-05-08 (evening) — reviews carousel auto-rotate (Rivka)
 **By:** Rivka
 
