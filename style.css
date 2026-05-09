@@ -406,7 +406,7 @@ p + p { margin-top: 16px; }
      (the path lives in the lower-right of the source photo). Slight
      brightness lift so the foliage doesn't read as flat-dark. */
   object-position: 60% bottom;
-  filter: brightness(1.12);
+  filter: brightness(1.22);
 }
 .hero-image::after {
   content: '';
