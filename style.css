@@ -839,12 +839,23 @@ section[id] { scroll-margin-top: 80px; }
     scrollbar-width: none;
   }
   .itinerary-days::-webkit-scrollbar { display: none; }
-  .day { scroll-snap-align: start; padding: 0; }
-  /* 5/4 — almost square, less elongated than 4/5 portrait. Each day
-     reads as a near-photo card without dominating the viewport. */
-  .day-img { aspect-ratio: 5/4; margin-bottom: 12px; }
-  .day h3 { font-size: 1.1rem; margin-bottom: 4px; }
-  .day p { font-size: 0.88rem; }
+  /* Three Days + From the Farm share one mobile look — same aspect,
+     same type sizes, same paddings — so they read as one editorial
+     pattern (matching the desktop unification). */
+  .day,
+  .activity {
+    scroll-snap-align: start;
+    padding: 0 0 16px;
+  }
+  .day-img,
+  .activity-img {
+    aspect-ratio: 3/2;
+    margin: 0 0 12px;
+  }
+  .day h3,
+  .activity h3 { font-size: 1.1rem; margin-bottom: 4px; }
+  .day p,
+  .activity p { font-size: 0.9rem; line-height: 1.55; }
 }
 
 /* EXPLORE — paired template with .itinerary. Same padding, same card
@@ -1718,13 +1729,12 @@ footer {
     scrollbar-width: none;
   }
   .activities::-webkit-scrollbar { display: none; }
-  .activity {
-    scroll-snap-align: start;
-    padding: 0 0 16px;
-  }
-  .activity-img {
-    margin: 0 0 12px 0;
-  }
+  /* .activity + .activity-img rules are unified with .day above. */
+
+  /* Hide the WhatsApp tooltip on mobile — there's no real "hover"
+     state on touch, so the tooltip would only flash on tap, which
+     feels unintentional. The icon alone is universally recognized. */
+  .wa-float-tooltip { display: none; }
 
   .contact-map { height: 320px; position: relative; }
   .contact-map iframe { position: static; height: 320px; }
