@@ -1627,11 +1627,11 @@ footer {
   p { line-height: 1.65; font-size: 0.95rem; }
   h2 { margin-bottom: 18px; }
 
-  /* Hero — dvh on mobile so the image follows the visible viewport as
-     the Safari address bar collapses/expands during scroll. With static
-     svh the hero stays the small-state height even after the bar
-     retracts, which leaves a cream sliver below the photo. */
-  .hero { height: 100dvh; }
+  /* Hero — Vivre-style on mobile: the photo doesn't claim the full
+     viewport, it takes ~75% so the start of the body section peeks in
+     beneath, signaling "there's more here, scroll." dvh keeps the
+     image anchored to the visible viewport as the address bar moves. */
+  .hero { height: 75dvh; }
 
   /* Nav: Vivre-style trio — logo + burger sit together on the left,
      Book Direct pill anchors the right edge. The full-page links still
@@ -1776,9 +1776,10 @@ footer {
   .cards { grid-template-columns: 1fr; }
 
   .hero-content h1 {
-    /* Cap a bit lower for narrow portrait phones; let the H1 wrap
-       naturally if the title needs two lines. */
-    font-size: clamp(2.2rem, 10.5vw, 4.4rem);
+    /* Tuned so "LAKE VIEW COTTAGES" fits on one line at 390px width —
+        previous 10.5vw forced a 3-line wrap (LAKE / VIEW / COTTAGES).
+       8vw lands at ~31px on iPhone 13 width, leaving room to spare. */
+    font-size: clamp(1.8rem, 8vw, 3.6rem);
     letter-spacing: 0;
     line-height: 1.05;
   }
