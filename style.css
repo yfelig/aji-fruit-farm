@@ -254,6 +254,12 @@ p + p { margin-top: 16px; }
 .nav-burger svg { width: 26px; height: 26px; display: block; }
 .nav.over-hero .nav-burger { color: #fff; }
 
+/* Belt-and-suspenders: even if a stale CSS bundle is cached on the
+   user's device and the rules below haven't loaded yet, the [hidden]
+   attribute on the overlay element keeps it out of layout. The JS
+   removes [hidden] before adding .open, so the transition still runs. */
+.nav-overlay[hidden] { display: none !important; }
+
 .nav-overlay {
   position: fixed;
   inset: 0;
@@ -808,22 +814,28 @@ section[id] { scroll-margin-top: 80px; }
   .itinerary-days {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    gap: 0;
+    /* 88% leaves a sliver of the next card visible — visitors see there
+       are more days to swipe through. */
+    grid-auto-columns: 88%;
+    gap: 12px;
     max-width: none;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    /* No horizontal padding — strip spans full viewport so each card
-       hits 100% with no peek. Side padding applied to inner content. */
-    padding: 0 0 4px;
+    /* Side padding on the strip itself (NOT on the cards) — first card
+       snaps flush with the side gutter, last card never crops on the right.
+       scroll-padding tells the snap engine where the visible edge actually
+       is, so .scroll-snap-align: start lands the card at var(--side), not
+       at the literal 0. This is what stops the left-edge crop. */
+    padding: 0 var(--side) 4px;
+    scroll-padding-inline: var(--side);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
   .itinerary-days::-webkit-scrollbar { display: none; }
-  .day { scroll-snap-align: start; padding: 0 var(--side); }
+  .day { scroll-snap-align: start; padding: 0; }
   /* 5/4 — almost square, less elongated than 4/5 portrait. Each day
      reads as a near-photo card without dominating the viewport. */
-  .day-img { aspect-ratio: 5/4; margin-bottom: 12px; margin-left: calc(-1 * var(--side)); margin-right: calc(-1 * var(--side)); }
+  .day-img { aspect-ratio: 5/4; margin-bottom: 12px; }
   .day h3 { font-size: 1.1rem; margin-bottom: 4px; }
   .day p { font-size: 0.88rem; }
 }
@@ -1676,22 +1688,23 @@ footer {
   .activities {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    gap: 0;
+    /* Same peek pattern as itinerary — sliver of next card hints at more. */
+    grid-auto-columns: 88%;
+    gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 0 0 4px;
+    padding: 0 var(--side) 4px;
+    scroll-padding-inline: var(--side);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
   .activities::-webkit-scrollbar { display: none; }
   .activity {
     scroll-snap-align: start;
-    padding: 0 var(--side) 16px;
+    padding: 0 0 16px;
   }
   .activity-img {
-    margin-left: calc(-1 * var(--side));
-    margin-right: calc(-1 * var(--side));
+    margin: 0 0 12px 0;
   }
 
   .contact-map { height: 320px; position: relative; }

@@ -8,7 +8,15 @@ const overlayClose = overlay && overlay.querySelector('.nav-overlay-close');
 
 function openOverlay() {
   if (!overlay) return;
-  overlay.classList.add('open');
+  // Drop the [hidden] attribute first (it was a safety net so the
+  // overlay couldn't leak into the document if a stale CSS bundle was
+  // cached). Wait one frame so the browser registers the new display
+  // value before applying .open — otherwise the opacity transition
+  // gets skipped.
+  overlay.hidden = false;
+  requestAnimationFrame(() => {
+    overlay.classList.add('open');
+  });
   overlay.setAttribute('aria-hidden', 'false');
   if (burger) burger.setAttribute('aria-expanded', 'true');
   document.body.style.overflow = 'hidden';
@@ -19,6 +27,10 @@ function closeOverlay() {
   overlay.setAttribute('aria-hidden', 'true');
   if (burger) burger.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
+  // Re-add [hidden] after the close transition finishes (440ms = 420 + slack).
+  setTimeout(() => {
+    if (!overlay.classList.contains('open')) overlay.hidden = true;
+  }, 460);
 }
 if (burger && overlay) {
   burger.addEventListener('click', openOverlay);
