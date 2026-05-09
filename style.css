@@ -931,7 +931,7 @@ section[id] { scroll-margin-top: 80px; }
 
 blockquote {
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
   font-weight: 400;
   line-height: 1.45;
   color: var(--text);
