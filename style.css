@@ -582,34 +582,21 @@ a.hero-cta.hero-cta--solid:hover {
 /* ANCHOR SCROLL OFFSET — compensate for fixed nav */
 section[id] { scroll-margin-top: 80px; }
 
-/* SPLIT SECTION
-   60/40 weighted toward the photo. The photo is the strongest sales
-   asset on a hospitality site — Aji's farm has to *look* like the place
-   you'd want to be — so the visual column is wider and the text column
-   tightens. 50/50 was leaving images cropped (object-fit: cover on a
-   narrow column nukes the composition); 60/40 gives the image enough
-   breathing room while still leaving copy legible. The text-side
-   padding (clamp 7vh) was already tuned for shorter laptops, so the
-   narrower text column stays readable.
-   .split--reverse needs its OWN columns rule because using `order` to
-   swap items doesn't swap the column widths — without the override,
-   reverse sections would put the image in the narrow column. */
+/* SPLIT SECTION */
 .split {
   display: grid;
-  grid-template-columns: 2fr 3fr; /* text 40% / image 60% — image right */
+  grid-template-columns: 1fr 1fr;
   /* Locked to exactly one viewport so the image side always fills the
      entire column, regardless of how much text is in the other column.
      overflow: hidden clips any text that would otherwise force the
      section taller than 100svh (belt + suspenders against asymmetry
-     between image and text columns). */
+     between image and text columns). Padding on .split-text is
+     responsive (clamp) so content fits on shorter laptop screens. */
   height: 100svh;
   align-items: stretch;
   overflow: hidden;
 }
 
-.split--reverse {
-  grid-template-columns: 3fr 2fr; /* image 60% (col1) / text 40% (col2) — image left */
-}
 .split--reverse .split-text { order: 2; }
 .split--reverse .split-image { order: 1; }
 
@@ -1115,9 +1102,7 @@ cite {
 /* CONTACT */
 .contact {
   display: grid;
-  /* Same 40/60 ratio as .split — info panel is the text column,
-     map is the visual. Map gets the breathing room, info stays compact. */
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 1fr 1fr;
   min-height: 6svh;
 }
 
