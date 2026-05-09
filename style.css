@@ -403,20 +403,6 @@ p + p { margin-top: 16px; }
   height: 100%;
   object-fit: cover;
   object-position: center;
-  /* Slow drone-pull-back on first paint — image starts ~18% closer
-     to camera and eases out to its natural frame over 11s. The pacing
-     curve is the same one we use for the nav transitions, so the
-     vibe stays consistent. forwards keeps the final scale locked in
-     after the animation ends. */
-  animation: hero-pullback 11s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-@keyframes hero-pullback {
-  from { transform: scale(1.18); }
-  to   { transform: scale(1); }
-}
-/* Respect users who opted out of motion. */
-@media (prefers-reduced-motion: reduce) {
-  .hero-image img { animation: none; }
 }
 .hero-image::after {
   content: '';
