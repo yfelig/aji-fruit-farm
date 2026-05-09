@@ -692,8 +692,8 @@ section[id] { scroll-margin-top: 80px; }
   .itinerary-days {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: 78%;
-    gap: 14px;
+    grid-auto-columns: 86%;
+    gap: 12px;
     max-width: none;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -703,8 +703,10 @@ section[id] { scroll-margin-top: 80px; }
   }
   .itinerary-days::-webkit-scrollbar { display: none; }
   .day { scroll-snap-align: start; }
-  .day-img { aspect-ratio: 4/5; margin-bottom: 14px; }
-  .day h3 { font-size: 1.2rem; margin-bottom: 4px; }
+  /* 5/4 — almost square, less elongated than 4/5 portrait. Each day
+     reads as a near-photo card without dominating the viewport. */
+  .day-img { aspect-ratio: 5/4; margin-bottom: 12px; }
+  .day h3 { font-size: 1.1rem; margin-bottom: 4px; }
   .day p { font-size: 0.88rem; }
 }
 
@@ -1490,7 +1492,11 @@ footer {
 
 /* TABLET / SMALL LAPTOP */
 @media (max-width: 860px) {
-  :root { --side: 28px; --gap: 64px; }
+  :root { --side: 28px; --gap: 56px; }
+
+  /* Tighten body rhythm on mobile — long scroll feels short. */
+  p { line-height: 1.65; font-size: 0.95rem; }
+  h2 { margin-bottom: 18px; }
 
   /* Nav: hide links (focus on logo + Book Direct), keep BOOK DIRECT
      visible as a real text pill (the WhatsApp icon was removed earlier
@@ -1510,7 +1516,7 @@ footer {
     height: auto;
     overflow: visible;
   }
-  .split-image { aspect-ratio: 4/3; min-height: unset; }
+  .split-image { aspect-ratio: 16/11; min-height: unset; }
   .split-image img { height: 100%; }
   .split--reverse .split-text { order: 1; }
   .split--reverse .split-image { order: 2; }
@@ -1535,8 +1541,8 @@ footer {
   .activities {
     grid-template-columns: none;
     grid-auto-flow: column;
-    grid-auto-columns: 78%;
-    gap: 14px;
+    grid-auto-columns: 86%;
+    gap: 12px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 0 var(--side) 4px;
@@ -1591,19 +1597,24 @@ footer {
 
 /* PHONE */
 @media (max-width: 560px) {
-  :root { --side: 20px; }
+  :root { --side: 20px; --gap: 44px; }
 
   .cards { grid-template-columns: 1fr; }
 
   .hero-content h1 {
     /* Cap a bit lower for narrow portrait phones; let the H1 wrap
        naturally if the title needs two lines. */
-    font-size: clamp(2.4rem, 12vw, 5rem);
+    font-size: clamp(2.2rem, 10.5vw, 4.4rem);
     letter-spacing: 0;
+    line-height: 1.05;
   }
+  .hero-content { padding: 0 20px 56px; }
+  .hero-kicker { font-size: 0.7rem; margin-bottom: 18px; }
 
   /* Section labels + h2 a touch smaller for better mobile rhythm. */
-  h2 { font-size: clamp(1.7rem, 6.5vw, 2.4rem); }
+  h2 { font-size: clamp(1.45rem, 5.6vw, 2rem); margin-bottom: 14px; }
+  p { font-size: 0.92rem; line-height: 1.6; }
+  .label { font-size: 0.66rem; margin-bottom: 12px; }
 
   /* Reviews internals — smaller stars + denser rating line. */
   .rating-stars { font-size: 1.05rem; }
