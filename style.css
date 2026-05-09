@@ -1500,11 +1500,15 @@ footer {
 
   /* Splits stack — let content drive height. The 100svh viewport rule
      would force every section to be a full screen TWICE (text + photo)
-     which feels endless on mobile. Auto height is the right read here. */
+     which feels endless on mobile. Auto height is the right read here.
+     Also unlock height + overflow that desktop locks for column parity
+     — on mobile we stack and let content flow. */
   .split,
   .contact {
     grid-template-columns: 1fr;
     min-height: auto;
+    height: auto;
+    overflow: visible;
   }
   .split-image { aspect-ratio: 4/3; min-height: unset; }
   .split-image img { height: 100%; }
@@ -1572,7 +1576,10 @@ footer {
     flex-direction: column;
     gap: 10px;
     text-align: center;
-    padding: 18px var(--side);
+    /* Extra bottom padding (90px) clears the floating WhatsApp button
+       (50px @ bottom: 20px → reaches y=70px) so the credit line is
+       always fully readable above it. */
+    padding: 18px var(--side) 90px;
   }
   .footer-small { margin-right: 0; }
 
