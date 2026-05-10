@@ -64,8 +64,9 @@ body {
 }
 .fact-line--light { color: rgba(255,255,255,0.78); }
 
-/* HEADINGS */
-h2 {
+/* HEADINGS — subpages promote their first .split h2 to h1 for SEO/a11y
+   (one h1 per page); same visual treatment so the editorial rhythm holds. */
+h1, h2 {
   font-family: var(--font-display);
   /* Shrunk so heavy-text splits (food, explore) fit within 90svh
      without pushing the section — and image — taller than the rest. */
@@ -1647,7 +1648,7 @@ footer {
 
   /* Tighten body rhythm on mobile — long scroll feels short. */
   p { line-height: 1.65; font-size: 0.95rem; }
-  h2 { margin-bottom: 18px; }
+  h1, h2 { margin-bottom: 18px; }
 
   /* Hero — Vivre-style on mobile: the photo doesn't claim the full
      viewport, it takes ~75% so the start of the body section peeks in
@@ -1838,7 +1839,7 @@ footer {
      under the bold nav logo — 400 holds presence without losing the
      editorial feel. Min size bumped 1.45→1.6rem so subpage H2s anchor
      the section instead of disappearing below the navbar. */
-  h2 { font-size: clamp(1.6rem, 6vw, 2rem); font-weight: 400; margin-bottom: 12px; }
+  h1, h2 { font-size: clamp(1.6rem, 6vw, 2rem); font-weight: 400; margin-bottom: 12px; }
   p { font-size: 0.92rem; line-height: 1.6; }
   p + p { margin-top: 10px; }
   .label { font-size: 0.66rem; margin-bottom: 10px; }
