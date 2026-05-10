@@ -1833,8 +1833,12 @@ footer {
   .hero-content { padding: 0 20px 56px; }
   .hero-kicker { font-size: 0.7rem; margin-bottom: 18px; }
 
-  /* Section labels + h2 a touch smaller for better mobile rhythm. */
-  h2 { font-size: clamp(1.45rem, 5.6vw, 2rem); margin-bottom: 12px; }
+  /* Section labels + h2 a touch smaller for better mobile rhythm.
+     Weight 400 (was 300): Cormorant Light reads as wispy at phone sizes
+     under the bold nav logo — 400 holds presence without losing the
+     editorial feel. Min size bumped 1.45→1.6rem so subpage H2s anchor
+     the section instead of disappearing below the navbar. */
+  h2 { font-size: clamp(1.6rem, 6vw, 2rem); font-weight: 400; margin-bottom: 12px; }
   p { font-size: 0.92rem; line-height: 1.6; }
   p + p { margin-top: 10px; }
   .label { font-size: 0.66rem; margin-bottom: 10px; }
