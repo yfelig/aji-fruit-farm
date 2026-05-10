@@ -19,7 +19,7 @@
   <meta name="twitter:description" content="Four private cottages on a fruit farm beside a lake in Embilipitiya, Sri Lanka — 45 min from Udawalawe National Park. Mangos, rambutan, dragon fruit. Traditional Sri Lankan breakfast included. Book direct with Aji." />
   <meta name="twitter:image" content="https://aji-fruit-farm.lk/photos/hero.jpg" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥭</text></svg>" />
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=8" />
   <link rel="preload" as="image" href="photos/hero.webp" type="image/webp" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -167,7 +167,11 @@
   <!-- 02 MEET AJI -->
   <section class="split split--reverse" id="aji">
     <div class="split-image">
-      <picture><source srcset="photos/aji.webp" type="image/webp"><img src="photos/aji.jpg" alt="Ajith and his daughter at the farm" loading="lazy" decoding="async" /></picture>
+      <picture>
+        <source media="(max-width: 860px)" srcset="photos/aji-mobile.png" />
+        <source srcset="photos/aji.webp" type="image/webp" />
+        <img src="photos/aji.jpg" alt="Ajith and his daughter at the farm" loading="lazy" decoding="async" />
+      </picture>
     </div>
     <div class="split-text">
       <span class="label">02 &mdash; YOUR HOST</span>
@@ -182,8 +186,8 @@
   <section class="split" id="cottages">
     <div class="split-text">
       <span class="label">03 &mdash; THE COTTAGES</span>
-      <span class="fact-line">From $50 per night &middot; per cottage</span>
       <h2>Four Private Cottages</h2>
+      <span class="fact-line fact-line--below">From $50 per night &middot; per cottage</span>
       <p>Each cottage is completely separate — your own entrance, your own veranda, your own view of the lake. Raw concrete, handmade teak bed, and a bathroom open to the sky.</p>
       <a class="text-link" href="rooms.html">See all photos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -203,7 +207,6 @@
       <p>The cottages sit at the edge of the lake, surrounded by fruit trees. Mist on the water in the morning. Fireflies at night.</p>
       <aside class="micro-quote">
         <p>"Like in the Garden of Eden."</p>
-        <cite>— Ronald &amp; Anni, Germany</cite>
       </aside>
       <a class="text-link" href="farm.html">Explore the farm <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
@@ -251,8 +254,8 @@
   <section class="split" id="food">
     <div class="split-text">
       <span class="label">06 &mdash; THE FOOD</span>
-      <span class="fact-line">Breakfast included with every stay</span>
-      <h2>Traditional Sri Lankan Food,<br>Every Day.</h2>
+      <h2>Traditional Sri Lankan Food,&nbsp;Every Day.</h2>
+      <span class="fact-line fact-line--below">Breakfast included with every stay</span>
       <p>Breakfast is <strong>real Sri Lankan home cooking</strong> — hoppers, dal, sambol, fresh fruit from the farm, eggs, tea. Coffee and toast if you'd rather start lighter.</p>
       <p>For <strong>full board</strong>, just say the word the day before — three home-cooked meals: rice, curry, fish, fresh fruit from the trees outside.</p>
     </div>

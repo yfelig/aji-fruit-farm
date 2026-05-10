@@ -64,6 +64,16 @@ body {
 }
 .fact-line--light { color: rgba(255,255,255,0.78); }
 
+/* Variant for when fact-line sits BELOW the heading. Negative margin-top
+   overlaps the H2's 24px bottom margin so the caption reads as attached
+   to the title, not floating between two blocks. Bumped font + tighter
+   tracking so it doesn't read as weaker than the body paragraph below. */
+.fact-line--below {
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
+  margin: -14px 0 26px;
+}
+
 /* HEADINGS — subpages promote their first .split h2 to h1 for SEO/a11y
    (one h1 per page); same visual treatment so the editorial rhythm holds. */
 h1, h2 {
@@ -618,6 +628,32 @@ section[id] { scroll-margin-top: 80px; }
   padding: clamp(48px, 7vh, var(--gap)) var(--side);
 }
 
+/* Editorial sign-off line that closes a centered split-text block.
+   Hairline + italic Cormorant — sits as part of the centered group,
+   not pinned to the bottom (the rest of the site centers .split-text). */
+.split-signature {
+  margin-top: 28px;
+  max-width: 32ch;
+}
+.split-signature-rule {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--bg-dark);
+  opacity: 0.45;
+  margin-bottom: 14px;
+}
+.split-signature p {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0;
+  max-width: none;
+}
+
 .split-image {
   position: relative;
   overflow: hidden;
@@ -1102,10 +1138,10 @@ cite {
 }
 .micro-quote p {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: clamp(1.25rem, 1.7vw, 1.55rem);
   font-style: italic;
   font-weight: 300;
-  line-height: 1.45;
+  line-height: 1.4;
   color: var(--text);
   margin: 0 0 6px;
   max-width: none;
@@ -1374,12 +1410,12 @@ cite {
    tone). */
 .rooms-price {
   font-family: var(--font-body);
-  font-size: 0.74rem !important;
+  font-size: 0.88rem !important;
   font-weight: 500 !important;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #b8842a !important;
-  margin: 0 0 22px !important;
+  margin: 0 0 26px !important;
   max-width: none !important;
 }
 
@@ -1535,14 +1571,23 @@ cite {
 /* HOST QUOTE */
 .host-quote {
   font-family: var(--font-display);
-  font-size: 1.22rem;
+  font-size: clamp(1.4rem, 1.9vw, 1.75rem);
   font-style: italic;
   font-weight: 300;
+  line-height: 1.4;
   color: var(--text);
   margin-top: 24px;
   max-width: none;
   border-left: 3px solid var(--bg-dark);
   padding-left: 20px;
+}
+
+/* Larger pull-quote variant — used on the long-form story page where
+   the surrounding paragraphs are dense and the base size feels lost. */
+.host-quote--lg {
+  font-size: clamp(1.7rem, 2.5vw, 2.25rem);
+  margin-top: 32px;
+  padding-left: 24px;
 }
 
 /* FOOTER */
@@ -1869,6 +1914,10 @@ footer {
   /* Single-column features list at phone width keeps each line readable. */
   .features-list { grid-template-columns: 1fr; gap: 10px; }
   .features-list li { font-size: 0.92rem; }
+
+  .split-signature { margin-top: 20px; }
+  .split-signature-rule { width: 40px; margin-bottom: 12px; }
+  .split-signature p { font-size: 0.95rem; }
 
   /* Book CTA more compact still. */
   .book-cta { padding: 22px var(--side); }
