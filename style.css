@@ -1654,6 +1654,12 @@ footer {
      image anchored to the visible viewport as the address bar moves. */
   .hero { height: 75dvh; }
 
+  /* Subpages (rooms, farm, story) start with a .split — no hero —
+     so the fixed nav clips the top of the first H2. Push the first
+     section down by enough to clear the bar. Index is unaffected
+     because its first section is .hero, which is excluded. */
+  body > section:first-of-type:not(.hero) { padding-top: 60px; }
+
   /* Mobile hero copy: drop the kicker and the H1's second line, light
      up the italic tagline. Result: "AJI FRUIT FARM" alone on top,
      italic tagline below — the reference layout. Title centered
