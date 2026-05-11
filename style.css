@@ -155,7 +155,13 @@ p + p { margin-top: 16px; }
   text-transform: uppercase;
   /* Logo stays pure ink — anchors the bar; nav links sit in forest. */
   color: var(--text);
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.35);
+  /* Two-layer shadow: white lift gives the lettering body on light
+     glass backgrounds (cream desktop, sage mobile); a soft dark
+     halo carries legibility when the nav rides over a varying photo
+     during scroll (especially mobile mid-section transitions). */
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.4),
+    0 1px 4px rgba(0, 0, 0, 0.12);
   transition: color 0.3s, text-shadow 0.5s ease;
 }
 /* Soft warm halo when the logo is pressed — fades in/out smoothly with
