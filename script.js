@@ -49,25 +49,34 @@ if (burger && overlay) {
 // hidden regardless of direction so it doesn't appear washed out
 // against the cream gradient.
 const nav  = document.querySelector('.nav');
-// Subpages have no .hero — their first .split image is the visual
-// hero. Use it as the threshold so the nav goes transparent while
-// the user is still over that first photo (matches the homepage feel).
-const hero = document.querySelector('.hero')
-          || document.querySelector('body.subpage .split:first-of-type .split-image');
+const hero = document.querySelector('.hero');
+const isSubpage = document.body.classList.contains('subpage');
 let lastY = window.scrollY;
 let ticking = false;
 
 function updateNav() {
   const y  = window.scrollY;
   const dy = y - lastY;
-  const heroH = hero ? hero.offsetHeight : 0;
-  const inFog = heroH && y > heroH * 0.78 && y < heroH;
 
-  // While the nav sits above the hero photo, it carries a light-text
-  // variant (.over-hero) so the dark-green default doesn't get lost in
-  // the foliage. Threshold of 78% of hero height matches the fog zone
-  // where the photo darkens enough that light text reads even better.
-  const overHero = heroH && y < heroH * 0.78;
+  // ── over-hero state ──
+  // Homepage: transparent while the user is on the hero photo
+  //   (threshold = 78% of hero height, matches the fade-to-cream fog).
+  // Subpages: transparent ANY time a .split-image is currently
+  //   passing under the nav bar — so every section photo gets the
+  //   same airy treatment, not just the first one.
+  let overHero = false;
+  let inFog = false;
+  if (isSubpage) {
+    const navY = (nav.offsetHeight || 60) * 0.5;
+    document.querySelectorAll('.split-image').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < navY && r.bottom > navY) overHero = true;
+    });
+  } else if (hero) {
+    const heroH = hero.offsetHeight;
+    inFog = y > heroH * 0.78 && y < heroH;
+    overHero = y < heroH * 0.78;
+  }
   nav.classList.toggle('over-hero', overHero);
 
   if (inFog) {
@@ -371,3 +380,50 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
   dpSend.addEventListener('click', updateLink);
   updateLink();
 }
+
+// ─── MOBILE PAGE SWIPE ────────────────────────────────────────────
+// On phones, swipe horizontally between the three subpages so the
+// site feels like a flippable booklet: Our Story → Cottages → Farm.
+// Swiping right (finger moves right) advances to the next page in
+// sequence, swiping left goes back. Wraps around at the ends.
+// Touches that start on a horizontal scroller (sliders, the day-card
+// strip, the activities strip) are ignored so those carousels still
+// work normally.
+(function setupSubpageSwipe() {
+  if (!document.body.classList.contains('subpage')) return;
+  if (!window.matchMedia('(max-width: 860px)').matches) return;
+
+  const order = ['story.html', 'rooms.html', 'farm.html'];
+  const here = (location.pathname.split('/').pop() || '').toLowerCase();
+  const idx = order.indexOf(here);
+  if (idx === -1) return;
+
+  let startX = 0, startY = 0, blocked = false;
+
+  document.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    startX = t.clientX;
+    startY = t.clientY;
+    // Skip swipes that start inside horizontal scrollers / sliders so
+    // the page-flip doesn't fight the slider's own touch handling.
+    blocked = !!e.target.closest(
+      '.image-slider, .slider, .activities, .itinerary, .nav-overlay, ' +
+      '[data-no-swipe], input, textarea, button'
+    );
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    if (blocked) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    // Require a clearly horizontal motion: |dx| ≥ 70px and at least
+    // 1.5× the vertical drift, so reading-scrolls don't trigger it.
+    if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    const len = order.length;
+    const target = dx > 0
+      ? order[(idx + 1) % len]
+      : order[(idx - 1 + len) % len];
+    location.href = target;
+  }, { passive: true });
+})();
