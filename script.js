@@ -83,7 +83,7 @@ function updateNav() {
     // glued to the top, and finishes blending in at zero. Combined
     // with the long transition, it reads as a continuous flow rather
     // than a sharp switch.
-    overHero = y < 100;
+    overHero = y < 200;
     if (hero) {
       const heroH = hero.offsetHeight;
       inFog = y > heroH * 0.78 && y < heroH;
