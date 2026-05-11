@@ -255,20 +255,35 @@ p + p { margin-top: 16px; }
   flex-shrink: 0;
   transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-/* Hover: subtle forest tint + 1px lift. The lift carries most of
-   the "interactive" signal; the fill adds quiet color confirmation.
-   Same hue as the pill's own border — no new color introduced. */
+/* Hover: forest tint at 0.40 + 1px lift. The fill is now visible
+   without flipping the pill character — same hue as the border,
+   just substantial. Combined with the lift + deepened shadow, the
+   "interactive" signal is unmistakable. */
 .nav-wa:hover {
-  background: rgba(27, 56, 38, 0.22);
+  background: rgba(27, 56, 38, 0.40);
   color: var(--bg-dark);
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.35);
   border-color: var(--bg-dark);
-  box-shadow: 0 6px 20px rgba(27, 56, 38, 0.26);
+  box-shadow: 0 6px 22px rgba(27, 56, 38, 0.32);
   transform: translateY(-1px);
 }
 .nav-wa:hover svg { transform: translate(2px, -2px); }
 /* Active state: micro press to ground the lift. */
 .nav-wa:active { transform: translateY(0) scale(0.98); }
+
+/* Entry animation: one-time invitation on page load. The pill fades
+   in and settles down ~5px, drawing the eye to the CTA in the first
+   moment of the page without ambient motion. Respects
+   prefers-reduced-motion: users who opt out see the static pill. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes nav-wa-entry {
+    0%   { opacity: 0; transform: translateY(-6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .nav-wa {
+    animation: nav-wa-entry 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.45s both;
+  }
+}
 
 /* MOBILE HAMBURGER + FULL-SCREEN MENU
    Burger sits in the nav (hidden on desktop). Overlay is fixed,
@@ -520,9 +535,9 @@ p + p { margin-top: 16px; }
 .nav.over-hero .nav-links a:hover { color: #fff; }
 .nav.over-hero .nav-links a::after { background: #fff; }
 .nav.over-hero .nav-wa:hover {
-  /* Forest tint at higher opacity (0.42) so it reads against the
-     photo. Text stays white — keeps the dark halo it had at rest. */
-  background: rgba(27, 56, 38, 0.42);
+  /* Forest tint at 0.55 over-hero — matches the new default-hover
+     intensity. Text stays white with its dark halo. */
+  background: rgba(27, 56, 38, 0.55);
   color: #fff;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75),
                0 0 3px rgba(0, 0, 0, 0.55);
