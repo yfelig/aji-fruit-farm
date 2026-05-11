@@ -252,16 +252,18 @@ p + p { margin-top: 16px; }
   color: #b8842a;
   transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), color 0.2s;
 }
+/* Hover: subtle sage tint instead of a full forest fill. Echoes the
+   mobile sage-glass nav and stays inside the brand greens — no jarring
+   color switch, just a quiet "yes, this is interactive" signal. Text
+   stays forest-dark, arrow keeps its gold accent. */
 .nav-wa:hover {
-  background: var(--bg-dark);
-  color: var(--bg);
-  text-shadow: none;
-  box-shadow: 0 4px 18px rgba(27, 56, 38, 0.28);
+  background: rgba(168, 188, 162, 0.32);
+  color: var(--bg-dark);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.35);
+  border-color: var(--bg-dark);
+  box-shadow: 0 4px 16px rgba(27, 56, 38, 0.20);
 }
-/* On hover the pill flips — arrow loses its gold accent and takes
-   whatever the text color is, so it stays readable on either the
-   forest-fill (default-hover) or the cream-fill (over-hero-hover). */
-.nav-wa:hover svg { color: currentColor; transform: translate(2px, -2px); }
+.nav-wa:hover svg { transform: translate(2px, -2px); }
 .nav-wa:active { transform: scale(0.97); }
 
 /* MOBILE HAMBURGER + FULL-SCREEN MENU
@@ -514,7 +516,10 @@ p + p { margin-top: 16px; }
 .nav.over-hero .nav-links a:hover { color: #fff; }
 .nav.over-hero .nav-links a::after { background: #fff; }
 .nav.over-hero .nav-wa:hover {
-  background: rgba(255, 255, 255, 0.95);
+  /* Sage tint on over-hero hover too — keeps the brand-green echo
+     consistent in both states. Text flips to forest-dark so it's
+     readable inside the tinted fill. */
+  background: rgba(168, 188, 162, 0.55);
   color: var(--bg-dark);
   border-color: rgba(255, 255, 255, 0.95);
   text-shadow: none;
