@@ -77,13 +77,13 @@ function updateNav() {
     heroEl = document.querySelector('.split-image');
   }
   if (heroEl) {
-    // Transparent only while the user is glued to the very top — once
-    // they've scrolled past ~50px the solid cream/sage glass takes
-    // over and stays put through the whole hero photo. The previous
-    // logic (bottom > 30) kept it transparent for the entire hero
-    // viewing window, which made the solid bar feel like it was
-    // disappearing too eagerly when scrolling back up.
-    overHero = y < 50;
+    // Transparent while in the top zone (y < 100). The 0.9s dissolve
+    // means the transition begins ~30-40px earlier than the threshold
+    // — the bar starts fading toward transparent before the user is
+    // glued to the top, and finishes blending in at zero. Combined
+    // with the long transition, it reads as a continuous flow rather
+    // than a sharp switch.
+    overHero = y < 100;
     if (hero) {
       const heroH = hero.offsetHeight;
       inFog = y > heroH * 0.78 && y < heroH;
