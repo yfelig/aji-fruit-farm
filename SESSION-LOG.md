@@ -4,6 +4,118 @@ Running log of work sessions. Newest entries on top. Used by `/wrap-session` and
 
 ---
 
+## 2026-05-11 — mobile-polish marathon + QA perf sweep (Rivka + נתנאלה)
+
+### What we did
+
+**Mobile-first session.** Rivka framed the day explicitly as mobile work
+("אנחנו עושות שינויים רק במובייל"); she had to repeat this twice after
+I scoped changes too widely. Saved as `feedback_scope_mobile_only.md`.
+
+- **host-quote alignment fix.** Border-left + padding-left was pushing
+  the pull-quote 20px to the right of every other element in the
+  section. Switched to a top hairline (48px, opacity 0.55). story.html
+  + index.html "Meet Aji" share the rule.
+- **Inner-page split order (mobile only):** every `.split` opens with
+  the photo, text reads below it. Scoped via `body.subpage` inside the
+  860px media block. Tried extending to desktop "for consistency" —
+  reverted hard. Memory written.
+- **Nav state machine, several iterations:**
+  - Default `.nav` cream-glass (desktop) — UNCHANGED. Confirmed
+    explicit ask: "תחזיר למה שהיה קודם בדסקטופ לפני שהתחלת לשנות הכל
+    במובייל".
+  - Mobile-only override inside 860px block: `.nav:not(.over-hero)`
+    paints sage `rgba(168,188,162,0.55)` so the bar reads over photos.
+  - `.over-hero` (transparent + white text) toggle is set by
+    script.js while user is on the page's HERO photo: `.hero` on the
+    homepage, first `.split-image` on mobile subpages. Desktop subpages
+    NEVER get `.over-hero` (split-image is half-width — transparent
+    over the cream text column reads as broken).
+  - Hero photo runs to top: removed
+    `body > section:first-of-type:not(.hero) { padding-top: 60px }` —
+    that was leaving the cream gap under the bar that Rivka caught.
+  - Pre-paint to kill sage-flash on load: inline 1-line script right
+    after `</header>` adds `over-hero` only if mobile. Desktop
+    subpages stay sage from the first paint.
+- **Swipe nav (mobile only):** Home → Story → Cottages → Farm,
+  wraps. Touches starting inside horizontal scrollers (sliders,
+  itinerary days, activities strip, testimonial arrows) are ignored.
+- **Strips polish (mobile):** itinerary-days + activities cards went
+  from 88% width / 12px gap to 80% / 18px — visible breathing room.
+- **Footer (mobile):** credit width capped to 240px + centered so the
+  WhatsApp float in the right column has clear space. Padding-bottom
+  dropped 68 → 28. WA shrunk 50@20 → 44@14.
+- **Map height (mobile):** 320 → 260 to kill the cream chasm under
+  the map.
+- **Footer credit text** updated everywhere to
+  "© Website & Photography by Yair Felig & Rivka Shimoni Felig".
+- **Removed duplicate host-quote** from story.html "A Different
+  Kind of Place" — already on homepage in Meet Aji.
+
+**QA perf sweep (commit d60d3e5):**
+
+- Recompressed 26 heavy photos (q=72 JPG / q=65 WebP, 1600px cap).
+  Worst offenders cut 40–55%: farm-7217 628→365, bath-4 532→327,
+  farm-7293 555→315.
+- Deleted 57 unused photos (~8.4MB). `photos/` went 35M → 24M.
+- Removed Space Mono font load from index.html (not used in CSS).
+- story.html hero img was `loading="lazy"` — flipped to
+  `fetchpriority="high"`.
+- Added `<link rel="preload" as="image">` for the hero of
+  story/rooms/farm so the first photo starts downloading
+  alongside the HTML parse.
+- Pre-paint inline script after `</header>` to remove the
+  transparent→sage flash on desktop subpages.
+
+### Where we are
+
+Site is shipped. Performance verified with Playwright over a real
+network: index.html mobile load dropped from 3525ms to 978ms
+(3.6× faster). LCP across all 4 pages is 556–856ms (well under
+Google's 2500ms target). Zero console errors. Visual QA passed
+on mobile + desktop across all 4 pages.
+
+Mobile experience now matches Rivka's intent: photo runs to the
+top under a transparent nav, sage glass below, image-first splits,
+swipe to navigate between pages, no cream gaps. Desktop
+experience is untouched.
+
+### Open threads
+
+- **Memory updates this session:**
+  - `feedback_scope_mobile_only.md` — created. Mobile work means
+    *only* mobile. Don't extend "for consistency" without asking.
+- **Communication retro for self:** Spent a long arc going in
+  circles on the nav (cream → sage globally → sage mobile-only →
+  sage globally again → cream desktop / sage mobile). Trigger
+  phrase to watch next time: when she says "אני רוצה את הסרגל הזה"
+  while pointing at a state she's already seen, ask "rule for
+  desktop, mobile, or both?" before editing the base selector.
+- No outstanding bugs reported.
+
+### Files touched
+
+- `style.css` — nav, split-order, footer, map, host-quote,
+  fact-line, mobile strips. v=22 → v=34.
+- `script.js` — over-hero detection per-page-type, swipe nav,
+  Home in sequence. v=1 → v=8.
+- `index.html` — Space Mono removed, cache buster, footer credit.
+- `rooms.html`, `farm.html`, `story.html` — preload tag, scrolled
+  class clean, inline over-hero pre-paint, footer credit, host-quote
+  removed (story only).
+- `photos/` — 26 recompressed, 57 deleted.
+
+### Git state
+
+- Branch: main, up to date with origin
+- Uncommitted: none
+- Last commit: `d60d3e5` QA sweep: compress heavy images, drop
+  unused photos, perf fixes
+- Recent: a1449d4 footer cap, cde32b9 mobile strips, 594678b
+  credit, dd237e5 cream gap, 24aa65b prepaint, b976e9c photo-to-top
+
+---
+
 ## 2026-05-10 — editorial polish + design-system unification + photo curation (Rivka + נתנאלה)
 
 ### What we did

@@ -51,6 +51,8 @@ if (burger && overlay) {
 const nav  = document.querySelector('.nav');
 const hero = document.querySelector('.hero');
 const isSubpage = document.body.classList.contains('subpage');
+const stickyCta = document.querySelector('.sticky-cta');
+const bookCta   = document.querySelector('.book-cta, #contact');
 let lastY = window.scrollY;
 let ticking = false;
 
@@ -92,6 +94,28 @@ function updateNav() {
     nav.classList.add('hidden');
   } else if (dy < -20) {
     nav.classList.remove('hidden');
+  }
+
+  // ── Mobile sticky CTA ──
+  // Show after the user has scrolled past the hero — they've seen the
+  // value, now keep "Check availability with Aji" one tap away. Hide
+  // again when the page's own in-content book CTA enters the viewport,
+  // so the two don't compete for attention.
+  if (stickyCta && isMobile) {
+    let show = false;
+    if (heroEl) {
+      const r = heroEl.getBoundingClientRect();
+      // Hero is mostly out of view → start showing.
+      show = r.bottom < 80;
+    }
+    // If the in-page book CTA / contact section is already on screen,
+    // don't double-up — the user already has the primary action visible.
+    if (show && bookCta) {
+      const br = bookCta.getBoundingClientRect();
+      if (br.top < window.innerHeight - 40) show = false;
+    }
+    stickyCta.classList.toggle('visible', show);
+    document.body.classList.toggle('sticky-cta-visible', show);
   }
 
   lastY = y;

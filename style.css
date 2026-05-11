@@ -1409,13 +1409,19 @@ cite {
   position: absolute;
   bottom: 14px;
   right: 14px;
-  background: rgba(0, 0, 0, 0.5);
+  /* Stronger background so the counter stays readable on bright
+     photos (e.g. wood-veranda shots, white-table food). 0.5 was
+     borderline on light frames. */
+  background: rgba(0, 0, 0, 0.68);
   color: #fff;
-  padding: 4px 10px;
+  padding: 5px 11px;
   border-radius: 999px;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 500;
   letter-spacing: 0.05em;
   z-index: 5;
+  /* Soft outer glow so the pill lifts off whatever's behind it. */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
 }
 
 /* BOOK CTA — compact strip used at the bottom of every sub-page */
@@ -1686,18 +1692,22 @@ cite {
 /* HOST QUOTE — pull-quote opening a content section. Hairline TOP rule
    (not left border) so the quote sits at the same x as the surrounding
    kicker, H2, fact-line, paragraphs and CTAs. Keeps the section
-   symmetric and the editorial pull-quote feel via italic display type. */
+   symmetric and the editorial pull-quote feel via italic display type.
+   Bumped up from clamp(1.4-1.75rem) → clamp(1.55-2rem) so the quote
+   actually reads as the emotional peak of the section, not as another
+   body paragraph. Weight 400 (was 300) gives the italic enough presence
+   on screens where Cormorant Light renders thin. */
 .host-quote {
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 1.9vw, 1.75rem);
+  font-size: clamp(1.55rem, 2.2vw, 2rem);
   font-style: italic;
-  font-weight: 300;
-  line-height: 1.4;
+  font-weight: 400;
+  line-height: 1.35;
   color: var(--text);
-  margin-top: 24px;
+  margin-top: 32px;
   max-width: none;
   position: relative;
-  padding-top: 22px;
+  padding-top: 24px;
 }
 .host-quote::before {
   content: '';
@@ -1705,10 +1715,10 @@ cite {
   position: absolute;
   top: 0;
   left: 0;
-  width: 48px;
-  height: 1px;
+  width: 56px;
+  height: 2px;
   background: var(--bg-dark);
-  opacity: 0.55;
+  opacity: 0.7;
 }
 
 /* .host-quote--lg removed — site-wide pull-quote uniformity */
@@ -1805,6 +1815,40 @@ footer {
   transform: translate(0, -50%);
 }
 
+/* STICKY MOBILE CTA — bottom action bar, mobile only.
+   Appears after the user scrolls past the hero (script.js toggles
+   .visible). One-tap entry to WhatsApp with Aji from anywhere on the
+   page, so a user who decides to book mid-scroll doesn't have to
+   hunt for the action. Sits below the WA float, which lifts when
+   the bar is visible (handled by body.sticky-cta-visible rule). */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 75;
+  display: none; /* desktop hides via the media query below; mobile flex */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px var(--side);
+  background: var(--bg-dark);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.18);
+  transform: translateY(100%);
+  transition: transform 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.sticky-cta.visible { transform: translateY(0); }
+.sticky-cta svg { flex-shrink: 0; }
+.sticky-cta .sticky-cta-icon { width: 18px; height: 18px; }
+.sticky-cta .sticky-cta-arrow { width: 14px; height: 14px; }
+
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   :root { --side: 40px; --gap: 80px; }
@@ -1826,6 +1870,24 @@ footer {
      beneath, signaling "there's more here, scroll." dvh keeps the
      image anchored to the visible viewport as the address bar moves. */
   .hero { height: 75dvh; }
+
+  /* Soft fade from hero photo to the cream of the next section.
+     A hard cut between forest photo and cream banner reads as
+     visually broken on mobile; this 28px gradient lets the eye
+     breathe across the boundary. z-index: 0 keeps it ABOVE the
+     hero image but BELOW .hero-content (z-index: 1) — the title
+     stays untouched, only the bottom edge of the photo softens. */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: linear-gradient(180deg, rgba(240, 237, 228, 0) 0%, var(--bg) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
   /* Subpages start with a .split — image-first on mobile (via the
      body.subpage order override below). The photo sits behind the
@@ -2008,6 +2070,14 @@ footer {
      doesn't dominate, and so the footer can sit closer to the map. */
   .wa-float { bottom: 14px; right: 14px; width: 44px; height: 44px; }
   .wa-float svg { width: 22px; height: 22px; }
+
+  /* Mobile: enable the sticky CTA. */
+  .sticky-cta { display: flex; }
+
+  /* When sticky CTA is showing, lift the WA float above it so they
+     don't overlap. The bar is ~52px; float gets bottom: 72px to
+     leave a clear 10px breath. */
+  body.sticky-cta-visible .wa-float { bottom: 72px; }
 }
 
 /* PHONE */
