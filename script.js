@@ -77,13 +77,10 @@ function updateNav() {
     heroEl = document.querySelector('.split-image');
   }
   if (heroEl) {
-    // Transparent while in the top zone (y < 100). The 0.9s dissolve
-    // means the transition begins ~30-40px earlier than the threshold
-    // — the bar starts fading toward transparent before the user is
-    // glued to the top, and finishes blending in at zero. Combined
-    // with the long transition, it reads as a continuous flow rather
-    // than a sharp switch.
-    overHero = y < 200;
+    // Transparent while in the top zone (y < 100). Threshold matched
+    // to .at-top below so size and transparency cross-fade together
+    // in a single dissolve rather than landing in two snaps.
+    overHero = y < 100;
     if (hero) {
       const heroH = hero.offsetHeight;
       inFog = y > heroH * 0.78 && y < heroH;
@@ -92,9 +89,10 @@ function updateNav() {
   nav.classList.toggle('over-hero', overHero);
 
   // .at-top — bigger nav sizes while the user is glued to the very
-  // top of any page. Decoupled from .over-hero so subpage desktops
-  // can get the large header without flipping to transparent.
-  nav.classList.toggle('at-top', y < 40);
+  // top of any page. Same y=100 threshold as .over-hero so the two
+  // transitions move as one. The 0.9s eases on background, color,
+  // font-size, and padding all blend into a single 100→shrunk flow.
+  nav.classList.toggle('at-top', y < 100);
 
   if (inFog) {
     nav.classList.add('hidden');

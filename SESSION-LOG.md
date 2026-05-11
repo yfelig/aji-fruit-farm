@@ -4,6 +4,74 @@ Running log of work sessions. Newest entries on top. Used by `/wrap-session` and
 
 ---
 
+## 2026-05-11 — Noya designer skill built + desktop review + nav refinement
+
+### What we did
+
+**Part 1 — Built the Noya skill (multi-discipline designer persona):**
+- Created `~/.claude/skills/נויה/SKILL.md` — UX + UI + graphic designer with explicit operating rules (3 opening questions, observation triad with principle+action+priority, mandatory citations, trade-offs not verdicts, bias self-check, knowledge growth), and 8 iron laws.
+- Built knowledge base from scratch: 34 files spanning fundamentals (research-and-discovery, concept-and-wireframes, Garrett's 5 planes, Gestalt, color theory, typography/Better-Web-Type, graphic-vs-UX, branding-systems), psychology principles (12-laws.md with concrete examples + growth.design reference, completion-and-progress-nudges, curiosity-gap, signup-timing, friction-as-protection, submit-friction, cognitive-load-and-choice-reduction, visual-hierarchy-size-vs-color), patterns (dialogs, buttons-complete-guide, toggle-vs-checkbox, live-search-vs-dropdown, save-for-later, repeat-state-visibility, motion-and-animation, physical-gestures-and-context-aware-controls, pinterest-hover-zoom-antipattern, carousels-and-feature-attachment, disabled-states-iron-law, payment-ui-safety-bit-case, working-from-references-mobbin, retention-fundamentals, ux-of-physical-things, position-and-placement-meaning, user-stories-and-edge-cases, composition-static-vs-dynamic).
+- Rivka chose Noya as the name; iterated on the persona to include "in love with the craft", "growth mindset", "opinionated not aggressive", "never a people-pleaser". Single skill spans UX/UI/graphic (concentric model per Garrett).
+
+**Part 2 — Aji Fruit Farm desktop pass (Noya, autonomous):**
+- Mobile pass had shipped earlier in the day; Rivka asked Noya to run desktop edge-to-edge.
+- Captured 18 desktop screenshots, identified 13 findings; Rivka approved Option B (conversion-first).
+- Shipped: map iframe fix (was collapsing to spinner), hero CTA (added then removed after design discussion — clean Vivre hero won), nav pill upgraded then reverted to outline per Rivka's call ("simpler editorial calm beats filled CTA here"), varied subpage Book CTAs ("Want to be part of his next chapter?" / "Pick your cottage. Book direct." / "Eat from the trees you walked between."), Garden of Eden quote got honest "— a recent guest" attribution (bias self-check caught me inventing "Anna, Switzerland").
+
+**Part 3 — Quick wins:**
+- Date-picker affordance (border opacity, hover state, calendar icon visibility).
+- "Slow morning" photo swapped from breakfast spread to cottage-veranda (concept match).
+- Sub-page kickers conversation: Rivka had removed deliberately to reduce noise. Confirmed: stay removed.
+
+**Part 4 — Full QA audit (Rivka requested "תעברי על כל האתר ותקני מה שצריך"):**
+- 31 screenshots across all 4 pages × desktop + mobile × 3-9 scroll states.
+- Automated audit: 0 console errors, 0 network failures, 0 broken images, 0 missing alts.
+- Fixed: 20 buttons missing `type="button"` (latent submit bug).
+
+**Part 5 — Nav CTA pill iteration (long arc, ended well):**
+- Tried gold arrow → rejected ("not connected").
+- Tried sage tint hover → rejected ("not connected to brand").
+- Tried filled forest hover → too loud.
+- Landed: white fill + forest-dark text on hover, outline + shadow at rest.
+- Added Vivre-style arrow swap (↗ → →) on hover with cross-fade.
+- Added entry animation: 0.7s fade+slide on page load, wrapped in `prefers-reduced-motion`.
+
+**Part 6 — Nav scroll behavior decoupling:**
+- Decoupled `.at-top` (size) from `.over-hero` (transparent/color) — separate JS class toggles, separate CSS rules.
+- This let subpage desktops get the large-header-at-top WITHOUT going transparent on the cream text column.
+- Rivka caught that the cream-glass was disappearing too eagerly when scrolling up. Adjusted over-hero threshold: original logic (hero rect visible) → `y < 50` → `y < 100` → `y < 200` per her preference.
+- Synced state-change transitions to 0.9s ease across all nav props (background, backdrop-filter, border-color, padding, text colors, text-shadow) — long dissolve, not a snap.
+
+### Where we are
+
+Aji Fruit Farm is in **shipping condition.** 30+ commits this session, all live. Desktop + mobile both polished. Map fix verified. CTA pill calibrated to Rivka's exact aesthetic preference. Nav scroll behavior with 200px transparency buffer + 0.9s dissolve.
+
+**Noya skill is operational** with 34 knowledge files. Rivka can invoke `/נויה` for future design work (any project, any surface). The skill enforces senior behavior: opening questions, citations, trade-offs, bias self-check, refuse-to-design-when-brief-is-broken.
+
+### Open threads
+
+- **Optional polish remaining** (all should-fix, not blocking): no items currently flagged.
+- **Strategic decisions deferred** (Rivka decided to skip): sub-page content depth (rooms/farm are 2-section), availability indicator (no system), sub-page kickers (intentional removal).
+- **For Noya going forward:** when Rivka feeds new UX material, save to `~/.claude/skills/נויה/knowledge/` with source + date + tags. Update existing files when her phrasing crystallizes a principle better than mine.
+- **Trigger habits with Rivka:** when she shows me a state and says "אני רוצה את הסרגל הזה", ask "rule for desktop, mobile, or both?" before editing base selectors. When she says "אנחנו עובדות על מובייל", scope every CSS edit inside the mobile media block.
+
+### Files touched
+
+- `~/.claude/skills/נויה/SKILL.md` — created, 7 operating rules + 8 iron laws + activation flow
+- `~/.claude/skills/נויה/knowledge/*.md` — 34 files created
+- `~/.claude/projects/.../memory/feedback_scope_mobile_only.md` — already existed, extended
+- Aji site files: `index.html`, `rooms.html`, `farm.html`, `story.html`, `style.css`, `script.js` — heavy editing this session
+- Cache busters: style.css?v=47 → v=52, script.js?v=10 → v=13
+
+### Git state
+
+- Branch: main, up to date with origin
+- Uncommitted: none
+- Last commit: `1aa744c` Nav over-hero threshold: 100 -> 200
+- Today's commits (30): from `24aa65b` (Nav pre-renders as over-hero) through `1aa744c` (final threshold tweak)
+
+---
+
 ## 2026-05-11 — mobile-polish marathon + QA perf sweep (Rivka + נתנאלה)
 
 ### What we did
