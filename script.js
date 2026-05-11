@@ -59,26 +59,31 @@ function updateNav() {
   const dy = y - lastY;
 
   // ── over-hero state ──
-  // Homepage: transparent while the user is on the hero photo.
-  // Subpages on mobile: transparent while the page's first
-  //   .split-image is still visible behind the nav (it's the
-  //   full-bleed photo at the top of the screen on a phone).
-  // Subpages on desktop: NEVER transparent — the first .split-image
-  //   only fills half the screen (the other half is a cream text
-  //   column), so a transparent bar reads as broken there.
+  // Desktop homepage: transparent while on the hero photo (original).
+  // Desktop subpages: never transparent (split-image is half-width,
+  //   transparent over the cream text column reads as broken).
+  // Mobile (any page): transparent any time the hero OR any
+  //   .split-image is currently crossing the top of the viewport.
+  //   Photos are full-bleed on a phone so the bar can ride straight
+  //   on top of them; the moment the photo scrolls away the sage
+  //   glass returns.
   let overHero = false;
   let inFog = false;
   const isMobile = window.matchMedia('(max-width: 860px)').matches;
-  if (!isSubpage && hero) {
+  if (isMobile) {
+    const candidates = [hero, ...document.querySelectorAll('.split-image')].filter(Boolean);
+    for (const el of candidates) {
+      const r = el.getBoundingClientRect();
+      if (r.top < 30 && r.bottom > 30) { overHero = true; break; }
+    }
+    if (hero) {
+      const heroH = hero.offsetHeight;
+      inFog = y > heroH * 0.78 && y < heroH;
+    }
+  } else if (!isSubpage && hero) {
     const heroH = hero.offsetHeight;
     inFog = y > heroH * 0.78 && y < heroH;
     overHero = y < heroH * 0.78;
-  } else if (isSubpage && isMobile) {
-    const firstImage = document.querySelector('.split-image');
-    if (firstImage) {
-      const r = firstImage.getBoundingClientRect();
-      overHero = r.bottom > 30;
-    }
   }
   nav.classList.toggle('over-hero', overHero);
 
@@ -385,19 +390,19 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
 }
 
 // ─── MOBILE PAGE SWIPE ────────────────────────────────────────────
-// On phones, swipe horizontally between the three subpages so the
-// site feels like a flippable booklet: Our Story → Cottages → Farm.
+// On phones, swipe horizontally between all four pages so the site
+// feels like a flippable booklet: Home → Our Story → Cottages → Farm.
 // Swiping right (finger moves right) advances to the next page in
 // sequence, swiping left goes back. Wraps around at the ends.
 // Touches that start on a horizontal scroller (sliders, the day-card
-// strip, the activities strip) are ignored so those carousels still
-// work normally.
-(function setupSubpageSwipe() {
-  if (!document.body.classList.contains('subpage')) return;
+// strip, the activities strip, testimonial arrows) are ignored so
+// those carousels still work normally.
+(function setupPageSwipe() {
   if (!window.matchMedia('(max-width: 860px)').matches) return;
 
-  const order = ['story.html', 'rooms.html', 'farm.html'];
-  const here = (location.pathname.split('/').pop() || '').toLowerCase();
+  const order = ['index.html', 'story.html', 'rooms.html', 'farm.html'];
+  let here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  if (here === '' || here === '/') here = 'index.html';
   const idx = order.indexOf(here);
   if (idx === -1) return;
 
@@ -407,11 +412,9 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
     const t = e.touches[0];
     startX = t.clientX;
     startY = t.clientY;
-    // Skip swipes that start inside horizontal scrollers / sliders so
-    // the page-flip doesn't fight the slider's own touch handling.
     blocked = !!e.target.closest(
-      '.image-slider, .slider, .activities, .itinerary, .nav-overlay, ' +
-      '[data-no-swipe], input, textarea, button'
+      '.image-slider, .slider, .activities, .itinerary, .itinerary-days, ' +
+      '.testimonial-row, .nav-overlay, [data-no-swipe], input, textarea, button'
     );
   }, { passive: true });
 
@@ -420,8 +423,6 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
     const t = e.changedTouches[0];
     const dx = t.clientX - startX;
     const dy = t.clientY - startY;
-    // Require a clearly horizontal motion: |dx| ≥ 70px and at least
-    // 1.5× the vertical drift, so reading-scrolls don't trigger it.
     if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
     const len = order.length;
     const target = dx > 0
