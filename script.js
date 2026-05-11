@@ -59,30 +59,26 @@ function updateNav() {
   const dy = y - lastY;
 
   // ── over-hero state ──
-  // Homepage: transparent while the user is on the hero photo
-  //   (threshold = 78% of hero height, matches the fade-to-cream fog).
-  // Subpages: transparent ONLY while the first .split-image (the
-  //   page's visual hero) is under the nav. Once the user scrolls
-  //   into the body of the page, the nav switches to its sage glass
-  //   — even when the user passes over later section photos.
+  // Homepage: transparent while the user is on the hero photo.
+  // Subpages on mobile: transparent while the page's first
+  //   .split-image is still visible behind the nav (it's the
+  //   full-bleed photo at the top of the screen on a phone).
+  // Subpages on desktop: NEVER transparent — the first .split-image
+  //   only fills half the screen (the other half is a cream text
+  //   column), so a transparent bar reads as broken there.
   let overHero = false;
   let inFog = false;
-  if (isSubpage) {
-    // Find the first .split-image in document order (top-most photo
-    // on mobile after the order: 1 flip). Could be inside .split or
-    // .split--reverse — either way, it's the visual hero of the page.
-    const firstImage = document.querySelector('.split-image');
-    if (firstImage) {
-      // Stay transparent while ANY part of that first photo is still
-      // visible behind the nav. Once the bottom of the photo scrolls
-      // above ~30px (clears the nav area), flip to sage glass.
-      const r = firstImage.getBoundingClientRect();
-      overHero = r.bottom > 30;
-    }
-  } else if (hero) {
+  const isMobile = window.matchMedia('(max-width: 860px)').matches;
+  if (!isSubpage && hero) {
     const heroH = hero.offsetHeight;
     inFog = y > heroH * 0.78 && y < heroH;
     overHero = y < heroH * 0.78;
+  } else if (isSubpage && isMobile) {
+    const firstImage = document.querySelector('.split-image');
+    if (firstImage) {
+      const r = firstImage.getBoundingClientRect();
+      overHero = r.bottom > 30;
+    }
   }
   nav.classList.toggle('over-hero', overHero);
 
