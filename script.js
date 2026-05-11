@@ -86,6 +86,11 @@ function updateNav() {
   }
   nav.classList.toggle('over-hero', overHero);
 
+  // .at-top — bigger nav sizes while the user is glued to the very
+  // top of any page. Decoupled from .over-hero so subpage desktops
+  // can get the large header without flipping to transparent.
+  nav.classList.toggle('at-top', y < 40);
+
   if (inFog) {
     nav.classList.add('hidden');
   } else if (y < 60) {

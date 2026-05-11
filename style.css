@@ -137,10 +137,17 @@ p + p { margin-top: 16px; }
 /* Compact text in the cream-glass state so the thinner strip stays
    balanced. The .over-hero state keeps the larger sizes set on the
    base classes for the "main display" look. */
-.nav:not(.over-hero) .nav-logo { font-size: 1.15rem; }
-.nav:not(.over-hero) .nav-links a { font-size: 0.78rem; }
-.nav:not(.over-hero) .nav-wa { font-size: 0.92rem; padding: 4px 11px; }
-.nav:not(.over-hero) .nav-wa svg { width: 16px; height: 16px; }
+/* "At-top" = user is glued to the very top of the page (any page).
+   When the user is here, the nav stays at its larger display size
+   so the hero / opening photo gets the editorial header it deserves.
+   Once the user scrolls (.at-top drops off), the bar tightens to the
+   compact-strip sizes. Decoupled from .over-hero (which controls
+   transparency/color), so subpage desktops can have big-size-at-top
+   WITHOUT going transparent on the cream text column. */
+.nav:not(.at-top) .nav-logo { font-size: 1.15rem; }
+.nav:not(.at-top) .nav-links a { font-size: 0.78rem; }
+.nav:not(.at-top) .nav-wa { font-size: 0.92rem; padding: 4px 11px; }
+.nav:not(.at-top) .nav-wa svg { width: 16px; height: 16px; }
 .nav.hidden {
   transform: translateY(-100%);
   opacity: 0;
