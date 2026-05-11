@@ -8,3 +8,6 @@ qa-screenshots/
 QA-REPORT-*.md
 SEO-PLAN.md
 REVIEW-*.md
+snapshots-mob-qa/
+snapshots-wow-pre/
+qa-*.js
