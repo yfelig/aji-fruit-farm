@@ -122,10 +122,11 @@ p + p { margin-top: 16px; }
   border-bottom: 1px solid rgba(27, 56, 38, 0.06);
   transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
               opacity   0.45s ease,
-              background 0.35s ease,
-              backdrop-filter 0.35s ease,
-              border-color 0.35s ease,
-              padding 0.35s ease;
+              background 0.6s ease,
+              backdrop-filter 0.6s ease,
+              -webkit-backdrop-filter 0.6s ease,
+              border-color 0.6s ease,
+              padding 0.6s ease;
 }
 .nav.over-hero {
   padding: 18px var(--side) 14px;
@@ -169,7 +170,7 @@ p + p { margin-top: 16px; }
   text-shadow:
     0 1px 2px rgba(255, 255, 255, 0.4),
     0 1px 4px rgba(0, 0, 0, 0.12);
-  transition: color 0.3s, text-shadow 0.5s ease;
+  transition: color 0.6s ease, text-shadow 0.6s ease;
 }
 /* Soft warm halo when the logo is pressed — fades in/out smoothly with
    the text-shadow transition so the click feels acknowledged without
@@ -194,7 +195,7 @@ p + p { margin-top: 16px; }
   text-transform: uppercase;
   color: var(--bg-dark);
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.35);
-  transition: color 0.2s;
+  transition: color 0.6s ease, text-shadow 0.6s ease;
 }
 /* Hover affordance: hairline slides in from the left under the link
    on hover, retracts back left on mouse-out. currentColor so it
@@ -247,7 +248,17 @@ p + p { margin-top: 16px; }
      ON the bar instead of being painted into it. Forest tint so the
      glow stays inside the brand palette. */
   box-shadow: 0 2px 12px rgba(27, 56, 38, 0.16);
-  transition: background 0.2s, color 0.2s, box-shadow 0.25s, transform 0.2s;
+  /* Split timings: hover-driven props (background, shadow, transform)
+     stay snappy at ~0.25s. State-driven props (color, text-shadow,
+     border-color — change when the nav crosses .over-hero) take
+     0.6s, matching the nav background dissolve. */
+  transition:
+    background 0.25s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease,
+    color 0.6s ease,
+    text-shadow 0.6s ease,
+    border-color 0.6s ease;
 }
 /* Arrow holder — stacks the two arrows in one slot so swapping them
    on hover doesn't shift the pill's width. */
