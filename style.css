@@ -484,12 +484,17 @@ p + p { margin-top: 16px; }
    logo, and the CTA to a light cream so the text reads against the
    foliage. Strong dark text-shadow gives a subtle halo that works on
    bright AND dark patches of the photo. */
+/* Over-hero: logo + nav links stay light (white text + dark halo)
+   so they read on the photo. Only .nav-wa (the CTA pill) flips to
+   white-filled. */
 .nav.over-hero .nav-logo,
-.nav.over-hero .nav-links a,
+.nav.over-hero .nav-links a {
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75),
+               0 0 3px rgba(0, 0, 0, 0.55),
+               0 1px 2px rgba(0, 0, 0, 0.4);
+}
 .nav.over-hero .nav-wa {
-  /* Over-hero (on the photo) flips the CTA to white-filled with
-     forest ink — high contrast against any photo, still reads as
-     the page's primary action. */
   background: rgba(255, 255, 255, 0.95);
   color: var(--bg-dark);
   border-color: rgba(255, 255, 255, 0.95);
