@@ -67,7 +67,7 @@ body {
 /* Position modifier — when the caption sits BELOW the heading instead
    of above. Negative margin-top overlaps H2's 24px bottom margin so the
    caption reads as attached to the title, not floating between blocks. */
-.fact-line--below { margin: 2px 0 26px; }
+.fact-line--below { margin: 10px 0 26px; }
 
 /* HEADINGS — subpages promote their first .split h2 to h1 for SEO/a11y
    (one h1 per page); same visual treatment so the editorial rhythm holds. */
