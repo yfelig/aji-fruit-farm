@@ -49,7 +49,11 @@ if (burger && overlay) {
 // hidden regardless of direction so it doesn't appear washed out
 // against the cream gradient.
 const nav  = document.querySelector('.nav');
-const hero = document.querySelector('.hero');
+// Subpages have no .hero — their first .split image is the visual
+// hero. Use it as the threshold so the nav goes transparent while
+// the user is still over that first photo (matches the homepage feel).
+const hero = document.querySelector('.hero')
+          || document.querySelector('body.subpage .split:first-of-type .split-image');
 let lastY = window.scrollY;
 let ticking = false;
 

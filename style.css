@@ -724,6 +724,14 @@ section[id] { scroll-margin-top: 80px; }
 .split--reverse .split-text { order: 2; }
 .split--reverse .split-image { order: 1; }
 
+/* Subpages (rooms / farm / story): EVERY split opens with the photo,
+   then the text, regardless of viewport. On desktop the image lands
+   in the left column; on mobile the photo stacks above the text. */
+body.subpage .split .split-image,
+body.subpage .split--reverse .split-image { order: 1; }
+body.subpage .split .split-text,
+body.subpage .split--reverse .split-text { order: 2; }
+
 .split-text {
   display: flex;
   flex-direction: column;
