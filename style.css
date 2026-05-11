@@ -236,16 +236,32 @@ p + p { margin-top: 16px; }
   padding: 5px 14px;
   border: 1px solid var(--bg-dark);
   border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
+  /* Soft drop-shadow gives the pill a sense of body / anchor — sits
+     ON the bar instead of being painted into it. Forest tint so the
+     glow stays inside the brand palette. */
+  box-shadow: 0 2px 12px rgba(27, 56, 38, 0.16);
+  transition: background 0.2s, color 0.2s, box-shadow 0.25s, transform 0.2s;
 }
 .nav-wa svg {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Gold arrow — same gold as the site's .fact-line accent. One small
+     color hit at the action point, drawing the eye to the CTA without
+     filling the pill. Inherits site-wide palette, not a new color. */
+  color: #b8842a;
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), color 0.2s;
 }
-.nav-wa:hover { background: var(--bg-dark); color: var(--bg); text-shadow: none; }
-.nav-wa:hover svg { transform: translate(2px, -2px); }
+.nav-wa:hover {
+  background: var(--bg-dark);
+  color: var(--bg);
+  text-shadow: none;
+  box-shadow: 0 4px 18px rgba(27, 56, 38, 0.28);
+}
+/* On hover the pill flips — arrow loses its gold accent and takes
+   whatever the text color is, so it stays readable on either the
+   forest-fill (default-hover) or the cream-fill (over-hero-hover). */
+.nav-wa:hover svg { color: currentColor; transform: translate(2px, -2px); }
 .nav-wa:active { transform: scale(0.97); }
 
 /* MOBILE HAMBURGER + FULL-SCREEN MENU
