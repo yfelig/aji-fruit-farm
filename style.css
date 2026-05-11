@@ -1889,6 +1889,15 @@ footer {
   .split--reverse .split-text { order: 1; }
   .split--reverse .split-image { order: 2; }
 
+  /* Subpages (rooms / farm / story): each section opens with its photo,
+     then the text — image → text rhythm on every split, not just the
+     ones authored as .split--reverse. Index keeps its existing flow
+     (welcome text first, etc.) so this override is scoped to .subpage. */
+  body.subpage .split .split-image,
+  body.subpage .split--reverse .split-image { order: 1; }
+  body.subpage .split .split-text,
+  body.subpage .split--reverse .split-text { order: 2; }
+
   /* On mobile the welcome image follows the welcome H2 + copy (text
      comes first, then photo). The cream-to-transparent mist on top of
      the photo only made sense when the hero flowed directly into the
