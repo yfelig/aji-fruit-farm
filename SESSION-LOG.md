@@ -4,6 +4,37 @@ Running log of work sessions. Newest entries on top. Used by `/wrap-session` and
 
 ---
 
+## 2026-05-11 — Nav 3-stage dissolve flattened to single cross-fade
+
+### What we did
+- Diagnosed the "stepped" nav transition Rivka identified: `.at-top` (size) toggled at y=40 and `.over-hero` (transparency/color) at y=200 — a 160px middle band where the bar was small+transparent, read by the eye as 3 stages instead of one dissolve.
+- Presented 3 options as Noya (Option A: uniform size; Option B: unify thresholds; Option C: scroll-driven analog). Picked B — keeps the dramatic hero+large effect, only flattens the stair.
+- Set both thresholds to y=100 in `script.js`.
+- Found the real culprit: `font-size`, `padding`, and `width/height` on `.nav-logo`, `.nav-links a`, `.nav-wa`, `.nav-wa-arrow` had no transition at all — they snapped instantly even with unified threshold. Added `0.9s ease` transitions to all four so the size morph rides the same easing curve as the existing color/background dissolve.
+- Cache-busted to v=53 (CSS) and v=14 (JS) across `index.html`, `rooms.html`, `farm.html`, `story.html`.
+- Committed + pushed to deploy on GitHub Pages.
+
+### Where we are
+The nav now does one continuous dissolve over ~100px of scroll: large+transparent ↔ small+cream-glass. Size, color, and background all eased together at 0.9s. Shipped to `aji-fruit-farm.lk` via the push. Site is in a polished, shippable state — most outstanding work on it is SEO (separate track) rather than UX/visual.
+
+### Open threads
+- Verify the new feel on Vercel/Pages (Rivka tests live, not localhost). If the 100px threshold feels too eager or too lazy, easy knob to turn — single value in two places in `script.js`.
+- Optional: if size transition reads "heavier" than the color dissolve, tune durations (currently uniform 0.9s).
+- Aji SEO open task (per project_aji_seo memory) is still untouched: keyword research, on-page copy, GSC setup, Lighthouse pass.
+- Shira skill never got her test task — Rivka pivoted from the A/B/C/D offer to this UX fix. Next session could revisit.
+
+### Files touched
+- `script.js` — unified `overHero` and `.at-top` thresholds both to `y < 100`; updated comments.
+- `style.css` — added `font-size 0.9s ease` to `.nav-logo` and `.nav-links a` transitions; added `font-size 0.9s ease, padding 0.9s ease` to `.nav-wa`; added `transition: width 0.9s ease, height 0.9s ease` to `.nav-wa-arrow`.
+- `index.html`, `rooms.html`, `farm.html`, `story.html` — bumped `style.css?v=52→53` and `script.js?v=13→14`.
+
+### Git state
+- Branch: main (up to date with origin)
+- Uncommitted: none
+- Last commit: `539b718` Nav: unify scroll thresholds so size+transparency cross-fade as one
+
+---
+
 ## 2026-05-11 — Noya designer skill built + desktop review + nav refinement
 
 ### What we did
