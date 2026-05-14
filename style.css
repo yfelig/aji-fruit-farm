@@ -1903,6 +1903,10 @@ cite {
   background: var(--bg-dark);
   opacity: 0.7;
 }
+/* Cite is hidden on desktop — the host-quote already reads as the host's
+   voice from the surrounding "Meet Aji" framing. Mobile shows it (see the
+   mobile media block) so the quote can match the .micro-quote system. */
+.host-quote-cite { display: none; }
 
 /* .host-quote--lg removed — site-wide pull-quote uniformity */
 
@@ -2337,4 +2341,41 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
   .teaser-side img { aspect-ratio: 1/1; height: auto; }
+
+  /* Quote system unification — Aji's host-quote inherits the micro-quote
+     visual signature (left forest hairline + smaller italic Cormorant +
+     caps attribution) so both guest-and-host quotes on the homepage read
+     as one editorial system instead of two. The original top-hairline
+     treatment is suppressed; the cite element (hidden on desktop) is
+     promoted here so Aji's voice is properly attributed. */
+  .host-quote {
+    font-size: clamp(1.25rem, 4.4vw, 1.55rem);
+    font-weight: 300;
+    line-height: 1.4;
+    margin-top: 24px;
+    padding: 2px 0 2px 18px;
+    border-left: 2px solid var(--bg-dark);
+    max-width: 38ch;
+  }
+  .host-quote::before { display: none; }
+  .host-quote-cite {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  /* Nav overlay — restore presence to the CTA. At 1.25rem it read as
+     a footnote against the 2.6rem Cormorant link stack; bumping it
+     to 1.45rem + lifting it 26px off the bottom edge promotes it to
+     "secondary but present" without flattening the editorial
+     asymmetry (Vivre-style, not Aesop-style). The meta line stays
+     small and grounded at the bottom. */
+  .nav-overlay-cta { bottom: 110px; }
+  .nav-overlay-cta .nv-cta-text { font-size: 1.45rem; }
 }
