@@ -1884,7 +1884,7 @@ cite {
   font-family: var(--font-display);
   /* Sized to fit on one line within the 50/50 split column at desktop
      widths — wrapping was breaking the cadence after "I am also". */
-  font-size: clamp(1.3rem, 1.7vw, 1.55rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
   font-style: italic;
   font-weight: 400;
   line-height: 1.35;
