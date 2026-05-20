@@ -1880,37 +1880,36 @@ cite {
    actually reads as the emotional peak of the section, not as another
    body paragraph. Weight 400 (was 300) gives the italic enough presence
    on screens where Cormorant Light renders thin. */
+/* Host-quote shares the .micro-quote visual signature: left forest
+   hairline, italic Cormorant, caps body-font attribution. One pull-quote
+   family across all sections (Garden of Eden + Aji's voice read as
+   one editorial system). */
 .host-quote {
+  margin-top: 24px;
+  padding: 2px 0 2px 18px;
+  border-left: 2px solid var(--bg-dark);
+  background: transparent;
+  max-width: 38ch;
+}
+.host-quote p {
   font-family: var(--font-display);
-  /* Sized to fit on one line within the 50/50 split column at desktop
-     widths — wrapping was breaking the cadence after "I am also". */
-  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  font-size: clamp(1.3rem, 1.75vw, 1.6rem);
   font-style: italic;
-  font-weight: 400;
-  line-height: 1.35;
+  font-weight: 300;
+  line-height: 1.4;
   color: var(--text);
-  margin-top: 32px;
+  margin: 0 0 6px;
   max-width: none;
-  position: relative;
-  padding-top: 24px;
 }
-.host-quote::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 56px;
-  height: 2px;
-  background: var(--bg-dark);
-  opacity: 0.7;
+.host-quote cite {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-style: normal;
 }
-/* Cite is hidden on desktop — the host-quote already reads as the host's
-   voice from the surrounding "Meet Aji" framing. Mobile shows it (see the
-   mobile media block) so the quote can match the .micro-quote system. */
-.host-quote-cite { display: none; }
-
-/* .host-quote--lg removed — site-wide pull-quote uniformity */
 
 /* FOOTER */
 footer {
@@ -2344,32 +2343,12 @@ footer {
   }
   .teaser-side img { aspect-ratio: 1/1; height: auto; }
 
-  /* Quote system unification — Aji's host-quote inherits the micro-quote
-     visual signature (left forest hairline + smaller italic Cormorant +
-     caps attribution) so both guest-and-host quotes on the homepage read
-     as one editorial system instead of two. The original top-hairline
-     treatment is suppressed; the cite element (hidden on desktop) is
-     promoted here so Aji's voice is properly attributed. */
-  .host-quote {
-    font-size: clamp(1.25rem, 4.4vw, 1.55rem);
-    font-weight: 300;
-    line-height: 1.4;
-    margin-top: 24px;
-    padding: 2px 0 2px 18px;
-    border-left: 2px solid var(--bg-dark);
-    max-width: 38ch;
-  }
-  .host-quote::before { display: none; }
-  .host-quote-cite {
-    display: block;
-    margin-top: 6px;
-    font-family: var(--font-body);
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-style: normal;
+  /* Mobile host-quote: scale font down with vw so it stays readable
+     on narrow phones. Container styles inherit from desktop (left
+     hairline + cite below) — they already match the micro-quote
+     pattern. */
+  .host-quote p {
+    font-size: clamp(1.15rem, 4.2vw, 1.4rem);
   }
 
   /* Nav overlay — restore presence to the CTA. At 1.25rem it read as
