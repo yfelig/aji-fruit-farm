@@ -230,22 +230,24 @@ p + p { margin-top: 16px; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  /* Filled forest pill with white text — strong, focused CTA against
-     the cream-glass / transparent nav. The pill is the only element
-     that carries brand-fill color; the rest of the bar stays light. */
-  background: var(--bg-dark);
-  color: #fff;
+  background: transparent;
+  color: var(--bg-dark);
+  /* Same size/weight/color as .nav-links a, but Title Case (Vivre
+     "Let's Talk" style) so the CTA stays part of the bar's family
+     while signaling its action. Tighter letter-spacing because mixed
+     case doesn't need wide tracking. */
   font-size: 1.1rem;
   font-weight: 400;
   letter-spacing: 0.01em;
   text-transform: none;
-  text-shadow: none;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.35);
   padding: 5px 14px;
   border: 1px solid var(--bg-dark);
   border-radius: 8px;
   /* Soft drop-shadow gives the pill a sense of body / anchor — sits
-     ON the bar instead of being painted into it. */
-  box-shadow: 0 2px 12px rgba(27, 56, 38, 0.28);
+     ON the bar instead of being painted into it. Forest tint so the
+     glow stays inside the brand palette. */
+  box-shadow: 0 2px 12px rgba(27, 56, 38, 0.16);
   /* Split timings: hover-driven props (background, shadow, transform)
      stay snappy at ~0.25s. State-driven props (color, text-shadow,
      border-color — change when the nav crosses .over-hero) take
@@ -283,15 +285,15 @@ p + p { margin-top: 16px; }
 .nav-wa-arrow .arrow-hover { opacity: 0; transform: translateX(-4px); }
 .nav-wa:hover .nav-wa-arrow .arrow-default { opacity: 0; transform: translateX(4px); }
 .nav-wa:hover .nav-wa-arrow .arrow-hover { opacity: 1; transform: translateX(0); }
-/* Hover: white fill with forest-dark text. The pill flips to a
-   clean filled state — strong invitation to click without breaking
-   palette (forest ink on cream is the page's own type pairing). */
+/* Hover: forest-dark fill with white text. The pill flips into a
+   confident brand-fill — strong invitation to click. Forest dark on
+   cream is the page's own type pairing, just inverted. */
 .nav-wa:hover {
-  background: #fff;
-  color: var(--bg-dark);
+  background: var(--bg-dark);
+  color: #fff;
   text-shadow: none;
   border-color: var(--bg-dark);
-  box-shadow: 0 6px 22px rgba(27, 56, 38, 0.28);
+  box-shadow: 0 6px 22px rgba(27, 56, 38, 0.32);
   transform: translateY(-1px);
 }
 /* (arrow swap handled by .nav-wa-arrow rules above) */
@@ -542,9 +544,9 @@ p + p { margin-top: 16px; }
    logo, and the CTA to a light cream so the text reads against the
    foliage. Strong dark text-shadow gives a subtle halo that works on
    bright AND dark patches of the photo. */
-/* Over-hero: logo + nav links stay light (white text + dark halo)
-   so they read on the photo. The CTA pill stays filled forest in
-   both states — it carries its own contrast against any background. */
+/* Over-hero: logo + nav links + CTA outline stay light (white text +
+   dark halo) so they read on the photo. CTA hover still inverts to
+   forest-fill — consistent click feedback across states. */
 .nav.over-hero .nav-logo,
 .nav.over-hero .nav-links a {
   color: #fff;
@@ -552,8 +554,22 @@ p + p { margin-top: 16px; }
                0 0 3px rgba(0, 0, 0, 0.55),
                0 1px 2px rgba(0, 0, 0, 0.4);
 }
+.nav.over-hero .nav-wa {
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75),
+               0 0 3px rgba(0, 0, 0, 0.55),
+               0 1px 2px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.85);
+}
 .nav.over-hero .nav-links a:hover { color: #fff; }
 .nav.over-hero .nav-links a::after { background: #fff; }
+.nav.over-hero .nav-wa:hover {
+  background: var(--bg-dark);
+  color: #fff;
+  text-shadow: none;
+  border-color: var(--bg-dark);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+}
 
 /* HERO */
 .hero {
