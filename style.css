@@ -285,15 +285,15 @@ p + p { margin-top: 16px; }
 .nav-wa-arrow .arrow-hover { opacity: 0; transform: translateX(-4px); }
 .nav-wa:hover .nav-wa-arrow .arrow-default { opacity: 0; transform: translateX(4px); }
 .nav-wa:hover .nav-wa-arrow .arrow-hover { opacity: 1; transform: translateX(0); }
-/* Hover: forest-dark fill with white text. The pill flips into a
-   confident brand-fill — strong invitation to click. Forest dark on
-   cream is the page's own type pairing, just inverted. */
+/* Hover: white fill with forest-dark text. The pill flips to a
+   clean filled state — strong invitation to click without breaking
+   palette (forest ink on cream is the page's own type pairing). */
 .nav-wa:hover {
-  background: var(--bg-dark);
-  color: #fff;
+  background: #fff;
+  color: var(--bg-dark);
   text-shadow: none;
   border-color: var(--bg-dark);
-  box-shadow: 0 6px 22px rgba(27, 56, 38, 0.32);
+  box-shadow: 0 6px 22px rgba(27, 56, 38, 0.28);
   transform: translateY(-1px);
 }
 /* (arrow swap handled by .nav-wa-arrow rules above) */
@@ -564,11 +564,13 @@ p + p { margin-top: 16px; }
 .nav.over-hero .nav-links a:hover { color: #fff; }
 .nav.over-hero .nav-links a::after { background: #fff; }
 .nav.over-hero .nav-wa:hover {
-  background: var(--bg-dark);
-  color: #fff;
+  /* Same white fill / forest-dark text as default hover — consistent
+     pill character across both states. */
+  background: #fff;
+  color: var(--bg-dark);
   text-shadow: none;
-  border-color: var(--bg-dark);
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+  border-color: #fff;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
 }
 
 /* HERO */
