@@ -1894,8 +1894,8 @@ cite {
   height: 16px;
   padding: 11px;
   box-sizing: content-box;
-  background: transparent;
-  color: var(--bg-dark);
+  background: var(--bg-dark);
+  color: #fff;
   border: 1.5px solid var(--bg-dark);
   border-radius: 50%;
   flex-shrink: 0;
@@ -1907,10 +1907,10 @@ cite {
 .text-link svg path { stroke-width: 2.5; }
 .text-link:hover { gap: 22px; }
 .text-link:hover svg {
-  background: var(--bg-dark);
-  color: var(--bg);
+  background: #fff;
+  color: var(--bg-dark);
   transform: scale(1.08) translateX(2px);
-  box-shadow: 0 8px 22px rgba(27, 56, 38, 0.28);
+  box-shadow: 0 8px 22px rgba(27, 56, 38, 0.22);
 }
 
 @media (max-width: 860px) {
