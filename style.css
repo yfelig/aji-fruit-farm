@@ -1863,15 +1863,20 @@ cite {
    verb that promises an experience (Walk / Meet / Step inside / Down to).
    Forest-dark inverse of the filled .btn-wa: same brand language, lower
    commitment level — clean hierarchy between "go inside" and "book now". */
+/* TEXT + CIRCLE PATTERN — text stays pure italic Cormorant typography
+   (no frame conflict with the section's editorial type); the click
+   affordance is a small filled forest circle holding the arrow.
+   Aman / Loro Piana / Belmond pattern. Hover animates the circle and
+   the arrow so it feels alive, not stamped on. */
 .text-link {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
   width: max-content;
   max-width: 100%;
-  gap: 12px;
+  gap: 14px;
   margin-top: 28px;
-  padding: 8px 14px;
+  padding: 0;
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.35rem;
   font-style: italic;
@@ -1880,23 +1885,41 @@ cite {
   color: var(--bg-dark);
   background: transparent;
   border: none;
-  border-top: 1px solid var(--bg-dark);
-  border-bottom: 1px solid var(--bg-dark);
   border-radius: 0;
   text-decoration: none;
-  transition: gap 0.22s ease, background 0.32s ease;
+  transition: gap 0.28s ease, color 0.28s ease;
 }
-.text-link svg { transition: transform 0.22s ease; flex-shrink: 0; }
+.text-link svg {
+  width: 16px;
+  height: 16px;
+  padding: 11px;
+  box-sizing: content-box;
+  background: var(--bg-dark);
+  color: var(--bg);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.28s ease,
+              box-shadow 0.32s ease;
+}
 .text-link:hover {
   gap: 18px;
-  background: rgba(27, 56, 38, 0.06);
 }
-.text-link:hover svg { transform: translateX(4px); }
+.text-link:hover svg {
+  transform: scale(1.1) translateX(2px);
+  background: #122a1c;
+  box-shadow: 0 6px 18px rgba(27, 56, 38, 0.28);
+}
 
 @media (max-width: 860px) {
   .text-link {
-    padding: 7px 12px;
     font-size: 1.3rem;
+    gap: 12px;
+  }
+  .text-link svg {
+    width: 14px;
+    height: 14px;
+    padding: 10px;
   }
 }
 
