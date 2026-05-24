@@ -1872,50 +1872,70 @@ cite {
 }
 .text-link:hover { gap: 14px; }
 
-/* IMAGE CHIP — small floating pill on the corner of a .split-image that
-   signals "this section opens an inner page with more content / photos."
-   Always visible (no hover-only — touch devices don't hover, iron law).
-   Sits top-right of the image; arrow drifts on hover; subtle lift shadow
-   so it reads above the photo regardless of crop. Companion to the
-   secondary .text-link inside the text column. */
+/* IMAGE CHIP — primary CTA pill that signals "this section opens an inner
+   page." Sits BOTTOM-CENTER of the .split-image (Aman / Vivre / Six Senses
+   editorial pattern — the eye settles at the lower-third after scanning a
+   photo; the CTA meets it there). Always visible (iron law for touch).
+   Soft bottom-up gradient behind it ensures contrast on any crop.
+   Companion to the secondary .text-link inside the text column. */
+.split-image::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 140px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.32) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
 .image-chip {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 9px 16px;
-  background: rgba(26, 23, 20, 0.72);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  gap: 10px;
+  padding: 14px 26px;
+  background: rgba(26, 23, 20, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: var(--bg);
   font-family: 'Assistant', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   border-radius: 999px;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.22);
-  transition: gap 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.32);
+  transition: gap 0.25s ease, background 0.25s ease, transform 0.25s ease, bottom 0.25s ease;
   z-index: 3;
+  white-space: nowrap;
 }
 .image-chip svg { transition: transform 0.25s ease; flex-shrink: 0; }
 .image-chip:hover {
-  gap: 12px;
-  background: rgba(26, 23, 20, 0.88);
-  transform: translateY(-1px);
+  gap: 14px;
+  background: rgba(26, 23, 20, 0.96);
+  transform: translateX(-50%) translateY(-2px);
 }
 .image-chip:hover svg { transform: translateX(3px); }
 
 @media (max-width: 860px) {
-  .image-chip {
-    top: 14px;
-    right: 14px;
-    padding: 8px 14px;
-    font-size: 0.72rem;
-    gap: 7px;
+  /* Mobile: chip flips to TOP-CENTER so the fixed sticky-cta at viewport
+     bottom (Check availability with Aji) can't cover it. Gradient flips
+     to top-down for legibility. */
+  .split-image::after {
+    height: 100px;
+    top: 0; bottom: auto;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.34) 0%, transparent 100%);
   }
-  .image-chip svg { width: 12px; height: 12px; }
+  .image-chip {
+    top: 18px;
+    bottom: auto;
+    padding: 12px 20px;
+    font-size: 0.86rem;
+    gap: 8px;
+  }
+  .image-chip svg { width: 13px; height: 13px; }
+  .image-chip:hover { transform: translateX(-50%); }
 }
 
 /* HOST QUOTE — pull-quote opening a content section. Hairline TOP rule
