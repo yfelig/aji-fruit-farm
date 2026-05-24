@@ -1873,7 +1873,7 @@ cite {
   margin-top: 28px;
   padding: 9px 18px;
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.55rem;
+  font-size: 1.35rem;
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0.025em;
@@ -1895,7 +1895,7 @@ cite {
 @media (max-width: 860px) {
   .text-link {
     padding: 9px 16px;
-    font-size: 1.45rem;
+    font-size: 1.3rem;
   }
 }
 
