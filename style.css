@@ -1856,86 +1856,47 @@ cite {
 }
 
 /* TEXT LINK — arrow CTA */
+/* TEXT-LINK — secondary CTA inside the text column of every split section,
+   pointing to an inner page. Pattern is a real outlined pill (Aman / Loro
+   Piana editorial style), NOT a sticker on the photo: the eye finishes
+   the paragraph and lands on a button-shaped affordance with a sensory
+   verb that promises an experience (Walk / Meet / Step inside / Down to).
+   Forest-dark inverse of the filled .btn-wa: same brand language, lower
+   commitment level — clean hierarchy between "go inside" and "book now". */
 .text-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text);
-  border-bottom: 1px solid var(--text);
-  padding-bottom: 2px;
-  margin-top: 24px;
-  transition: gap 0.2s;
-}
-.text-link:hover { gap: 14px; }
-
-/* IMAGE CHIP — primary CTA pill that signals "this section opens an inner
-   page." Sits BOTTOM-CENTER of the .split-image (Aman / Vivre / Six Senses
-   editorial pattern — the eye settles at the lower-third after scanning a
-   photo; the CTA meets it there). Always visible (iron law for touch).
-   Soft bottom-up gradient behind it ensures contrast on any crop.
-   Companion to the secondary .text-link inside the text column. */
-.split-image::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 140px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.32) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 2;
-}
-.image-chip {
-  position: absolute;
-  left: 50%;
-  bottom: 28px;
-  transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
+  align-self: flex-start;
+  width: max-content;
+  max-width: 100%;
   gap: 10px;
-  padding: 14px 26px;
-  background: rgba(26, 23, 20, 0.86);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--bg);
+  margin-top: 28px;
+  padding: 13px 26px;
   font-family: 'Assistant', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
+  color: var(--bg-dark);
+  background: transparent;
+  border: 1.5px solid var(--bg-dark);
   border-radius: 999px;
-  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.32);
-  transition: gap 0.25s ease, background 0.25s ease, transform 0.25s ease, bottom 0.25s ease;
-  z-index: 3;
-  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.28s ease, color 0.28s ease, gap 0.22s ease, transform 0.22s ease;
 }
-.image-chip svg { transition: transform 0.25s ease; flex-shrink: 0; }
-.image-chip:hover {
+.text-link svg { transition: transform 0.22s ease; flex-shrink: 0; }
+.text-link:hover {
+  background: var(--bg-dark);
+  color: var(--bg);
   gap: 14px;
-  background: rgba(26, 23, 20, 0.96);
-  transform: translateX(-50%) translateY(-2px);
+  transform: translateY(-1px);
 }
-.image-chip:hover svg { transform: translateX(3px); }
+.text-link:hover svg { transform: translateX(3px); }
 
 @media (max-width: 860px) {
-  /* Mobile: chip flips to TOP-CENTER so the fixed sticky-cta at viewport
-     bottom (Check availability with Aji) can't cover it. Gradient flips
-     to top-down for legibility. */
-  .split-image::after {
-    height: 100px;
-    top: 0; bottom: auto;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.34) 0%, transparent 100%);
+  .text-link {
+    padding: 12px 22px;
+    font-size: 0.95rem;
   }
-  .image-chip {
-    top: 18px;
-    bottom: auto;
-    padding: 12px 20px;
-    font-size: 0.86rem;
-    gap: 8px;
-  }
-  .image-chip svg { width: 13px; height: 13px; }
-  .image-chip:hover { transform: translateX(-50%); }
 }
 
 /* HOST QUOTE — pull-quote opening a content section. Hairline TOP rule
