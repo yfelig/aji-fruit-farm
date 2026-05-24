@@ -1871,7 +1871,7 @@ cite {
   max-width: 100%;
   gap: 12px;
   margin-top: 28px;
-  padding: 2px 0 6px;
+  padding: 8px 14px;
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.35rem;
   font-style: italic;
@@ -1880,20 +1880,22 @@ cite {
   color: var(--bg-dark);
   background: transparent;
   border: none;
+  border-top: 1px solid var(--bg-dark);
   border-bottom: 1px solid var(--bg-dark);
   border-radius: 0;
   text-decoration: none;
-  transition: gap 0.22s ease, border-color 0.3s ease, color 0.3s ease;
+  transition: gap 0.22s ease, background 0.32s ease;
 }
 .text-link svg { transition: transform 0.22s ease; flex-shrink: 0; }
 .text-link:hover {
   gap: 18px;
-  border-color: var(--gold, var(--bg-dark));
+  background: rgba(27, 56, 38, 0.06);
 }
 .text-link:hover svg { transform: translateX(4px); }
 
 @media (max-width: 860px) {
   .text-link {
+    padding: 7px 12px;
     font-size: 1.3rem;
   }
 }
