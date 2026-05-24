@@ -230,7 +230,7 @@ p + p { margin-top: 16px; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: transparent;
+  background: #b8842a;
   color: var(--bg-dark);
   /* Same size/weight/color as .nav-links a, but Title Case (Vivre
      "Let's Talk" style) so the CTA stays part of the bar's family
@@ -240,14 +240,12 @@ p + p { margin-top: 16px; }
   font-weight: 400;
   letter-spacing: 0.01em;
   text-transform: none;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.35);
+  text-shadow: none;
   padding: 5px 14px;
-  border: 1px solid var(--bg-dark);
+  border: 1px solid #b8842a;
   border-radius: 8px;
-  /* Soft drop-shadow gives the pill a sense of body / anchor — sits
-     ON the bar instead of being painted into it. Forest tint so the
-     glow stays inside the brand palette. */
-  box-shadow: 0 2px 12px rgba(27, 56, 38, 0.16);
+  /* Soft warm shadow — sits ON the bar with brand-gold ambient glow. */
+  box-shadow: 0 2px 12px rgba(184, 132, 42, 0.28);
   /* Split timings: hover-driven props (background, shadow, transform)
      stay snappy at ~0.25s. State-driven props (color, text-shadow,
      border-color — change when the nav crosses .over-hero) take
@@ -285,15 +283,15 @@ p + p { margin-top: 16px; }
 .nav-wa-arrow .arrow-hover { opacity: 0; transform: translateX(-4px); }
 .nav-wa:hover .nav-wa-arrow .arrow-default { opacity: 0; transform: translateX(4px); }
 .nav-wa:hover .nav-wa-arrow .arrow-hover { opacity: 1; transform: translateX(0); }
-/* Hover: white fill with forest-dark text. The pill flips to a
-   clean filled state — strong invitation to click without breaking
-   palette (forest ink on cream is the page's own type pairing). */
+/* Hover: pill deepens to a richer bronze (no second color introduction —
+   the gold stays, just warms further). Slight lift + larger gold shadow
+   give tactile feedback without losing the brand colour. */
 .nav-wa:hover {
-  background: #fff;
+  background: #9d6e1f;
   color: var(--bg-dark);
   text-shadow: none;
-  border-color: var(--bg-dark);
-  box-shadow: 0 6px 22px rgba(27, 56, 38, 0.28);
+  border-color: #9d6e1f;
+  box-shadow: 0 6px 22px rgba(184, 132, 42, 0.42);
   transform: translateY(-1px);
 }
 /* (arrow swap handled by .nav-wa-arrow rules above) */
@@ -555,22 +553,22 @@ p + p { margin-top: 16px; }
                0 1px 2px rgba(0, 0, 0, 0.4);
 }
 .nav.over-hero .nav-wa {
-  color: #fff;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75),
-               0 0 3px rgba(0, 0, 0, 0.55),
-               0 1px 2px rgba(0, 0, 0, 0.4);
-  border-color: rgba(255, 255, 255, 0.85);
+  /* Pill stays solid gold over the hero — the brand colour holds its
+     identity against any imagery without needing text-shadow tricks. */
+  color: var(--bg-dark);
+  text-shadow: none;
+  border-color: #b8842a;
 }
 .nav.over-hero .nav-links a:hover { color: #fff; }
 .nav.over-hero .nav-links a::after { background: #fff; }
 .nav.over-hero .nav-wa:hover {
-  /* Same white fill / forest-dark text as default hover — consistent
-     pill character across both states. */
-  background: #fff;
+  /* Same deepen-to-bronze hover as the scrolled state — one pill
+     character across both nav modes. */
+  background: #9d6e1f;
   color: var(--bg-dark);
   text-shadow: none;
-  border-color: #fff;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
+  border-color: #9d6e1f;
+  box-shadow: 0 6px 22px rgba(184, 132, 42, 0.42);
 }
 
 /* HERO */
