@@ -1872,6 +1872,52 @@ cite {
 }
 .text-link:hover { gap: 14px; }
 
+/* IMAGE CHIP — small floating pill on the corner of a .split-image that
+   signals "this section opens an inner page with more content / photos."
+   Always visible (no hover-only — touch devices don't hover, iron law).
+   Sits top-right of the image; arrow drifts on hover; subtle lift shadow
+   so it reads above the photo regardless of crop. Companion to the
+   secondary .text-link inside the text column. */
+.image-chip {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background: rgba(26, 23, 20, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--bg);
+  font-family: 'Assistant', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.22);
+  transition: gap 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  z-index: 3;
+}
+.image-chip svg { transition: transform 0.25s ease; flex-shrink: 0; }
+.image-chip:hover {
+  gap: 12px;
+  background: rgba(26, 23, 20, 0.88);
+  transform: translateY(-1px);
+}
+.image-chip:hover svg { transform: translateX(3px); }
+
+@media (max-width: 860px) {
+  .image-chip {
+    top: 14px;
+    right: 14px;
+    padding: 8px 14px;
+    font-size: 0.72rem;
+    gap: 7px;
+  }
+  .image-chip svg { width: 12px; height: 12px; }
+}
+
 /* HOST QUOTE — pull-quote opening a content section. Hairline TOP rule
    (not left border) so the quote sits at the same x as the surrounding
    kicker, H2, fact-line, paragraphs and CTAs. Keeps the section
