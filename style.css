@@ -1890,26 +1890,27 @@ cite {
   transition: gap 0.28s ease, color 0.28s ease;
 }
 .text-link svg {
-  width: 22px;
+  width: 16px;
   height: 16px;
-  padding: 11px 13px;
+  padding: 11px;
   box-sizing: content-box;
+  background: transparent;
+  color: var(--bg-dark);
+  border: 1.5px solid var(--bg-dark);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background 0.4s ease,
+              color 0.35s ease,
+              transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s ease;
+}
+.text-link svg path { stroke-width: 2.5; }
+.text-link:hover { gap: 22px; }
+.text-link:hover svg {
   background: var(--bg-dark);
   color: var(--bg);
-  border-radius: 999px;
-  flex-shrink: 0;
-  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-              background 0.28s ease,
-              box-shadow 0.32s ease;
-}
-.text-link svg path { stroke-width: 2; }
-.text-link:hover {
-  gap: 22px;
-}
-.text-link:hover svg {
   transform: scale(1.08) translateX(2px);
-  background: #122a1c;
-  box-shadow: 0 6px 20px rgba(27, 56, 38, 0.3);
+  box-shadow: 0 8px 22px rgba(27, 56, 38, 0.28);
 }
 
 @media (max-width: 860px) {
@@ -1918,9 +1919,9 @@ cite {
     gap: 14px;
   }
   .text-link svg {
-    width: 20px;
+    width: 14px;
     height: 14px;
-    padding: 10px 12px;
+    padding: 10px;
   }
 }
 
