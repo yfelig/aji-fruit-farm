@@ -1877,21 +1877,20 @@ cite {
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0.025em;
-  color: rgba(27, 56, 38, 0.78);
+  color: var(--bg-dark);
   background: transparent;
-  border: 1px solid rgba(27, 56, 38, 0.55);
+  border: 1px solid var(--bg-dark);
   border-radius: 999px;
   text-decoration: none;
-  transition: background 0.32s ease, color 0.32s ease, border-color 0.32s ease, gap 0.22s ease;
+  transition: background 0.32s ease, color 0.32s ease, gap 0.22s ease;
 }
-.text-link svg { transition: transform 0.22s ease; flex-shrink: 0; opacity: 0.85; }
+.text-link svg { transition: transform 0.22s ease; flex-shrink: 0; }
 .text-link:hover {
-  background: rgba(27, 56, 38, 0.06);
-  color: var(--bg-dark);
-  border-color: rgba(27, 56, 38, 0.85);
+  background: var(--bg-dark);
+  color: var(--bg);
   gap: 16px;
 }
-.text-link:hover svg { transform: translateX(3px); opacity: 1; }
+.text-link:hover svg { transform: translateX(3px); }
 
 @media (max-width: 860px) {
   .text-link {
