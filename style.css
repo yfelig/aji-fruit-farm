@@ -1907,10 +1907,11 @@ cite {
 .text-link svg path { stroke-width: 2.5; }
 .text-link:hover { gap: 22px; }
 .text-link:hover svg {
-  background: #fff;
+  background: #b8842a;
   color: var(--bg-dark);
+  border-color: #b8842a;
   transform: scale(1.08) translateX(2px);
-  box-shadow: 0 8px 22px rgba(27, 56, 38, 0.22);
+  box-shadow: 0 8px 22px rgba(184, 132, 42, 0.32);
 }
 
 @media (max-width: 860px) {
