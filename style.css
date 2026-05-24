@@ -1878,7 +1878,7 @@ cite {
   letter-spacing: 0.01em;
   color: var(--bg-dark);
   background: transparent;
-  border: 1.5px solid var(--bg-dark);
+  border: 1.25px solid var(--bg-dark);
   border-radius: 999px;
   text-decoration: none;
   transition: background 0.28s ease, color 0.28s ease, gap 0.22s ease, transform 0.22s ease;
