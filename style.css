@@ -1871,31 +1871,30 @@ cite {
   max-width: 100%;
   gap: 12px;
   margin-top: 28px;
-  padding: 12px 24px;
+  padding: 8px 16px;
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.35rem;
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0.025em;
-  color: var(--bg);
-  background: var(--bg-dark);
+  color: var(--bg-dark);
+  background: transparent;
   border: 1px solid var(--bg-dark);
   border-radius: 999px;
   text-decoration: none;
-  transition: background 0.3s ease, gap 0.22s ease, transform 0.22s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, gap 0.22s ease;
 }
 .text-link svg { transition: transform 0.22s ease; flex-shrink: 0; }
 .text-link:hover {
-  background: #122a1c;
+  background: var(--bg-dark);
+  color: var(--bg);
   gap: 16px;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(27, 56, 38, 0.25);
 }
 .text-link:hover svg { transform: translateX(3px); }
 
 @media (max-width: 860px) {
   .text-link {
-    padding: 11px 22px;
+    padding: 8px 14px;
     font-size: 1.3rem;
   }
 }
