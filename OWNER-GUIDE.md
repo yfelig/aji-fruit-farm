@@ -51,6 +51,6 @@ Spaces = `%20`, apostrophes = `%27`.
 
 ## Need help?
 
-Contact Yair: yair.felig@uglabs.io
+Contact Yair: yfelig@gmail.com
 
 *Built with care by Stay Barters — Yair & Rivka Felig.*

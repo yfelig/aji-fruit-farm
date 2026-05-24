@@ -392,6 +392,35 @@ Commit `31ebb1c editorial polish: gold below H2, larger pull-quotes, gallery tri
 
 ---
 
+## 2026-05-10 — Google Search Console verified, sitemap submitted, repo renamed, handover PDF created
+
+**What we did:**
+- Renamed GitHub repo from `ajis-mango-farm` → `aji-fruit-farm` (via `gh api PATCH`); updated local remote URL
+- Added Google site verification meta tag to `index.html` (merged cleanly over Rivka's remote commit which had updated title, GPS coords, and more amenities in JSON-LD)
+- Verified `https://aji-fruit-farm.lk` in Google Search Console under `yfelig@gmail.com` (HTML tag method)
+- Submitted sitemap — `https://aji-fruit-farm.lk/sitemap.xml` — Status: Success, 4 pages discovered
+- Created `aji-handover.html` + `aji-handover.pdf` — 2-page handover document for Aji covering: website overview, domain renewal, how to make changes (do it yourself via GitHub / hire a designer), contacts & access summary, booking platform instructions (Airbnb, Booking.com, TripAdvisor, Agoda), Google Maps listing steps, other platforms
+
+**Where we are:**
+Site is fully live, SEO-ready, Google-indexed, and handed over. Aji has a PDF he can read and act on independently. All previously open threads are closed: Google Search Console done, sitemap submitted, Rivka's GitHub invite accepted, price signal ($50/night) was already in Rivka's remote commit. Repo is correctly named `aji-fruit-farm`.
+
+**Open threads:**
+- Aji needs to add `aji-fruit-farm.lk` to each booking platform listing — documented in handover PDF
+- Aji needs to claim/create Google My Business listing — documented in handover PDF
+- `aji-handover.html` and `aji-handover.pdf` are untracked — intentionally not committed (handover doc for Aji only)
+
+**Files touched:**
+- `index.html` — Google site verification meta tag added; conflict-merged with Rivka's commit (updated title, GPS coords in JSON-LD)
+- `aji-handover.html` — NEW: 2-page handover document (untracked)
+- `aji-handover.pdf` — NEW: generated from HTML via Chrome headless (untracked)
+
+**Git state:**
+- Branch: `main`
+- Uncommitted: `aji-handover.html` (untracked), `aji-handover.pdf` (untracked)
+- Last commit: `2286039 seo: add Google Search Console verification meta tag`
+
+---
+
 ## 2026-05-09 — homepage micro-pass: tooltip, reviews jump, kayak photo, hover bug (Rivka + נתנאלה)
 
 ### What we did
