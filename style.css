@@ -1905,12 +1905,23 @@ cite {
               box-shadow 0.4s ease;
 }
 .text-link svg path { stroke-width: 2.5; }
-.text-link:hover { gap: 22px; }
-.text-link:hover svg {
-  background: #b8842a;
-  border-color: #b8842a;
-  transform: scale(1.08) translateX(2px);
-  box-shadow: 0 8px 22px rgba(184, 132, 42, 0.32);
+/* Hover behavior — gold fill, scale, gold shadow — only on devices
+   that actually have hover (mouse/trackpad). Touch devices skip this
+   entirely so the disc doesn't "transform" without a trigger. */
+@media (hover: hover) {
+  .text-link:hover { gap: 22px; }
+  .text-link:hover svg {
+    background: #b8842a;
+    border-color: #b8842a;
+    transform: scale(1.08) translateX(2px);
+    box-shadow: 0 8px 22px rgba(184, 132, 42, 0.32);
+  }
+}
+/* Tap feedback (all devices) — micro press so the click registers
+   without inventing a hover state on touch. */
+.text-link:active svg {
+  transform: scale(0.94);
+  transition: transform 0.12s ease;
 }
 
 @media (max-width: 860px) {
