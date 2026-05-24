@@ -1869,33 +1869,34 @@ cite {
   align-self: flex-start;
   width: max-content;
   max-width: 100%;
-  gap: 10px;
+  gap: 12px;
   margin-top: 28px;
-  padding: 13px 26px;
-  font-family: 'Assistant', sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: var(--bg-dark);
+  padding: 13px 28px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  color: rgba(27, 56, 38, 0.78);
   background: transparent;
-  border: 1.25px solid var(--bg-dark);
+  border: 1px solid rgba(27, 56, 38, 0.55);
   border-radius: 999px;
   text-decoration: none;
-  transition: background 0.28s ease, color 0.28s ease, gap 0.22s ease, transform 0.22s ease;
+  transition: background 0.32s ease, color 0.32s ease, border-color 0.32s ease, gap 0.22s ease;
 }
-.text-link svg { transition: transform 0.22s ease; flex-shrink: 0; }
+.text-link svg { transition: transform 0.22s ease; flex-shrink: 0; opacity: 0.85; }
 .text-link:hover {
-  background: var(--bg-dark);
-  color: var(--bg);
-  gap: 14px;
-  transform: translateY(-1px);
+  background: rgba(27, 56, 38, 0.06);
+  color: var(--bg-dark);
+  border-color: rgba(27, 56, 38, 0.85);
+  gap: 16px;
 }
-.text-link:hover svg { transform: translateX(3px); }
+.text-link:hover svg { transform: translateX(3px); opacity: 1; }
 
 @media (max-width: 860px) {
   .text-link {
-    padding: 12px 22px;
-    font-size: 0.95rem;
+    padding: 12px 24px;
+    font-size: 1.05rem;
   }
 }
 
