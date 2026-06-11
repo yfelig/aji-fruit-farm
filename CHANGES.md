@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-06-11 - Google Maps location update
+**By:** Yair
+**Changed:** Updated the homepage Google Maps references to use the Aji Fruit Farm Farmstay listing instead of the broad Embilipitiya map target.
+**Files:** `index.html`
+
+---
+
 ## 2026-05-09 — homepage micro-pass: tooltip copy + reviews fix + kayak photo + hover bug (Rivka)
 **By:** Rivka
 
