@@ -1182,6 +1182,77 @@ section[id] { scroll-margin-top: 80px; }
   line-height: 1.5;
 }
 
+/* NEARBY PLACES */
+.nearby {
+  padding: 64px var(--side);
+  background: var(--bg-alt);
+}
+.nearby-header {
+  max-width: 680px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+.nearby-header .label { margin-bottom: 12px; }
+.nearby-header h2 { margin-bottom: 12px; }
+.nearby-header p {
+  margin: 0 auto;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.nearby-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: rgba(26,23,20,0.12);
+}
+.nearby-place {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  padding: 26px;
+  background: var(--bg-alt);
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.nearby-place:hover {
+  background: var(--bg-dark);
+  color: #fff;
+}
+.nearby-time {
+  width: max-content;
+  margin-bottom: auto;
+  padding: 5px 9px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+.nearby-place h3 {
+  margin: 34px 0 8px;
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+}
+.nearby-place p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.58;
+}
+.nearby-place:hover p { color: rgba(255,255,255,0.72); }
+.nearby-note {
+  max-width: 1100px;
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
 /* REVIEWS */
 .reviews {
   padding: 44px var(--side);
@@ -2268,6 +2339,24 @@ footer {
   }
   .activities::-webkit-scrollbar { display: none; }
   /* .activity + .activity-img rules are unified with .day above. */
+
+  .nearby {
+    padding: 48px var(--side);
+  }
+  .nearby-header {
+    margin-bottom: 26px;
+    text-align: left;
+  }
+  .nearby-grid {
+    grid-template-columns: 1fr;
+  }
+  .nearby-place {
+    min-height: auto;
+    padding: 22px 0;
+  }
+  .nearby-place h3 {
+    margin-top: 24px;
+  }
 
   /* Hide the WhatsApp tooltip on mobile — there's no real "hover"
      state on touch, so the tooltip would only flash on tap, which

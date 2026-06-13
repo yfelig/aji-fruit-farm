@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-06-13 - Nearby places section
+**By:** Yair
+**Changed:** Added a homepage Nearby Places section with Google Maps links, approximate drive times, and short visitor-facing descriptions for six places around the farm.
+**Files:** `index.html`, `style.css`, `rooms.html`, `farm.html`, `story.html`
+
+---
+
 ## 2026-06-11 - Google Maps location update
 **By:** Yair
 **Changed:** Updated the homepage Google Maps references to use the Aji Fruit Farm Farmstay listing instead of the broad Embilipitiya map target.
