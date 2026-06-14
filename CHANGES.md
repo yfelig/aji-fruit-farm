@@ -4,6 +4,34 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-06-13 - Nearby place photos
+**By:** Yair
+**Changed:** Added photo support to the homepage Nearby Places cards, using the existing Udawalawe image plus Wikimedia Commons photos for Elephant Transit Home and Ridiyagama Safari Park. Added required photo credits.
+**Files:** `index.html`, `style.css`, `photos/nearby-elephant-transit.jpg`, `photos/nearby-ridiyagama.jpg`
+
+---
+
+## 2026-06-13 - Add cave and safari park
+**By:** Yair
+**Changed:** Added Wavulpane Limestone Cave and Ridiyagama Safari Park to the homepage Nearby Places section with approximate drive times, Google Maps links, and short visitor-facing descriptions.
+**Files:** `index.html`
+
+---
+
+## 2026-06-13 - Remove Chandrika Lake
+**By:** Yair
+**Changed:** Removed Chandrika Lake from the homepage Nearby Places section.
+**Files:** `index.html`
+
+---
+
+## 2026-06-13 - Sinharaja nearby place
+**By:** Yair
+**Changed:** Added Sinharaja Rainforest to the homepage Nearby Places section with an approximate drive time, Google Maps link, and short visitor-facing description.
+**Files:** `index.html`
+
+---
+
 ## 2026-06-13 - Nearby places section
 **By:** Yair
 **Changed:** Added a homepage Nearby Places section with Google Maps links, approximate drive times, and short visitor-facing descriptions for six places around the farm.

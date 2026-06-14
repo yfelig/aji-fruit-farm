@@ -1221,6 +1221,29 @@ section[id] { scroll-margin-top: 80px; }
   background: var(--bg-dark);
   color: #fff;
 }
+.nearby-photo {
+  aspect-ratio: 16 / 9;
+  margin: -26px -26px 22px;
+  overflow: hidden;
+  background: rgba(26,23,20,0.08);
+}
+.nearby-photo img,
+.nearby-photo picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.nearby-photo img {
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.nearby-place:hover .nearby-photo img { transform: scale(1.04); }
+.nearby-place--photo .nearby-time {
+  margin-bottom: 18px;
+}
+.nearby-place--photo h3 {
+  margin-top: 0;
+}
 .nearby-time {
   width: max-content;
   margin-bottom: auto;
@@ -2354,8 +2377,14 @@ footer {
     min-height: auto;
     padding: 22px 0;
   }
+  .nearby-photo {
+    margin: -22px 0 18px;
+  }
   .nearby-place h3 {
     margin-top: 24px;
+  }
+  .nearby-place--photo h3 {
+    margin-top: 0;
   }
 
   /* Hide the WhatsApp tooltip on mobile — there's no real "hover"
