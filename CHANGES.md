@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-06-15 - Reorder nearby places
+**By:** Yair
+**Changed:** Reordered the homepage Nearby Places cards without changing card copy, links, photos, or styling.
+**Files:** `index.html`
+
+---
+
 ## 2026-06-15 - Add Hiriketiya Beach
 **By:** Yair
 **Changed:** Added Hiriketiya Beach under Elephant Transit Home in the homepage Nearby Places section with an approximate drive time, Google Maps link, short visitor-facing description, photo, and credit.
