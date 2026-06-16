@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-06-15 - Add Hiriketiya Beach
+**By:** Yair
+**Changed:** Added Hiriketiya Beach under Elephant Transit Home in the homepage Nearby Places section with an approximate drive time, Google Maps link, short visitor-facing description, photo, and credit.
+**Files:** `index.html`, `photos/nearby-hiriketiya.jpg`
+
+---
+
 ## 2026-06-13 - Nearby place photos
 **By:** Yair
 **Changed:** Added photo support to the homepage Nearby Places cards, using the existing Udawalawe image plus Wikimedia Commons photos for Elephant Transit Home and Ridiyagama Safari Park. Added required photo credits.
