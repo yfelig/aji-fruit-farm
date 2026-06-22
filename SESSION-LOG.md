@@ -4,6 +4,194 @@ Running log of work sessions. Newest entries on top. Used by `/wrap-session` and
 
 ---
 
+## 2026-06-22 — Nearby Places: killed the section-08 grid, merged into 07 (Noya + Shira)
+
+### What we did
+
+**Context discovery — local repo was 8 commits behind origin.** Resume surfaced that Aji (or someone) had pushed directly to GitHub since 05-24: a new section 08 "Nearby Places", a privacy.html page, Cloudflare Web Analytics, a Google Maps location fix, and 3 nearby photos. Pulled all 8 (ff-only, stashed the uncommitted 05-24 log entry around it). Worth knowing: **someone edits the live site in parallel** — always fetch before working.
+
+**The problem Rivka flagged.** Section 08 was a 3-col bordered grid of 9 nearby places, but only 4 had photos. The no-photo cards used `margin-bottom:auto` on the time badge, pushing title+text to the cell bottom while photo cards sat title-high — a "staircase" of misaligned headings. Plus the `gap:1px`-on-dark hairline grid read as a utilitarian table, clashing with the site's airy editorial register.
+
+**The real diagnosis (Rivka's catch).** Section 07 ("From the Farm" / Explore) already did this job — beautifully — with 3 photo cards, and Udawalawe + horse riding appeared in BOTH 07 and 08. It wasn't a redesign problem; 08 was a duplicate. Rivka's instinct: an arrow in 07 that opens more, not a whole section 08.
+
+**What shipped (Noya led structure):**
+- Deleted section 08 entirely.
+- Added a native `<details>` disclosure under 07's cards — "More places nearby" reusing the text-link disc CTA (the 25-iteration disc). Collapsed by default → homepage stays light (Hick). Arrow rotates 90° down when open.
+- The 8 remaining places → clean 2-col editorial list (name + time + one line), single baseline, no photos by design — turning the photo gap from a bug into an editorial choice (Aman-style index).
+- Dedup: Udawalawe + horse riding stay only in 07's cards.
+- Dropped the long photo-credits line (no third-party photos displayed anymore).
+- Mobile: list collapses to 1 col; cards keep their swipe carousel.
+
+**Copy (Shira).** With 08 gone, 07's desktop H2 stood alone (the `.explore-hint` is mobile-only). Shira wrote a positioning subtitle, picked from 5 options: **"The farm is your quiet base. The driver, the safari timing, what's worth doing — leave it to Aji."** Salvages the value 08's subtitle carried (farm-as-base + Aji-as-concierge) without repeating "Aji arranges it" (already in the Udawalawe card) or "Aji takes care of you" (already in FAQ).
+
+### Where we are
+
+**Shipped and live at aji-fruit-farm.lk** (commit `d4292b2`, cache v=105). Verified on desktop + mobile via preview (DOM-inspect; the screenshot tool glitched mid-session but inspect confirmed all styles). 0 console errors. The "staircase" is gone; the section is now proportional to its supporting role and fully on-brand.
+
+### Open threads
+
+- **"From the Farm" headline kept over "Places to Go From Here"** — decided the latter implies *leaving* ("go from here"), undercutting the stay-on-the-farm pitch. If Rivka revisits, that was the reasoning.
+- **3 nearby photos now unused** (`nearby-elephant-transit/hiriketiya/ridiyagama.jpg`) — left in repo, not deleted. Could reuse if a future "The Area" treatment wants them.
+- **Parallel live-editing by Aji** — no process yet for syncing his direct-to-GitHub edits with local work. Worth a heads-up before each session.
+- Carried from 05-24: full-board pricing TBD; GSC Rich Results validation; Shira's narrative-depth pass on story.html; testimonial attribution audit; `.host-quote`/`.micro-quote` → single `.pull-quote` refactor.
+
+### Files touched
+
+- `index.html` — deleted section 08; added `<details class="explore-more">` + 8-item `.nearby-list` to section 07; added `.explore-sub` subtitle; cache-bust 103 → 105.
+- `style.css` — replaced dead `.nearby*` grid CSS with `.explore-more` / `.nearby-list` / `.nearby-item` editorial-list rules + `.explore-sub`; updated mobile block.
+- `farm.html`, `rooms.html`, `story.html` — cache-bust to v=105.
+- New knowledge: `נויה/knowledge/duplicate-section-collapse.md` (the merge pattern).
+- `.claude/launch.json` (local, untracked) — preview config for the static dev-server.
+
+### Git state
+
+- Branch: main (pushed to origin)
+- Last commit: `d4292b2` explore (07): merge nearby places in, drop the section-08 grid
+- Pending before this session: the 05-24 log entry was still uncommitted — now committed together with this entry.
+
+---
+
+## 2026-05-24 — CTA design marathon (Noya, 25 iterations) + homepage copy hook + quote system unification (Shira)
+
+### What we did
+
+**Part 1 — text-link disc CTA, 25 iterations of refinement (Noya).** Started from the v=75 outlined-pill state Rivka still found "ugly". Cycled through outline-thick, outline-thin, filled-solid, tight-padded, hairline-only, top+bottom-rules — every variation came back rejected. Pivoted on Rivka's idea: separate the text (pure italic Cormorant) from the click affordance (small filled disc holding the arrow — Aman/Loro Piana pattern). Landed there. Then iterated WITHIN that pattern: arrow path edited in HTML for true elongation (`M2 12h19M15 6l6 6-6 6`, +36% shaft length); stroke-width via CSS override 1.5 → 2.5; disc inverted from forest-rest to transparent-fills-on-hover, back to forest-rest with gold hover; finally locked at: **forest disc at rest with white arrow + brand gold (#b8842a) on hover + scale(1.08) + soft gold shadow**. Mobile fix: wrapped hover behavior in `@media (hover: hover)` so touch devices don't transition without a trigger; added `:active scale(0.94)` as cross-device tap feedback. v=75 → v=101 cache bumps.
+
+**Part 2 — nav-wa "Check availability" gold experiment.** Rivka asked: should the primary booking CTA also go gold? Shipped gold-filled in both nav states. She immediately said "not pretty, revert" — back to transparent pill with forest text. Lesson: gold stays an *accent* color (fact-line + disc-hover), not a primary fill.
+
+**Part 3 — homepage hook rewrite (Shira).** Diagnosed the opening sequence: the strongest story moment (Aji peak→crash→cottages) was buried at section 02 while Hero + Welcome (01) gave functional facts. A first-time visitor was scrolling through 30+ seconds of brochure before any hook arrived. Shipped:
+- **Welcome H2**: "A Family Farm, Open to the World" → **"A Farm First. A Stay, Second."** (Aman-style status flip: pride in the farm, the stay is the bonus)
+- **Welcome paragraph**: fruit list + cottage count → **"Wake to mist on the lake. Walk barefoot through fifteen acres of fruit trees. Eat what was picked that morning. That's the whole offer."** (three sensory verbs + a closer that refuses corporate-speak)
+- **Hero kicker**: rewrote to a 2-sentence narrative ("He grew the country's top fruit farm. Then he built you a cottage.") — Rivka rejected, **reverted to "Wake up to your private lake"**. Lesson: the hero is one sensory line; narrative belongs to the section below.
+
+**Part 4 — quote system fixes (Shira).** Aji's quote ("When guests come, they are happy. So I am also happy.") was hanging in section 02 (Meet Aji) but talks about Aji-as-present-host, while the section narrates transformation. Moved it to **section 03 (The Cottages)** where the topic IS guest experience. Side benefit: Aji's section becomes lean plot → CTA, drives clicks to story.html. Shrunk the `.host-quote` font (clamp 1.3-1.6rem → 1.05-1.25rem), removed the `<br>` so the quote runs as one line, bumped max-width 38ch → 60ch. Then Rivka caught that the Garden of Eden `.micro-quote` in section 04 was now bigger than Aji's quote — unified `.micro-quote` to the same clamp. Two quote classes now read as one editorial system (worth refactoring into a single `.pull-quote` someday).
+
+**Part 5 — small cleanups.**
+- Removed redundant "Plan your stay" CTA from section 06 (The Food) — informational, not a decision point; the food story doesn't need a third booking push.
+- Fixed `<\strong>` HTML typo in food section (pre-existing bug noticed in passing).
+- Saved [[feedback_visible_bumps_25_percent]] to memory: when Rivka asks for "bigger/smaller/tighter," 10-15% bumps register as invisible; commit to 25%+. And when iteration on params keeps returning "ugly," the SHAPE/CONCEPT is wrong — pivot, don't tweak.
+
+**Part 6 — punctuation smoothing in Welcome (post-wrap addendum).** Rivka counted: section 01 had 6 full-stops in a single column (2 in H2 + 4 in paragraph) — read as staccato/choppy, not "crisp imperative" as intended. Reader-experience > writer-intent. Fix: H2 "A Farm First. A Stay, Second." → "A Farm First, A Stay Second." (comma between parallels, trailing comma dropped); paragraph's three sensory verbs now bound with em-dashes → "Wake to mist on the lake — walk barefoot through fifteen acres of fruit trees — eat what was picked that morning. That's the whole offer." Total periods in section: 6 → 3. Saved [[feedback_count_periods_diagnostic]] — literal period-count is a 5-second pre-ship diagnostic; 6+ in a short block = bind with em-dashes/semicolons/commas.
+
+### Where we are
+
+**Site is in shipped state at aji-fruit-farm.lk, v=102.** The CTA disc system is stable. The opening (hero + section 01) now hooks properly without the kicker rewrite — Welcome carries the story-pull with smoothed punctuation (em-dashes binding the sensory verb chain). The quote system is unified across sections 03 + 04. Tap behavior on mobile is correct (no phantom hover transitions). Meet Aji section is lean plot → CTA, which should improve clickthrough to story.html.
+
+**Team handoffs worked.** Noya carried the CTA design (25 commits); Shira took copy and structural moves. One mobile fix was correctly handed back to Noya mid-session. Team protocol respected.
+
+### Open threads
+
+- **Hero kicker duplication.** "Wake up to your private lake" (kicker) + "Wake up to the lake" (tagline) — Rivka accepted the duplication when she reverted. Could revisit later with a different short sensory kicker that doesn't repeat (e.g. "A farm. A lake. Four cottages." or "Sleep deep. Wake to mist.").
+- **Welcome "That's the whole offer" line.** Bold voice choice — refuses corporate flourish. See if it sits well after Rivka lives with it. If she pushes back, the runner-up was "if you could" closer.
+- **Section 04 (Setting) CTA "See the lake"** still links to farm.html — same destination as Welcome's "See the farm." Could drop or differentiate if it feels redundant in extended viewing.
+- **Refactor: `.host-quote` + `.micro-quote` → single `.pull-quote`.** Functionally identical now after the sizing unification. Low-priority cleanup.
+- **Aji full-board pricing** — still TBD (carried from 05-15).
+- **GSC Rich Results validation** — still pending (carried from 05-15).
+- **Shira's narrative-depth pass on Meet Aji + From Zero to the Top** — story page body copy refinement still pending (carried from 05-15).
+- **Other testimonial quote attribution audit** — Sarah & Felix etc. still unverified (carried from 05-15).
+- **SESSION-LOG.md uncommitted** — both 05-15 entry (pre-existing) AND this 05-24 entry need a commit when convenient.
+
+### Files touched
+
+- `index.html` — Welcome H2 + paragraph rewrite (then punctuation smoothing pass); hero kicker added/reverted; host-quote moved 02 → 03; "Plan your stay" CTA removed from food section; `<\strong>` typo fix; 5 SVG paths in `.text-link` instances edited for arrow elongation; cache-bust 75 → 102.
+- `story.html`, `rooms.html`, `farm.html` — cache-bust only (kept in sync).
+- `style.css` — `.text-link` (the disc CTA) underwent 20+ iterations: pill outline → filled → tight padding → no-frame → hairlines → text + filled circle (final). Final spec: 18×16 SVG with elongated path, padding 11×12 box-sizing content-box, bg forest, color white, border 1.5px forest, border-radius 50%, hover wrapped in `@media (hover: hover)` with gold fill + scale(1.08) + gold shadow, `:active` scale(0.94). `.host-quote` shrunk + max-width bumped. `.micro-quote` matched to host-quote dimensions. `.nav-wa` was temporarily set to gold-filled then reverted.
+- Memory: `feedback_visible_bumps_25_percent.md` + `feedback_count_periods_diagnostic.md` created.
+- `SESSION-LOG.md` — this entry + the earlier 05-15 entry still uncommitted.
+
+### Git state
+
+- Branch: main (up to date with origin)
+- Uncommitted: `SESSION-LOG.md` (this entry)
+- Last commit: `e23d67f` welcome (01): smooth the punctuation — 6 periods -> 3
+- Today's commit count: 26 (from `f7556c9` through `e23d67f`)
+
+---
+
+## 2026-05-15 — Pre-share polish sweep + formal team architecture (Netanela charter, Shira first task)
+
+### What we did
+
+**Part 1 — SEO + FAQ system (Netanela/Noya pass):**
+- Audited existing SEO baseline; found it stronger than memory suggested (LodgingBusiness JSON-LD already complete, GSC verification meta tag in place, sitemap submitted, alt text mostly keyword-rich).
+- Built a visible "Before You Book" Q&A section on homepage + matching FAQPage JSON-LD. Six questions covering Udawalawe distance, breakfast, pets, airport transfer, direct booking, best time to visit.
+- Tightened four meta descriptions from 180-235 chars to 143-150 chars so Google no longer truncates them mid-sentence.
+- Enriched 4 weak alt texts ("Udawalawe National Park" → location-rich; "Horse riding nearby" → contextual; bath slides; kayak shot).
+- Added `rel="noopener"` to 12 `target="_blank"` WhatsApp links across all 4 pages.
+- Drafted a GSC handoff doc inline for Rivka (sitemap submit + URL inspection + Rich Results Test).
+
+**Part 2 — Photo swaps:**
+- Rivka shared two new photos from `~/Desktop/חוות מנגו סרילנקה/` — a wider open-air bathroom shot with the tree, and a wide pavilion-table breakfast composition (egg hoppers + toast + tea + garden).
+- Bath photo: added `bath-tree-mobile.jpg/.webp` (processed via sharp at site spec — q=72 jpg / q=65 webp / 1600px). Wired in via `<picture><source media="(max-width: 860px)">` so mobile loads the new wide shot; desktop keeps the original tighter `bath-tree.jpg` unchanged.
+- Food photo: initially deleted the iconic eggs/chickpeas/dal plate and put the new pavilion shot in its place (Rivka had answered "replace as first slide"). She came back asking to restore the original. Took new shot, kept it as a new file `food-pavilion-table.jpg/.webp`, restored original `food-breakfast.jpg/.webp` from git, inserted the new shot as the second slide, bumped slider counter 1/7 → 1/8. Saved [[feedback_photo_replace_means_add]] — "replace" = ADD-and-reorder, not DELETE.
+- On the cottage interiors slider on rooms.html: added an inline mobile-only post-slider script that swaps the order of `bath-4` and `bath-tree` slides, so the wide tree shot comes BEFORE the sky-visible shower on mobile. Desktop sequence unchanged.
+
+**Part 3 — Mobile polish (Noya invoked):**
+- Diagnosed two quote systems doing the same job: `.host-quote` (Aji's "When guests come...") vs `.micro-quote` (Garden of Eden). On mobile especially, the Aji quote at clamp(1.55, 2.2vw, 2rem) read disproportional to the calmer micro-quote system.
+- Collapsed `.host-quote` into the `.micro-quote` visual signature inside `@media (max-width: 860px)`: smaller italic Cormorant, left forest hairline, attribution `— AJI` in caps body font. Desktop kept the bigger pull-quote treatment intentionally (different role per viewport).
+- Promoted the nav-overlay CTA: `nv-cta-text` 1.25 → 1.45rem; `bottom` 84 → 110. Vivre-style asymmetric composition preserved; the CTA is no longer reading as a footnote against the 2.6rem link stack.
+- Removed "Every cottage. Every stay. Same care." sign-off from rooms.html — Noya's editorial-economy call. The features list closes itself on "Pets welcome," and the visual transition into the dark booking block does the bridge work.
+
+**Part 4 — Full Noya pre-share review:**
+- Sweep across all 4 pages × desktop + mobile (8 surfaces) + targeted section captures. 0 console errors, 0 broken links, 0 missing alts.
+- Verdict: site in genuinely ship-ready state. Noya delivered "ship now" report instead of inventing fixes — flagged a handful of open editorial questions for Shira.
+- DNS outage on `aji-fruit-farm.lk` mid-session (LK registry temporary glitch); resolved on its own within an hour. Site never had a code problem — diagnostic chain was clean.
+
+**Part 5 — Team architecture formalized:**
+- Wrote [[team_hierarchy_netanela_decides]] — when Noya and Shira disagree, Netanela has final say. Iron Law exception protocol included.
+- Wrote [[user_netanela_charter]] — formal definition of Netanela's role: partner, second brain, project manager. Rules locked in via Q&A with Rivka:
+  - Cross-project autonomy (commit + push without per-step approval, across all projects)
+  - Flag UX changes before editing + Flag copy changes before editing (NEW)
+  - Surface relevant memory only when she's about to reverse a prior decision (with exception for autonomous-Shira mode → full judgment)
+  - Save memory autonomously without prior approval
+- Upgraded Shira's `SKILL.md`: added anti-people-pleasing rules to "What you DON'T do" + added "When you and Noya disagree" subsection that references the team hierarchy memory.
+- Wrote [[netanela_honor_specialist_iron_laws]] — when a specialist flags Iron Law, default is to honor it even at session cost.
+
+**Part 6 — Shira's first task:**
+- Brief delivered: 5 copy questions from Noya's review. Find Us H2, fact-line phrasing, Garden of Eden attribution, FAQ wording, hero tagline.
+- Shira delivered 5+ options per question, picks with reasoning, and one Iron Law flag (refused to fabricate "— A recent guest, Germany" without source confirmation).
+- Netanela accepted 4 of 5 picks: "Come stay." H2, "Stay three nights or more — Aji takes care of you" fact-line, 7-question FAQ rewrite in guest's voice, kept hero tagline. Held the quote attribution per Shira's Iron Law.
+- Rivka surfaced the actual quote source: Ronald & Anni, Germany — real guest review. Applied: `"— Ronald & Anni, Germany"`. Iron Law-respect move rewarded with cleaner attribution AND maintained team credibility.
+- Added pricing FAQ ("How much per night?") as the lead question — price was the missing piece for pre-book decisions.
+
+### Where we are
+
+**Aji Fruit Farm is in ship-ready state.** 11 commits today, all live at `aji-fruit-farm.lk` via GitHub Pages. Pre-share polish complete.
+
+**Team architecture is formalized.** Netanela, Noya, and Shira each have explicit charters. Conflict-resolution protocol clear. Iron Law respect is the default. Rivka can hand the team a project + "go" and trust the protocol.
+
+**Shira's first task validated her professional foundation** — strong options discipline, honest Iron Law flag, picks that hold up. Ready for bigger copy tasks.
+
+### Open threads
+
+- **Aji full-board pricing** — Rivka doesn't know the rate yet. Once Aji confirms, update FAQ Q1 + LodgingBusiness `makesOffer` schema with a full-board variant.
+- **GSC Rich Results validation** — wait 24-48h post-push, run `search.google.com/test/rich-results` on homepage to confirm FAQ + LodgingBusiness rich snippets are eligible.
+- **GSC Performance tab (7-14 days post-push)** — check which queries are bringing impressions; calibrate copy/keywords based on real data.
+- **Possible next Shira task** — body copy depth on "Meet Aji" + "From Zero to the Top" (story page). These are the longest narrative blocks on the site; biggest opportunity for voice-depth refinement.
+- **Other testimonial quotes** — only the Garden of Eden quote has real attribution now. The reviews carousel uses "— Sarah & Felix, Germany" and others; should verify those are also real source quotes (Iron Law for the rest too).
+- **"Come stay." H2 backup** — if Rivka decides it reads too intimate after seeing it live, "Plan your visit" is Shira's documented runner-up.
+- **Hebrew version** — still unaddressed. If Israeli traveler audience matters, hreflang + Hebrew alternate would need its own project arc.
+
+### Files touched
+
+- `index.html`, `rooms.html`, `farm.html`, `story.html` — meta descriptions, FAQ section + schema, photo swaps, alt text, `rel="noopener"`, quote attribution, fact-line, Find Us H2, FAQ rewrite. Cache-bust style.css v=53 → v=61.
+- `style.css` — added `.faq` editorial Q&A block, mobile host-quote unification, nav-overlay CTA sizing, faq-cite hidden-on-desktop rule.
+- `photos/bath-tree-mobile.jpg` + `.webp` — new (mobile-only swap target).
+- `photos/food-pavilion-table.jpg` + `.webp` — new (added as 2nd food slide).
+- `photos/food-breakfast.jpg` + `.webp` — preserved (restored after Rivka's "bring it back" feedback).
+- `SESSION-LOG.md` — this entry + earlier 2026-05-11 entry committed.
+- Memory: [[feedback_photo_replace_means_add]], [[team_hierarchy_netanela_decides]], [[user_netanela_charter]], [[netanela_honor_specialist_iron_laws]] — all new today.
+- Skill: `~/.claude/skills/שירה/SKILL.md` — anti-people-pleasing + team-hierarchy updates.
+
+### Git state
+
+- Branch: main (up to date with origin)
+- Uncommitted: none
+- Last commit: `4b24042` copy: attribute Garden of Eden quote to Ronald & Anni, Germany
+- Today's commit count: 11 (from `85dd353` through `4b24042`)
+
+---
+
 ## 2026-05-11 — Nav 3-stage dissolve flattened to single cross-fade
 
 ### What we did
