@@ -799,6 +799,11 @@ section[id] { scroll-margin-top: 80px; }
   overflow: hidden;
 }
 
+/* Hero split on subpages: leave ~10vh so the next section peeks above the
+   fold — a passive "there's more below (and more photos)" cue, no extra
+   chrome. Desktop only; on mobile the splits stack and scroll is obvious. */
+.split--hero { height: 90svh; }
+
 .split--reverse .split-text { order: 2; }
 .split--reverse .split-image { order: 1; }
 
