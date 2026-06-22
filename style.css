@@ -2354,6 +2354,14 @@ footer {
   .activities::-webkit-scrollbar { display: none; }
   /* .activity + .activity-img rules are unified with .day above. */
 
+  /* Mobile: .explore is full-bleed (padding 0 sides) so the card carousel
+     can run edge-to-edge — but the text list needs the gutter back, or it
+     jams against both screen edges. Pad the disclosure wrapper so summary,
+     divider, list and note all share the side gutter. */
+  .explore-more {
+    padding-left: var(--side);
+    padding-right: var(--side);
+  }
   .nearby-list {
     grid-template-columns: 1fr;
     gap: 24px;
