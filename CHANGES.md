@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-06-27 - Horse riding card photo and map link
+**By:** Yair
+**Changed:** Replaced the homepage From the Farm horse riding photo and linked the "Horse Riding & Hikes" title to the supplied Google Maps location.
+**Files:** `index.html`, `photos/horse-riding-hikes.jpg`
+
+---
+
 ## 2026-06-27 - Slow morning photo
 **By:** Yair
 **Changed:** Replaced the Day 3 "Slow morning" homepage itinerary photo with Rivka's cottage exterior image.
