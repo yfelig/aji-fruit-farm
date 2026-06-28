@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-06-28 - Horse riding MOZO booking link
+**By:** Yair
+**Changed:** Updated the homepage "Horse Riding & Hikes" title link to the MOZO collections page.
+**Files:** `index.html`
+
+---
+
 ## 2026-06-27 - MOZO horse riding map link
 **By:** Yair
 **Changed:** Linked the homepage "Horse Riding & Hikes" title to MOZO Horse Riding Farm's official Google Maps location.
