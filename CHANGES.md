@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-06-27 - Remove horse riding map link
+**By:** Yair
+**Changed:** Removed the Google Maps link from the homepage "Horse Riding & Hikes" title.
+**Files:** `index.html`
+
+---
+
 ## 2026-06-27 - Horse riding map link
 **By:** Yair
 **Changed:** Updated the "Horse Riding & Hikes" title link to the new Google Maps location.
