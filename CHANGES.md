@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-06-27 - Slow morning photo
+**By:** Yair
+**Changed:** Replaced the Day 3 "Slow morning" homepage itinerary photo with Rivka's cottage exterior image.
+**Files:** `index.html`, `photos/slow-morning-cottage.jpg`
+
+---
+
 ## 2026-06-15 - Reorder nearby places
 **By:** Yair
 **Changed:** Reordered the homepage Nearby Places cards without changing card copy, links, photos, or styling.
