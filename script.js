@@ -372,11 +372,167 @@ function activeNavable() {
 document.addEventListener('keydown', (e) => {
   const tag = (e.target.tagName || '').toLowerCase();
   if (tag === 'input' || tag === 'textarea') return;
+  if (document.body.classList.contains('gallery-open')) return;
   if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
   const target = activeNavable();
   if (!target) return;
   e.key === 'ArrowLeft' ? target.prev() : target.next();
 });
+
+// Cottage gallery lightbox
+(function setupCottageGallery() {
+  const gallery = document.querySelector('.cottage-gallery');
+  if (!gallery) return;
+
+  const thumbs = Array.from(gallery.querySelectorAll('.cottage-shot'));
+  const items = thumbs.map((button) => {
+    const img = button.querySelector('img');
+    return { button, src: img.getAttribute('src'), alt: img.getAttribute('alt') || '' };
+  });
+  let current = 0;
+  let touchX = 0;
+
+  const modal = document.createElement('div');
+  modal.className = 'gallery-lightbox';
+  modal.hidden = true;
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-label', 'Cottage photo preview');
+  modal.innerHTML = `
+    <div class="gallery-lightbox__backdrop" data-gallery-close></div>
+    <button type="button" class="gallery-lightbox__button gallery-lightbox__close" aria-label="Close gallery">&times;</button>
+    <button type="button" class="gallery-lightbox__button gallery-lightbox__prev" aria-label="Previous photo">&#8249;</button>
+    <div class="gallery-lightbox__stage" data-gallery-close>
+      <img class="gallery-lightbox__image" alt="" />
+    </div>
+    <button type="button" class="gallery-lightbox__button gallery-lightbox__next" aria-label="Next photo">&#8250;</button>
+    <div class="gallery-lightbox__counter" aria-live="polite"></div>
+  `;
+  document.body.appendChild(modal);
+
+  const image = modal.querySelector('.gallery-lightbox__image');
+  const counter = modal.querySelector('.gallery-lightbox__counter');
+  const stage = modal.querySelector('.gallery-lightbox__stage');
+  const closeButton = modal.querySelector('.gallery-lightbox__close');
+  const prevButton = modal.querySelector('.gallery-lightbox__prev');
+  const nextButton = modal.querySelector('.gallery-lightbox__next');
+
+  function targetRectFor(img) {
+    const maxW = Math.min(window.innerWidth * 0.88, 1180);
+    const maxH = Math.min(window.innerHeight * 0.82, 760);
+    const aspect = (img.naturalWidth || 16) / (img.naturalHeight || 10);
+    let width = maxW;
+    let height = width / aspect;
+    if (height > maxH) {
+      height = maxH;
+      width = height * aspect;
+    }
+    return {
+      left: (window.innerWidth - width) / 2,
+      top: (window.innerHeight - height) / 2,
+      width,
+      height
+    };
+  }
+
+  function setImage(index, animate) {
+    current = (index + items.length) % items.length;
+    const item = items[current];
+    image.classList.remove('is-visible');
+    if (animate) image.style.transform = 'scale(0.985)';
+    window.setTimeout(() => {
+      image.src = item.src;
+      image.alt = item.alt;
+      counter.textContent = `${current + 1} / ${items.length}`;
+      requestAnimationFrame(() => {
+        image.style.transform = '';
+        image.classList.add('is-visible');
+      });
+    }, animate ? 120 : 0);
+  }
+
+  function fly(fromRect, toRect, src, done) {
+    const clone = document.createElement('img');
+    clone.className = 'gallery-flight';
+    clone.src = src;
+    clone.alt = '';
+    Object.assign(clone.style, {
+      top: `${fromRect.top}px`,
+      left: `${fromRect.left}px`,
+      width: `${fromRect.width}px`,
+      height: `${fromRect.height}px`
+    });
+    document.body.appendChild(clone);
+    requestAnimationFrame(() => {
+      Object.assign(clone.style, {
+        top: `${toRect.top}px`,
+        left: `${toRect.left}px`,
+        width: `${toRect.width}px`,
+        height: `${toRect.height}px`
+      });
+    });
+    window.setTimeout(() => {
+      clone.remove();
+      if (done) done();
+    }, 420);
+  }
+
+  function openGallery(index) {
+    const item = items[index];
+    const thumbImg = item.button.querySelector('img');
+    current = index;
+    image.src = item.src;
+    image.alt = item.alt;
+    image.classList.remove('is-visible');
+    counter.textContent = `${current + 1} / ${items.length}`;
+    modal.hidden = false;
+    document.body.classList.add('gallery-open');
+    requestAnimationFrame(() => modal.classList.add('is-open'));
+    const from = thumbImg.getBoundingClientRect();
+    const to = targetRectFor(thumbImg);
+    fly(from, to, item.src, () => image.classList.add('is-visible'));
+  }
+
+  function closeGallery() {
+    const item = items[current];
+    const thumbImg = item.button.querySelector('img');
+    const from = image.getBoundingClientRect();
+    const to = thumbImg.getBoundingClientRect();
+    image.classList.remove('is-visible');
+    modal.classList.remove('is-open');
+    fly(from, to, item.src, () => {
+      modal.hidden = true;
+      document.body.classList.remove('gallery-open');
+      item.button.focus({ preventScroll: true });
+    });
+  }
+
+  function next() { setImage(current + 1, true); }
+  function prev() { setImage(current - 1, true); }
+
+  thumbs.forEach((button, index) => {
+    button.addEventListener('click', () => openGallery(index));
+  });
+  closeButton.addEventListener('click', closeGallery);
+  prevButton.addEventListener('click', prev);
+  nextButton.addEventListener('click', next);
+  modal.addEventListener('click', (e) => {
+    if (e.target.matches('[data-gallery-close]')) closeGallery();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!document.body.classList.contains('gallery-open')) return;
+    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeGallery(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); prev(); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); next(); }
+  }, true);
+
+  stage.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', (e) => {
+    const dx = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) (dx > 0 ? next : prev)();
+  }, { passive: true });
+})();
 
 // ─── DATE-AWARE WHATSAPP PICKER ───────────────────────────────────
 // On the index contact section: turns three light inputs (arrival,
@@ -443,7 +599,7 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
     startY = t.clientY;
     blocked = !!e.target.closest(
       '.image-slider, .slider, .activities, .itinerary, .itinerary-days, ' +
-      '.testimonial-row, .nav-overlay, [data-no-swipe], input, textarea, button'
+      '.testimonial-row, .cottage-gallery, .gallery-lightbox, .nav-overlay, [data-no-swipe], input, textarea, button'
     );
   }, { passive: true });
 

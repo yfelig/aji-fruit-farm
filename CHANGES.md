@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-25 - Cottage photo gallery
+**By:** Yair
+**Changed:** Replaced the single cottage image with a responsive animated collage gallery and full-screen lightbox.
+**Files:** `index.html`, `style.css`, `script.js`
+
+---
+
 ## 2026-07-25 - Host collage image
 **By:** Yair
 **Changed:** Replaced the "Your Host" image with the uploaded collage and adjusted it to fit without cropping.
