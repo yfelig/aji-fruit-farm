@@ -891,6 +891,14 @@ section[id] { scroll-margin-top: 80px; }
 }
 .split-image:hover img { transform: scale(1.03); }
 
+#welcome .split-image {
+  align-self: center;
+  justify-self: center;
+  width: min(88%, 620px);
+  height: min(78svh, 620px);
+  border-radius: 18px;
+}
+
 /* Single soft transition — only between the hero and the first split
    image. All other photos meet cream with a clean photographic edge. */
 #welcome .split-image::before {
@@ -2292,6 +2300,11 @@ footer {
   }
   .split-image { aspect-ratio: 16/11; min-height: unset; }
   .split-image img { height: 100%; }
+  #welcome .split-image {
+    width: calc(100% - (2 * var(--side)));
+    height: auto;
+    border-radius: 14px;
+  }
   .split--reverse .split-text { order: 1; }
   .split--reverse .split-image { order: 2; }
 

@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-25 - Welcome image sizing
+**By:** Yair
+**Changed:** Made the homepage Welcome section image smaller with rounded corners on desktop and mobile.
+**Files:** `style.css`
+
+---
+
 ## 2026-06-28 - Horse riding MOZO booking link
 **By:** Yair
 **Changed:** Updated the homepage "Horse Riding & Hikes" title link to the MOZO collections page.
