@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-26 - Move MOMO ELLA section
+**By:** Yair
+**Changed:** Moved the "MOMO ELLA" next destination section to appear after "07 - Explore".
+**Files:** `index.html`
+
+---
+
 ## 2026-07-26 - Remove cottage railing gallery photo
 **By:** Yair
 **Changed:** Removed the `cottage-railing` image from the homepage cottage gallery.
