@@ -891,6 +891,20 @@ section[id] { scroll-margin-top: 80px; }
 }
 .split-image:hover img { transform: scale(1.03); }
 
+.split-image--host-collage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.split-image--host-collage img {
+  object-fit: contain;
+  padding: clamp(14px, 2.5vw, 40px);
+}
+.split-image--host-collage:hover img {
+  transform: none;
+}
+
 #welcome .split-image {
   align-self: center;
   justify-self: center;

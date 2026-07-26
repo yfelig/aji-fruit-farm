@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-25 - Host collage image
+**By:** Yair
+**Changed:** Replaced the "Your Host" image with the uploaded collage and adjusted it to fit without cropping.
+**Files:** `index.html`, `style.css`, `photos/aji-collage.jpg`
+
+---
+
 ## 2026-07-25 - Shorter MOMO ELLA description
 **By:** Yair
 **Changed:** Shortened the descriptive paragraph under the "MOMO ELLA" next destination section.
