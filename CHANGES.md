@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-25 - White theme background
+**By:** Yair
+**Changed:** Updated the website's light theme backgrounds from warm cream to white.
+**Files:** `style.css`
+
+---
+
 ## 2026-07-25 - Welcome image sizing
 **By:** Yair
 **Changed:** Made the homepage Welcome section image smaller with rounded corners on desktop and mobile.

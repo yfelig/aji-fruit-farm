@@ -4,8 +4,8 @@
    ============================================ */
 
 :root {
-  --bg:        #f0ede4;
-  --bg-alt:    #e8e2d6;
+  --bg:        #ffffff;
+  --bg-alt:    #ffffff;
   --bg-dark:   #1b3826;
   --text:      #18180f;
   --muted:     #6b6856;
@@ -110,13 +110,13 @@ p + p { margin-top: 16px; }
   align-items: center;
   justify-content: space-between;
   padding: 8px var(--side);
-  /* Default (over content): compact cream-glass strip — kept thin so
+  /* Default (over content): compact white-glass strip — kept thin so
      it doesn't dominate the section it floats over. The taller, more
      editorial padding lives only in the .over-hero override below.
      Pure transparency too only when `.over-hero` is set (added by
      script.js while scrollY < hero).
      Hidden on scroll-down, revealed on scroll-up. */
-  background: rgba(240, 237, 228, 0.42);
+  background: rgba(255, 255, 255, 0.42);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(27, 56, 38, 0.06);
@@ -135,7 +135,7 @@ p + p { margin-top: 16px; }
   -webkit-backdrop-filter: none;
   border-bottom-color: transparent;
 }
-/* Compact text in the cream-glass state so the thinner strip stays
+/* Compact text in the white-glass state so the thinner strip stays
    balanced. The .over-hero state keeps the larger sizes set on the
    base classes for the "main display" look. */
 /* "At-top" = user is glued to the very top of the page (any page).
@@ -144,7 +144,7 @@ p + p { margin-top: 16px; }
    Once the user scrolls (.at-top drops off), the bar tightens to the
    compact-strip sizes. Decoupled from .over-hero (which controls
    transparency/color), so subpage desktops can have big-size-at-top
-   WITHOUT going transparent on the cream text column. */
+   WITHOUT going transparent on the white text column. */
 .nav:not(.at-top) .nav-logo { font-size: 1.15rem; }
 .nav:not(.at-top) .nav-links a { font-size: 0.78rem; }
 .nav:not(.at-top) .nav-wa { font-size: 0.92rem; padding: 4px 11px; }
@@ -164,7 +164,7 @@ p + p { margin-top: 16px; }
   /* Logo stays pure ink — anchors the bar; nav links sit in forest. */
   color: var(--text);
   /* Two-layer shadow: white lift gives the lettering body on light
-     glass backgrounds (cream desktop, sage mobile); a soft dark
+     glass backgrounds (white desktop, sage mobile); a soft dark
      halo carries legibility when the nav rides over a varying photo
      during scroll (especially mobile mid-section transitions). */
   text-shadow:
@@ -287,7 +287,7 @@ p + p { margin-top: 16px; }
 .nav-wa:hover .nav-wa-arrow .arrow-hover { opacity: 1; transform: translateX(0); }
 /* Hover: white fill with forest-dark text. The pill flips to a
    clean filled state — strong invitation to click without breaking
-   palette (forest ink on cream is the page's own type pairing). */
+   palette (forest ink on white is the page's own type pairing). */
 .nav-wa:hover {
   background: #fff;
   color: var(--bg-dark);
@@ -541,7 +541,7 @@ p + p { margin-top: 16px; }
 
 /* OVER-HERO VARIANT — when the nav sits above the hero photo (toggled
    by script.js based on scrollY < hero height), switch every link,
-   logo, and the CTA to a light cream so the text reads against the
+   logo, and the CTA to a light color so the text reads against the
    foliage. Strong dark text-shadow gives a subtle halo that works on
    bright AND dark patches of the photo. */
 /* Over-hero: logo + nav links + CTA outline stay light (white text +
@@ -719,7 +719,7 @@ p + p { margin-top: 16px; }
 .hero-ctas .hero-cta { margin-top: 0; }
 /* Solid pill — must come after the base .hero-cta in source order so
    its color wins. Uses the forest-green ink for readable contrast on
-   the cream pill (instead of inheriting white-on-white). */
+   the white pill (instead of inheriting white-on-white). */
 a.hero-cta.hero-cta--solid {
   background: rgba(255, 255, 255, 0.95);
   border-color: rgba(255, 255, 255, 0.95);
@@ -900,7 +900,7 @@ section[id] { scroll-margin-top: 80px; }
 }
 
 /* Single soft transition — only between the hero and the first split
-   image. All other photos meet cream with a clean photographic edge. */
+   image. All other photos meet white with a clean photographic edge. */
 #welcome .split-image::before {
   content: '';
   position: absolute;
@@ -2216,8 +2216,8 @@ footer {
      image anchored to the visible viewport as the address bar moves. */
   .hero { height: 75dvh; }
 
-  /* Soft fade from hero photo to the cream of the next section.
-     A hard cut between forest photo and cream banner reads as
+  /* Soft fade from hero photo to the white of the next section.
+     A hard cut between forest photo and white banner reads as
      visually broken on mobile; this 28px gradient lets the eye
      breathe across the boundary. z-index: 0 keeps it ABOVE the
      hero image but BELOW .hero-content (z-index: 1) — the title
@@ -2229,7 +2229,7 @@ footer {
     left: 0;
     right: 0;
     height: 28px;
-    background: linear-gradient(180deg, rgba(240, 237, 228, 0) 0%, var(--bg) 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--bg) 100%);
     pointer-events: none;
     z-index: 0;
   }
@@ -2237,7 +2237,7 @@ footer {
   /* Subpages start with a .split — image-first on mobile (via the
      body.subpage order override below). The photo sits behind the
      transparent nav like a hero, so NO padding-top here — that
-     would leave a cream gap between the nav and the photo. */
+     would leave a white gap between the nav and the photo. */
 
   /* Mobile hero copy: drop the kicker and the H1's second line, light
      up the italic tagline. Result: "AJI FRUIT FARM" alone on top,
@@ -2280,7 +2280,7 @@ footer {
   .nav-burger { display: inline-flex; }
 
   /* Mobile-only: sage-tinted glass so the bar reads clearly over
-     photos on a phone. Desktop keeps the cream-glass default. */
+     photos on a phone. Desktop keeps the white-glass default. */
   .nav:not(.over-hero) {
     background: rgba(168, 188, 162, 0.55);
     border-bottom-color: rgba(27, 56, 38, 0.14);
@@ -2318,7 +2318,7 @@ footer {
   body.subpage .split--reverse .split-text { order: 2; }
 
   /* On mobile the welcome image follows the welcome H2 + copy (text
-     comes first, then photo). The cream-to-transparent mist on top of
+     comes first, then photo). The white-to-transparent mist on top of
      the photo only made sense when the hero flowed directly into the
      image — here it just looks like fog over the foliage, so kill it. */
   #welcome .split-image::before { display: none; }
