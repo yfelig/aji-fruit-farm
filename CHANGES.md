@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-26 - Next destination divider
+**By:** Yair
+**Changed:** Added a small divider line between Momo Ella and Horse Riding & Hikes, and removed the "Nearby" tag from the horse riding card.
+**Files:** `index.html`, `style.css`
+
+---
+
 ## 2026-07-26 - Move horse riding to Next Destination
 **By:** Yair
 **Changed:** Moved the "Horse Riding & Hikes" card from "07 - Explore" into the "Next Destination" section.
