@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-25 - Shorter MOMO ELLA description
+**By:** Yair
+**Changed:** Shortened the descriptive paragraph under the "MOMO ELLA" next destination section.
+**Files:** `index.html`
+
+---
+
 ## 2026-07-25 - MOMO ELLA description
 **By:** Yair
 **Changed:** Added the descriptive paragraph beneath the "MOMO ELLA" next destination title.
