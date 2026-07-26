@@ -1142,6 +1142,19 @@ section[id] { scroll-margin-top: 80px; }
 /* EXPLORE — paired template with .itinerary. Same padding, same card
    grid, content-driven height (no more 100svh lock — the section is
    as tall as it needs to be, not forced to a full screen). */
+.next-destination {
+  padding: 72px var(--side);
+  text-align: center;
+  background: var(--bg);
+  border-top: 1px solid rgba(27, 56, 38, 0.08);
+  border-bottom: 1px solid rgba(27, 56, 38, 0.08);
+}
+.next-destination .label { margin-bottom: 12px; }
+.next-destination h2 {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
 .explore {
   padding: 56px var(--side);
 }
@@ -2339,6 +2352,9 @@ footer {
     padding: 48px 0;
     min-height: auto;
   }
+  .next-destination {
+    padding: 52px var(--side);
+  }
   .explore-header { padding: 0 var(--side); margin-bottom: 24px; }
   .explore-hint {
     display: block;
@@ -2482,6 +2498,7 @@ footer {
   .book-cta { padding: 20px var(--side); }
   .contact-info { padding: 24px var(--side); }
   .itinerary { padding: 36px 0; }
+  .next-destination { padding: 42px var(--side); }
   .explore { padding: 36px 0; }
 
   /* Reviews internals — smaller stars + denser rating line. */

@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-25 - MOMO ELLA destination section
+**By:** Yair
+**Changed:** Added a "Next Destination" section titled "MOMO ELLA" between The Food and From the Farm on the homepage.
+**Files:** `index.html`, `style.css`
+
+---
+
 ## 2026-07-25 - White theme background
 **By:** Yair
 **Changed:** Updated the website's light theme backgrounds from warm cream to white.
