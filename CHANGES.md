@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-26 - Move horse riding to Next Destination
+**By:** Yair
+**Changed:** Moved the "Horse Riding & Hikes" card from "07 - Explore" into the "Next Destination" section.
+**Files:** `index.html`, `style.css`
+
+---
+
 ## 2026-07-26 - Move MOMO ELLA section
 **By:** Yair
 **Changed:** Moved the "MOMO ELLA" next destination section to appear after "07 - Explore".
