@@ -4,6 +4,13 @@ Running log of changes both Yair and Rivka push to this repo. Newest on top.
 
 ---
 
+## 2026-07-26 - Remove cottage railing gallery photo
+**By:** Yair
+**Changed:** Removed the `cottage-railing` image from the homepage cottage gallery.
+**Files:** `index.html`, `style.css`
+
+---
+
 ## 2026-07-25 - Cottage photo gallery
 **By:** Yair
 **Changed:** Replaced the single cottage image with a responsive animated collage gallery and full-screen lightbox.
