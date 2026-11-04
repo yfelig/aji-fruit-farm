@@ -616,3 +616,22 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
     location.href = target;
   }, { passive: true });
 })();
+// AJI FRUIT FARM HERO SLIDER
+(() => {
+  const slides = document.querySelectorAll('.hero-slides img');
+  if (slides.length < 2) return;
+
+  let current = 0;
+
+  slides.forEach((img, index) => {
+    img.style.animation = 'none';
+    img.style.transition = 'opacity 1s ease';
+    img.style.opacity = index === 0 ? '1' : '0';
+  });
+
+  setInterval(() => {
+    slides[current].style.opacity = '0';
+    current = (current + 1) % slides.length;
+    slides[current].style.opacity = '1';
+  }, 5000);
+})();
