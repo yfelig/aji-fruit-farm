@@ -2780,12 +2780,13 @@ footer {
   .nav-overlay-cta { bottom: 110px; }
   .nav-overlay-cta .nv-cta-text { font-size: 1.45rem; }
 
-  /* HERO IMAGE SLIDER */
+/* HERO IMAGE SLIDER */
 .hero-slides {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .hero-slides img {
@@ -2797,16 +2798,5 @@ footer {
   object-position: 60% bottom;
   filter: brightness(1.22);
   opacity: 0;
-  animation: heroFade 20s linear infinite;
-}
-
-.hero-slides img:nth-child(1) { animation-delay: 0s; }
-.hero-slides img:nth-child(2) { animation-delay: 5s; }
-.hero-slides img:nth-child(3) { animation-delay: 10s; }
-.hero-slides img:nth-child(4) { animation-delay: 15s; }
-
-@keyframes heroFade {
-  0%, 5% { opacity: 0; }
-  10%, 25% { opacity: 1; }
-  30%, 100% { opacity: 0; }
+  transition: opacity 1s ease-in-out;
 }
