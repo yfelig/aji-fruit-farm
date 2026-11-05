@@ -2821,3 +2821,8 @@ footer {
 .next-destination h2 {
     font-size: 1.15rem;
 }
+/* Center MOMO ELLA heading and description */
+.next-destination h2,
+.next-destination h2 + p {
+    text-align: center;
+}
