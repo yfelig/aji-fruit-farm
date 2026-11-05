@@ -2826,3 +2826,26 @@ footer {
 .next-destination h2 + p {
     text-align: center;
 }
+
+/* MOMO ELLA PHOTO GALLERY */
+.momo-ella-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.momo-ella-gallery img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .momo-ella-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
