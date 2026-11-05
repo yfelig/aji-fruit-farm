@@ -2800,3 +2800,9 @@ footer {
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
+/* Remove white fade on mobile */
+@media (max-width: 560px) {
+    .hero::after {
+        display: none;
+    }
+}
