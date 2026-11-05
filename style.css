@@ -2811,3 +2811,9 @@ footer {
   width: 75%;
   margin: 0 auto;
 }
+/* Center Mozo Farm title and activity text */
+.mozo-card h3,
+.mozo-card h4,
+.mozo-card p {
+    text-align: center;
+}
