@@ -1323,7 +1323,7 @@ body.gallery-open { overflow: hidden; }
   display: block;
   width: min(220px, 42vw);
   height: 1px;
-  margin: 32px auto 0;
+  margin: 10px auto 0;
   background: rgba(27, 56, 38, 0.16);
 }
 .next-destination__cards {
