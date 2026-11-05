@@ -2826,7 +2826,9 @@ footer {
 .next-destination h2 + p {
     text-align: center;
 }
-
+.next-destination > .label {
+    margin-top: 20px;
+}
 /* MOMO ELLA PHOTO GALLERY */
 .momo-ella-gallery {
   display: grid;
