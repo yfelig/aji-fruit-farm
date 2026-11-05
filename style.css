@@ -1309,7 +1309,7 @@ body.gallery-open { overflow: hidden; }
 }
 .next-destination .label {
     margin-top: 30px;
-    margin-bottom: 4px;
+    margin-bottom: px;
 }
 .next-destination h2 {
   margin: 0 auto;
