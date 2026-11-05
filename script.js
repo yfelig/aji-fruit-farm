@@ -625,7 +625,7 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
 
   slides.forEach((img, index) => {
     img.style.animation = 'none';
-    img.style.transition = 'opacity 1.5s ease-in-out';
+    img.style.transition = 'opacity 2.5s ease-in-out';
     img.style.opacity = index === 0 ? '1' : '0';
   });
 
