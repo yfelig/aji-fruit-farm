@@ -1307,7 +1307,10 @@ body.gallery-open { overflow: hidden; }
   border-top: 1px solid rgba(27, 56, 38, 0.08);
   border-bottom: 1px solid rgba(27, 56, 38, 0.08);
 }
-.next-destination .label { margin-bottom: 12px; }
+.next-destination .label {
+    margin-top: 30px;
+    margin-bottom: 4px;
+}
 .next-destination h2 {
   margin: 0 auto;
   max-width: 900px;
