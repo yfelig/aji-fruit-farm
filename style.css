@@ -2408,7 +2408,7 @@ footer {
      viewport, it takes ~75% so the start of the body section peeks in
      beneath, signaling "there's more here, scroll." dvh keeps the
      image anchored to the visible viewport as the address bar moves. */
-  .hero { height: 100dvh; }
+  .hero { height: 90dvh; }
 
   /* Soft fade from hero photo to the white of the next section.
      A hard cut between forest photo and white banner reads as
