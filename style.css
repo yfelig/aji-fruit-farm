@@ -2779,8 +2779,8 @@ footer {
      small and grounded at the bottom. */
   .nav-overlay-cta { bottom: 110px; }
   .nav-overlay-cta .nv-cta-text { font-size: 1.45rem; }
-
-/* HERO IMAGE SLIDER */
+}
+   /* HERO IMAGE SLIDER */
 .hero-slides {
   position: absolute;
   inset: 0;
