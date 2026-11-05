@@ -1309,16 +1309,20 @@ body.gallery-open { overflow: hidden; }
 }
 .next-destination .label {
     margin-top: 30px;
-    margin-bottom: px;
+    margin-bottom: 0px;
 }
 .next-destination h2 {
   margin: 0 auto;
   max-width: 900px;
 }
+
 .next-destination p {
-  max-width: 760px;
-  margin: 18px auto 0;
+    max-width: 1000px;
+    margin: 18px auto 0;
+    text-align: center;
 }
+
+ 
 .next-destination__divider {
   display: block;
   width: min(220px, 42vw);
