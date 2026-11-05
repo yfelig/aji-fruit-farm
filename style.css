@@ -2817,3 +2817,7 @@ footer {
 .mozo-card p {
     text-align: center;
 }
+/* Match MOMO ELLA heading size to MOZO FARM */
+.next-destination h2 {
+    font-size: 1.15rem;
+}
