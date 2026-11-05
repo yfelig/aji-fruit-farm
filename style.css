@@ -2842,7 +2842,13 @@ footer {
   object-fit: cover;
   border-radius: 10px;
 }
-
+/* Larger MOMO ELLA gallery on desktop */
+@media (min-width: 601px) {
+  .momo-ella-gallery {
+    width: 200%;
+    max-width: none;
+  }
+}
 @media (max-width: 600px) {
   .momo-ella-gallery {
     grid-template-columns: repeat(2, 1fr);
