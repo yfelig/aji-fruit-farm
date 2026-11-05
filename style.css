@@ -2830,10 +2830,10 @@ footer {
 /* MOMO ELLA PHOTO GALLERY */
 .momo-ella-gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  width: 120%;
-  margin: 20px auto;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  margin: 24px auto;
 }
 
 .momo-ella-gallery img {
@@ -2841,17 +2841,38 @@ footer {
   aspect-ratio: 3 / 2;
   object-fit: cover;
   border-radius: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
 }
-/* Larger MOMO ELLA gallery on desktop */
-@media (min-width: 601px) {
-  .momo-ella-gallery {
-    width: 200%;
-    max-width: none;
+
+/* Desktop hover zoom */
+@media (hover: hover) and (min-width: 601px) {
+  .momo-ella-gallery img:hover {
+    transform: scale(1.12);
+    position: relative;
+    z-index: 2;
   }
 }
+
+/* Mobile horizontal swipe gallery */
 @media (max-width: 600px) {
   .momo-ella-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 4px 14px;
+  }
+
+  .momo-ella-gallery img {
+    flex: 0 0 calc(50% - 5px);
+    width: calc(50% - 5px);
+    scroll-snap-align: start;
+  }
+
+  .momo-ella-gallery img:active {
+    transform: scale(1.05);
   }
 }
