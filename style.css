@@ -386,18 +386,16 @@ p + p { margin-top: 16px; }
 }
 
 /* Brand wordmark — top left */
+/* Brand logo — mobile menu */
 .nav-overlay-brand {
-  position: absolute;
-  top: 22px;
-  left: var(--side);
-  z-index: 2;
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.92);
-  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+    position: absolute;
+    top: 22px;
+    left: var(--side);
+    z-index: 2;
+    width: 125px;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
 /* Close X */
