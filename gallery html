@@ -1,1 +1,409 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Gallery – Aji Fruit Farm, Sri Lanka</title>
+  <meta name="description" content="Explore Aji Fruit Farm through photographs of sunrise, the lake, kayaking, cottages, farm life, food and wildlife in Embilipitiya, Sri Lanka." />
+
+  <link rel="canonical" href="https://aji-fruit-farm.lk/gallery.html" />
+  <link rel="stylesheet" href="style.css?v=14" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* GALLERY PAGE ONLY */
+    .gallery-page {
+      padding: 150px 6% 100px;
+      min-height: 70vh;
+    }
+
+    .gallery-intro {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 48px;
+    }
+
+    .gallery-intro .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #a8792a;
+      margin-bottom: 16px;
+    }
+
+    .gallery-intro h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 400;
+      margin: 0 0 16px;
+    }
+
+    .gallery-intro p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #777;
+    }
+
+/* DESKTOP GALLERY HEADING AND FILTERS */
+@media (min-width: 861px) {
+    .gallery-intro h1 {
+        font-size: clamp(2rem, 3vw, 3rem);
+        white-space: nowrap;
+    }
+
+    .gallery-filters {
+        flex-wrap: nowrap;
+        gap: 12px;
+        margin: 0 auto 45px;
+    }
+
+    .gallery-filter {
+        padding: 10px 14px;
+        font-size: 0.78rem;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+    }
+}
+
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 auto 45px;
+    }
+
+    .gallery-filter {
+      border: 1px solid #d8d1c5;
+      background: transparent;
+      color: inherit;
+      padding: 11px 19px;
+      border-radius: 30px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .gallery-filter:hover,
+    .gallery-filter.active {
+      background: #53634a;
+      border-color: #53634a;
+      color: #fff;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      aspect-ratio: 4 / 3;
+      display: block;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 75px 20px;
+      border: 1px solid #e5e0d7;
+      background: #faf9f6;
+    }
+
+    .gallery-empty h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      margin: 0 0 12px;
+    }
+
+    .gallery-empty p {
+      color: #777;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.94);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 55px 20px 25px;
+    }
+
+    .gallery-lightbox.open {
+      display: flex;
+    }
+
+    .gallery-lightbox img {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+    .gallery-lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 22px;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 36px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 760px) {
+      .gallery-page {
+        padding: 115px 5% 65px;
+      }
+
+      .gallery-intro {
+        margin-bottom: 32px;
+      }
+
+      .gallery-filters {
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+
+      .gallery-filter {
+        padding: 9px 13px;
+        font-size: 0.75rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .gallery-empty {
+        padding: 55px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+
+  <!-- NAVIGATION -->
+  <header class="nav scrolled at-top">
+    <a href="index.html" class="nav-logo">Aji Fruit Farm</a>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="rooms.html">The Cottages</a>
+      <a href="farm.html">The Farm</a>
+      <a href="gallery.html" aria-current="page">Gallery</a>
+      <a href="story.html">Our Story</a>
+      <a href="index.html#contact">Find Us</a>
+    </nav>
+
+    <a class="nav-wa" href="index.html#contact">
+      <span>Check availability</span>
+    </a>
+
+    <button type="button" class="nav-burger"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="nav-overlay">
+      <svg viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true" hidden>
+    <div class="nav-overlay-bg" aria-hidden="true">
+      <picture>
+        <source srcset="photos/hero.webp" type="image/webp">
+        <img src="photos/hero.jpg" alt="">
+      </picture>
+    </div>
+
+    <span class="nav-overlay-brand">Aji Fruit Farm</span>
+
+    <button type="button" class="nav-overlay-close"
+      aria-label="Close menu">
+      ×
+    </button>
+
+    <nav class="nav-overlay-links">
+      <a href="index.html"><span class="nv-num">01</span><span class="nv-rule"></span><span class="nv-label">Home</span></a>
+      <a href="rooms.html"><span class="nv-num">02</span><span class="nv-rule"></span><span class="nv-label">The Cottages</span></a>
+      <a href="farm.html"><span class="nv-num">03</span><span class="nv-rule"></span><span class="nv-label">The Farm</span></a>
+      <a href="gallery.html" aria-current="page"><span class="nv-num">04</span><span class="nv-rule"></span><span class="nv-label">Gallery</span></a>
+      <a href="story.html"><span class="nv-num">05</span><span class="nv-rule"></span><span class="nv-label">Our Story</span></a>
+      <a href="index.html#contact"><span class="nv-num">06</span><span class="nv-rule"></span><span class="nv-label">Find Us</span></a>
+    </nav>
+
+    <a class="nav-overlay-cta" href="index.html#contact">
+      <span class="nv-cta-text">Reserve your stay</span>
+    </a>
+
+    <p class="nav-overlay-meta">Embilipitiya · Sri Lanka</p>
+  </div>
+
+  <!-- GALLERY -->
+  <main class="gallery-page">
+
+    <section class="gallery-intro">
+    <h1>Moments at the Farm</h1>
+</section>
+
+    <!-- CATEGORY FILTERS -->
+    <div class="gallery-filters" role="group" aria-label="Filter gallery photos">
+      <button class="gallery-filter active" type="button" data-filter="all">All Photos</button>
+      <button class="gallery-filter" type="button" data-filter="sunrise">Sunrise</button>
+      <button class="gallery-filter" type="button" data-filter="lake">Lake &amp; Kayaking</button>
+      <button class="gallery-filter" type="button" data-filter="cottages">Cottages</button>
+      <button class="gallery-filter" type="button" data-filter="farm">Farm Life</button>
+      <button class="gallery-filter" type="button" data-filter="food">Food</button>
+      <button class="gallery-filter" type="button" data-filter="wildlife">Wildlife</button>
+    </div>
+
+    <!-- PHOTO GRID
+         Real farm photos will be added here later.
+         Each photo will have a category such as:
+         sunrise, lake, cottages, farm, food or wildlife.
+    -->
+    <section class="gallery-grid" id="gallery-grid"
+      aria-label="Farm photographs">
+
+      <div class="gallery-empty" id="gallery-empty">
+        <h2>Our Gallery Is Coming Together</h2>
+        <p>
+          Beautiful moments from Aji Fruit Farm will be added here soon.
+          Please visit again.
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- PHOTO LIGHTBOX -->
+  <div class="gallery-lightbox" id="gallery-lightbox"
+    role="dialog" aria-modal="true" aria-label="Enlarged photograph">
+    <button class="gallery-lightbox-close" type="button"
+      aria-label="Close photograph">×</button>
+    <img src="" alt="" id="lightbox-image">
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Aji Fruit Farm &ndash; Embilipitiya, Sri Lanka</p>
+
+    <div class="footer-social">
+      <a href="https://www.facebook.com/ajifruitfarm/"
+        target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/ajifruitfarm/"
+        target="_blank" rel="noopener">Instagram</a>
+    </div>
+
+    <p class="footer-small">
+      &copy; Aji Fruit Farm. All rights reserved.
+    </p>
+  </footer>
+
+  <!-- GALLERY JAVASCRIPT -->
+  <script>
+    const filterButtons = document.querySelectorAll('.gallery-filter');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryEmpty = document.getElementById('gallery-empty');
+
+    function filterGallery(category) {
+      let visibleCount = 0;
+
+      galleryItems.forEach(item => {
+        const matches = category === 'all' ||
+          item.dataset.category === category;
+
+        item.style.display = matches ? 'block' : 'none';
+
+        if (matches) visibleCount++;
+      });
+
+      if (galleryEmpty) {
+        galleryEmpty.style.display =
+          visibleCount === 0 ? 'block' : 'none';
+      }
+
+      filterButtons.forEach(button => {
+        const active = button.dataset.filter === category;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', active);
+      });
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterGallery(button.dataset.filter);
+      });
+    });
+
+    // PHOTO LIGHTBOX
+    const lightbox = document.getElementById('gallery-lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxClose = document.querySelector('.gallery-lightbox-close');
+
+    document.getElementById('gallery-grid').addEventListener('click', event => {
+      const photo = event.target.closest('.gallery-item img');
+      if (!photo) return;
+
+      lightboxImage.src = photo.src;
+      lightboxImage.alt = photo.alt;
+      lightbox.classList.add('open');
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightboxImage.src = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', event => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeLightbox();
+    });
+
+    filterGallery('all');
+  </script>
+
+  <script src="script.js?v=14"></script>
+
+</body>
+</html>
