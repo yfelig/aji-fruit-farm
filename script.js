@@ -598,8 +598,11 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
     startX = t.clientX;
     startY = t.clientY;
     blocked = !!e.target.closest(
-      '.image-slider, .slider, .activities, .itinerary, .itinerary-days, ' +
-      '.testimonial-row, .cottage-gallery, .gallery-lightbox, .nav-overlay, [data-no-swipe], input, textarea, button'
+    
+
+  '.image-slider, .slider, .activities, .itinerary, .itinerary-days, ' +
+  '.momo-ella-gallery, .testimonial-row, .cottage-gallery, .gallery-lightbox, .nav-overlay, [data-no-swipe], input, textarea, button'
+
     );
   }, { passive: true });
 
