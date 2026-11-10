@@ -164,12 +164,13 @@ p + p { margin-top: 16px; }
 }
 
 .nav-logo img {
-  display: block;
-  width: clamp(44px, 5vw, 64px);
-  height: clamp(44px, 5vw, 64px);
-  object-fit: contain;
-  flex-shrink: 0;
-  transition: filter 0.4s ease;
+    display: block;
+    width: clamp(44px, 5vw, 64px);
+    height: clamp(44px, 5vw, 64px);
+    object-fit: contain;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: filter 0.4s ease;
 }
 
 .nav-logo:active img {
