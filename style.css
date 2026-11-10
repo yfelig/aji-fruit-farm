@@ -419,7 +419,7 @@ p + p { margin-top: 16px; }
     width: 125px;
     height: auto;
     object-fit: contain;
-    display: block;
+  display: none;
 }
 
 /* Close X */
