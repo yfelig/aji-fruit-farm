@@ -205,7 +205,7 @@ p + p { margin-top: 16px; }
 /* Hover affordance: gold underline slides in from the left */
 .nav-links a:hover,
 .nav-links a:focus-visible {
-    color: #D9B76E;
+   color: #A8792A;
     text-shadow: 0 0 8px rgba(217, 183, 110, 0.45);
 }
 
