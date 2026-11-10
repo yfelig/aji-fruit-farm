@@ -189,7 +189,7 @@ p + p { margin-top: 16px; }
 
 .nav-links {
   display: flex;
-  gap: 43px;
+  gap: 48px;
 }
 
 .nav-links a {
