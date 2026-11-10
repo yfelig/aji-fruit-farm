@@ -472,7 +472,11 @@ p + p { margin-top: 16px; }
 .nav-overlay.open .nav-overlay-links a:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.18s; }
 .nav-overlay.open .nav-overlay-links a:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.26s; }
 .nav-overlay.open .nav-overlay-links a:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.34s; }
-
+.nav-overlay.open .nav-overlay-links a:nth-child(5) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.42s;
+}
 /* CTA — text style with gold hairline above */
 .nav-overlay-cta {
   position: absolute;
