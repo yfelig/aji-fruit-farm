@@ -298,16 +298,40 @@
          Each photo will have a category such as:
          sunrise, lake, cottages, farm, food or wildlife.
     -->
-    <section class="gallery-grid" id="gallery-grid"
-      aria-label="Farm photographs">
+   
+<section class="gallery-grid" id="gallery-grid" aria-label="Farm photographs">
 
-      <div class="gallery-empty" id="gallery-empty">
-        <h2>Our Gallery Is Coming Together</h2>
-        <p>
-          Beautiful moments from Aji Fruit Farm will be added here soon.
-          Please visit again.
-        </p>
-      </div>
+  <button class="gallery-item" data-category="sunrise" type="button">
+    <img src="photos/hero-02-sunrise.webp" alt="Sunrise at Aji Fruit Farm" loading="lazy">
+  </button>
+
+  <button class="gallery-item" data-category="lake" type="button">
+    <img src="photos/hero-04-kayaking.webp" alt="Kayaking at Aji Fruit Farm" loading="lazy">
+  </button>
+
+  <button class="gallery-item" data-category="lake" type="button">
+    <img src="photos/hero-01-lakeside.webp" alt="Peaceful lakeside at Aji Fruit Farm" loading="lazy">
+  </button>
+
+  <button class="gallery-item" data-category="cottages" type="button">
+    <img src="photos/cottage-exterior.webp" alt="Aji Fruit Farm cottage exterior" loading="lazy">
+  </button>
+
+  <button class="gallery-item" data-category="farm" type="button">
+    <img src="photos/farm-mangos.webp" alt="Mango farm at Aji Fruit Farm" loading="lazy">
+  </button>
+
+  <button class="gallery-item" data-category="food" type="button">
+    <img src="photos/food-breakfast.webp" alt="Fresh farm breakfast" loading="lazy">
+  </button>
+
+  <div class="gallery-empty" id="gallery-empty" style="display:none">
+    <h2>No Photos in This Category Yet</h2>
+    <p>More beautiful farm moments are coming soon.</p>
+  </div>
+
+</section>
+
 
     </section>
   </main>
