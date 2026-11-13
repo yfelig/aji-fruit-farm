@@ -776,7 +776,7 @@
           item.dataset.category === category;
 
         item.style.display = matches ? 'block' : 'none';
-
+item.style.order = category === 'all' ? Math.floor(Math.random() * 1000000) : '';
         if (matches) visibleCount++;
       });
 
