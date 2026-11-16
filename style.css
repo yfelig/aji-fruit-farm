@@ -1360,11 +1360,12 @@ body.gallery-open { overflow: hidden; }
   background: rgba(27, 56, 38, 0.16);
 }
 .next-destination__cards {
-  max-width: 100%;
-  width: 100%;
+  max-width: 520px;
   margin: 32px auto 0;
   text-align: left;
 }
+
+
 
 .next-destination__card {
   padding-bottom: 0;
