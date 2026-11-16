@@ -2853,7 +2853,27 @@ footer {
 .mozo-card p {
     text-align: center;
 }
-/* Match MOMO ELLA heading size to MOZO FARM */
+/* MOZO Horse Riding heading and subtitle */
+
+.mozo-card h4 {
+  font-family: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-bottom: 5px;
+}
+
+.mozo-card h5 {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #666;
+}/* Match MOMO ELLA heading size to MOZO FARM */
 .next-destination h2 {
     font-size: 1.15rem;
 }
