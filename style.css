@@ -3031,3 +3031,24 @@ object-fit: contain;
     height: 40px;
   }
 }
+
+/* MOZO FARM heading and text alignment */
+
+.mozo-card h3 {
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.mozo-card h4 {
+  text-align: center;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.mozo-card p {
+  text-align: center;
+}
+
