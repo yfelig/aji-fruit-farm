@@ -2827,62 +2827,64 @@ footer {
   overflow: hidden;
 }
 
-.hero-slides img {
-  position: absolute;
-  inset: 0;
+/* Aji Fruit Farm - Social Media Links */
+
+.footer-social {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 26px;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 60% bottom;
-  filter: brightness(1.22);
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-/* Remove white fade on mobile */
-@media (max-width: 560px) {
-    .hero::after {
-        display: none;
-    }
-}
-/* MOZO FARM IMAGE SIZE */
-.mozo-card .activity-img {
-  width: 75%;
-  margin: 0 auto;
-}
-/* Center Mozo Farm title and activity text */
-.mozo-card h3,
-.mozo-card h4,
-.mozo-card p {
-    text-align: center;
-}
-/* MOZO Horse Riding heading and subtitle */
-
-.mozo-card h4 {
-  font-family: inherit;
-  font-size: 1.15rem;
-  font-weight: 400;
-  text-transform: none;
-  letter-spacing: normal;
-  margin-bottom: 5px;
+  padding: 35px 30px;
 }
 
-.mozo-card h5 {
-  font-family: inherit;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: none;
-  letter-spacing: normal;
-  margin-top: 0;
-  margin-bottom: 12px;
-  color: #666;
-}/* Match MOMO ELLA heading size to MOZO FARM */
-.next-destination h2 {
-    font-size: 1.15rem;
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
 }
-/* Center MOMO ELLA heading and description */
-.next-destination h2,
-.next-destination h2 + p {
-    text-align: center;
+
+.footer-social a:hover {
+  transform: scale(1.1);
+}
+
+.footer-social a[aria-label="Facebook"] {
+  background: #1877F2;
+}
+
+.footer-social a[aria-label="Instagram"] {
+  background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+.footer-social a[aria-label="TikTok"] {
+  background: #111111;
+}
+
+.footer-social svg {
+  width: 44px;
+  height: 44px;
+  fill: white;
+}
+
+@media (max-width: 600px) {
+  .footer-social {
+    gap: 14px;
+    padding: 25px 20px;
+  }
+
+  .footer-social a {
+    width: 58px;
+    height: 58px;
+  }
+
+  .footer-social svg {
+    width: 32px;
+    height: 32px;
+  }
 }
 .next-destination > .label {
     margin-top: 30px;
