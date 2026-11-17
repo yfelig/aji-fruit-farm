@@ -3138,3 +3138,57 @@ object-fit: contain;
     transform-origin: top right;
   }
 }
+/* BOOKING.COM COTTAGE DROPDOWN */
+.booking-dropdown[hidden] {
+    display: none;
+}
+
+.booking-dropdown {
+    width: min(360px, calc(100vw - 24px));
+    padding: 18px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+    box-sizing: border-box;
+}
+
+.booking-dropdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: #244b36;
+    font-weight: 600;
+}
+
+.booking-dropdown-header button {
+    border: 0;
+    background: transparent;
+    color: #244b36;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.booking-dropdown > a {
+    display: block;
+    padding: 12px 14px;
+    margin-top: 7px;
+    border-radius: 8px;
+    background: #eaf2fb;
+    color: #003b95;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background 0.2s ease;
+}
+
+.booking-dropdown > a:hover {
+    background: #d6e5f7;
+}
+
+@media (max-width: 600px) {
+    .booking-dropdown {
+        width: min(320px, calc(100vw - 24px));
+    }
+}
+/* END BOOKING.COM COTTAGE DROPDOWN */
