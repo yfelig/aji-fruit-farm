@@ -3054,4 +3054,77 @@ object-fit: contain;
 .mozo-card p {
   text-align: center;
 }
+/* AIRBNB COTTAGE DROPDOWN */
+.airbnb-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 30px;
+  background: #fffaf2;
+  color: #244b36;
+  font: inherit;
+  cursor: pointer;
+}
 
+.airbnb-nav-btn:hover {
+  background: #f0eadf;
+}
+
+.airbnb-dropdown {
+  position: fixed;
+  z-index: 9999;
+  width: min(320px, calc(100vw - 32px));
+  padding: 16px;
+  background: #fffaf2;
+  border: 1px solid #244b36;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  box-sizing: border-box;
+}
+
+.airbnb-dropdown[hidden] {
+  display: none;
+}
+
+.airbnb-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #244b36;
+  font-weight: 600;
+}
+
+.airbnb-dropdown-header button {
+  border: 0;
+  background: transparent;
+  color: #244b36;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.airbnb-dropdown > a {
+  display: block;
+  padding: 12px 14px;
+  margin-top: 7px;
+  border-radius: 8px;
+  background: #edf2e9;
+  color: #244b36;
+  text-decoration: none;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.airbnb-dropdown > a:hover {
+  background: #dce8d7;
+}
+
+@media (max-width: 600px) {
+  .airbnb-dropdown {
+    width: min(320px, calc(100vw - 24px));
+  }
+}
+/* END AIRBNB COTTAGE DROPDOWN */
