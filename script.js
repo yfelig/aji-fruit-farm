@@ -638,3 +638,64 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
     slides[current].style.opacity = '1';
   }, 5000);
 })();
+// AIRBNB COTTAGE DROPDOWN
+(() => {
+  const openBtn = document.getElementById('airbnb-open');
+  const dropdown = document.getElementById('airbnb-dropdown');
+  const closeBtn = document.getElementById('airbnb-close');
+
+  if (!openBtn || !dropdown || !closeBtn) return;
+
+  function openDropdown() {
+    const rect = openBtn.getBoundingClientRect();
+
+    dropdown.hidden = false;
+
+    const width = dropdown.offsetWidth;
+    const left = Math.max(
+      12,
+      Math.min(rect.right - width, window.innerWidth - width - 12)
+    );
+
+    dropdown.style.top = `${rect.bottom + 8}px`;
+    dropdown.style.left = `${left}px`;
+
+    openBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeDropdown() {
+    dropdown.hidden = true;
+    openBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  openBtn.setAttribute('aria-expanded', 'false');
+
+  openBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+
+    if (dropdown.hidden) {
+      openDropdown();
+    } else {
+      closeDropdown();
+    }
+  });
+
+  closeBtn.addEventListener('click', closeDropdown);
+
+  document.addEventListener('click', (event) => {
+    if (
+      !dropdown.contains(event.target) &&
+      !openBtn.contains(event.target)
+    ) {
+      closeDropdown();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeDropdown();
+  });
+
+  window.addEventListener('resize', () => {
+    if (!dropdown.hidden) openDropdown();
+  });
+})();
