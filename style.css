@@ -3192,3 +3192,21 @@ object-fit: contain;
     }
 }
 /* END BOOKING.COM COTTAGE DROPDOWN */
+/* BOOKING.COM NAVIGATION BUTTON */
+.booking-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    padding: 6px 10px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.booking-nav-btn img {
+    display: block;
+    width: 110px;
+    height: 19px;
+    object-fit: contain;
+}
