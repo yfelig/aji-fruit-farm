@@ -3128,3 +3128,13 @@ object-fit: contain;
   }
 }
 /* END AIRBNB COTTAGE DROPDOWN */
+/* MOBILE AIRBNB BUTTON POSITION */
+@media (max-width: 860px) {
+  .airbnb-nav-btn {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: var(--side);
+    transform: scale(0.82);
+    transform-origin: top right;
+  }
+}
