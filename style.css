@@ -3237,7 +3237,7 @@ object-fit: contain;
 
 
 /* AGODA NAVIGATION BUTTON */
-header.nav .agoda-nav-btn {
+.agoda-nav-btn {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -3252,7 +3252,7 @@ header.nav .agoda-nav-btn {
   box-shadow: none !important;
 }
 
-header.nav .agoda-nav-btn:hover {
+.agoda-nav-btn:hover {
 
   background: #f0eadf !important;
 }
@@ -3313,7 +3313,7 @@ header.nav .agoda-nav-btn:hover {
 }
 /* MATCH AIRBNB AND AGODA BUTTON HEIGHT */
 .airbnb-nav-btn,
-header.nav .agoda-nav-btn {
+.agoda-nav-btn {
   height: 41px !important;
   min-height: 41px;
   box-sizing: border-box;
