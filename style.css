@@ -3325,4 +3325,10 @@ object-fit: contain;
     align-items: center;
     justify-content: center;
 }
-
+/* AGODA OFFICIAL LOGO SIZE */
+.agoda-logo {
+    width: 64px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+}
