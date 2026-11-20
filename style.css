@@ -3235,23 +3235,27 @@ object-fit: contain;
     object-fit: contain;
 }
 
+
 /* AGODA NAVIGATION BUTTON */
-.agoda-nav-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 30px;
-  background: #fffaf2;
-  color: #244b36;
-  font: inherit;
-  cursor: pointer;
-  position: relative;
-  z-index: 100;
+header.nav .agoda-nav-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px;
+  padding: 10px 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 30px !important;
+  background: #fffaf2 !important;
+  color: #244b36 !important;
+  font: inherit !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
 }
 
-.agoda-nav-btn:hover {
-  background: #f0eadf;
+header.nav .agoda-nav-btn:hover {
+
+  background: #f0eadf !important;
 }
+}
+
 
