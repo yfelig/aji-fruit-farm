@@ -3311,6 +3311,17 @@ header.nav .agoda-nav-btn:hover {
     width: min(320px, calc(100vw - 24px));
   }
 }
-
+/* MATCH AIRBNB AND AGODA BUTTON HEIGHT */
+.airbnb-nav-btn,
+header.nav .agoda-nav-btn {
+  height: 41px !important;
+  min-height: 41px;
+  box-sizing: border-box;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
