@@ -761,3 +761,63 @@ if (dpArrival && dpNights && dpGuests && dpSend) {
     if (!dropdown.hidden) openDropdown();
   });
 })();
+
+/* AGODA COTTAGE DROPDOWN */
+(() => {
+  const openBtn = document.getElementById('agoda-open');
+  const dropdown = document.getElementById('agoda-dropdown');
+  const closeBtn = document.getElementById('agoda-close');
+
+  if (!openBtn || !dropdown || !closeBtn) return;
+
+  function openAgodaDropdown() {
+    dropdown.hidden = false;
+
+    const rect = openBtn.getBoundingClientRect();
+    const width = Math.min(320, window.innerWidth - 24);
+    const left = Math.max(
+      12,
+      Math.min(rect.right - width, window.innerWidth - width - 12)
+    );
+
+    dropdown.style.top = `${rect.bottom + 8}px`;
+    dropdown.style.left = `${left}px`;
+
+    openBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeAgodaDropdown() {
+    dropdown.hidden = true;
+    openBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  openBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+
+    if (dropdown.hidden) {
+      openAgodaDropdown();
+    } else {
+      closeAgodaDropdown();
+    }
+  });
+
+  closeBtn.addEventListener('click', closeAgodaDropdown);
+
+  document.addEventListener('click', (event) => {
+    if (
+      !dropdown.contains(event.target) &&
+      !openBtn.contains(event.target)
+    ) {
+      closeAgodaDropdown();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeAgodaDropdown();
+  });
+
+  window.addEventListener('resize', () => {
+    if (!dropdown.hidden) openAgodaDropdown();
+  });
+})();
+
