@@ -3312,16 +3312,17 @@ object-fit: contain;
   }
 }
 /* MATCH AIRBNB AND AGODA BUTTON HEIGHT */
+/* MATCH AIRBNB AND AGODA BUTTON HEIGHT */
+
 .airbnb-nav-btn,
 .agoda-nav-btn {
-  height: 41px !important;
-  min-height: 41px;
-  box-sizing: border-box;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    height: 41px !important;
+    min-height: 41px !important;
+    box-sizing: border-box;
+    border-radius: 30px !important;
+    padding: 0 14px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
-
 
