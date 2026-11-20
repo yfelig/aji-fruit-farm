@@ -3128,6 +3128,7 @@ object-fit: contain;
   }
 }
 /* END AIRBNB COTTAGE DROPDOWN */
+
 /* MOBILE AIRBNB BUTTON POSITION */
 @media (max-width: 860px) {
   .airbnb-nav-btn {
@@ -3138,6 +3139,7 @@ object-fit: contain;
     transform-origin: top right;
   }
 }
+
 /* BOOKING.COM COTTAGE DROPDOWN */
 .booking-dropdown[hidden] {
     display: none;
@@ -3195,22 +3197,40 @@ object-fit: contain;
         width: min(320px, calc(100vw - 24px));
     }
 }
-/* END BOOKING.COM COTTAGE DROPDOWN */
+
 /* BOOKING.COM NAVIGATION BUTTON */
 .booking-nav-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    background: transparent;
-    padding: 6px 10px;
-    margin-left: 8px;
-    cursor: pointer;
+  position: absolute;
+  top: calc(100% + 64px);
+  right: var(--side);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 30px;
+  background: #fffaf2;
+  padding: 10px 14px;
+  margin: 0;
+  cursor: pointer;
+  z-index: 100;
 }
 
 .booking-nav-btn img {
-    display: block;
-    width: 110px;
-    height: 19px;
+  display: block;
+  width: 110px;
+  height: 19px;
+  object-fit: contain;
+}
+
+/* MOBILE BOOKING.COM BUTTON POSITION */
+@media (max-width: 860px) {
+  .booking-nav-btn {
+    top: calc(100% + 64px);
+    right: var(--side);
+    transform: scale(0.82);
+    transform-origin: top right;
+  }
+}
+
     object-fit: contain;
 }
