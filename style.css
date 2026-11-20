@@ -3256,6 +3256,61 @@ header.nav .agoda-nav-btn:hover {
 
   background: #f0eadf !important;
 }
+
+/* AGODA DROPDOWN BOX */
+.agoda-dropdown[hidden] {
+  display: none !important;
 }
+
+.agoda-dropdown {
+  position: fixed;
+  z-index: 99999;
+  width: min(320px, calc(100vw - 24px));
+  padding: 16px;
+  background: #fffaf2;
+  border: 1px solid #244b36;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  box-sizing: border-box;
+}
+
+.agoda-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #244b36;
+  font-weight: 600;
+}
+
+.agoda-dropdown-header button {
+  border: none;
+  background: transparent;
+  color: #244b36;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.agoda-dropdown a {
+  display: block;
+  padding: 11px 12px;
+  margin-top: 7px;
+  border-radius: 8px;
+  color: #244b36;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.agoda-dropdown a:hover {
+  background: #f0eadf;
+}
+
+@media (max-width: 600px) {
+  .agoda-dropdown {
+    width: min(320px, calc(100vw - 24px));
+  }
+}
+
 
 
