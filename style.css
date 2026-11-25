@@ -842,7 +842,14 @@ section[id] { scroll-margin-top: 80px; }
   justify-content: center;
   padding: clamp(48px, 7vh, var(--gap)) var(--side);
 }
-
+/* Story introduction */
+.story-intro {
+    font-size: clamp(1.05rem, 1.15vw, 1.18rem);
+    font-weight: 500;
+    line-height: 1.7;
+    color: #47704D;
+    max-width: 54ch;
+}
 /* Editorial sign-off line that closes a centered split-text block.
    Hairline + italic Cormorant — sits as part of the centered group,
    not pinned to the bottom (the rest of the site centers .split-text). */
