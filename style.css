@@ -3571,3 +3571,21 @@ object-fit: contain;
     transition: none;
   }
 }
+/* MOBILE - SHOW ALL SIX STORY PHOTOS */
+@media (max-width: 860px) {
+  .split--hero {
+    height: auto !important;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .split--hero .split-image {
+    height: auto !important;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .split--hero .story-photo-gallery {
+    height: auto;
+  }
+}
