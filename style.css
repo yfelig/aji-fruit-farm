@@ -3609,3 +3609,118 @@ object-fit: contain;
     height: auto;
   }
 }
+
+/* =========================================
+   A DIFFERENT KIND OF PLACE - PHOTO GALLERY
+   ========================================= */
+
+.split--reverse:has(.different-place-gallery),
+.split--reverse:has(.different-place-gallery) .split-image {
+  overflow: visible;
+}
+
+.different-place-gallery {
+  width: 100%;
+  max-width: 1440px;
+  margin: 48px auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.different-place-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, 260px);
+  gap: 16px;
+  position: relative;
+  isolation: isolate;
+}
+
+.different-place-photo {
+  position: relative;
+  z-index: 0;
+  margin: 0;
+  overflow: visible;
+  border-radius: 3px;
+  background: #e8e8df;
+}
+
+.different-place-photo:hover {
+  z-index: 2;
+}
+
+.different-place-photo-main {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+}
+
+.different-place-photo-01 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.different-place-photo-02 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.different-place-photo-03 {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.different-place-photo-06 {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.different-place-photo-04 {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.different-place-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: transform 0.35s ease;
+}
+
+.split-image:has(.different-place-gallery):hover .different-place-photo:not(:hover) img {
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .different-place-photo:hover img {
+    transform: scale(1.06);
+  }
+}
+
+@media (max-width: 860px) {
+  .different-place-gallery {
+    margin: 28px auto;
+    padding: 0 16px;
+  }
+
+  .different-place-photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, clamp(110px, 28vw, 210px));
+    gap: 8px;
+  }
+
+  .different-place-photo {
+    border-radius: 2px;
+  }
+
+  .different-place-photo img {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .different-place-photo img {
+    transition: none;
+  }
+}
