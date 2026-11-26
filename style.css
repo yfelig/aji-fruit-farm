@@ -2582,6 +2582,12 @@ footer {
   }
   .split-image { aspect-ratio: 16/11; min-height: unset; }
   .split-image img { height: 100%; }
+     /* Fix mobile height for A Different Kind of Place gallery */
+  .split-image:has(.different-place-gallery) {
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 0;
+  }
   .cottage-gallery-wrap {
     aspect-ratio: auto;
     padding: 28px var(--side) 34px;
