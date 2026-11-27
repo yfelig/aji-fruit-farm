@@ -3730,3 +3730,117 @@ object-fit: contain;
     transition: none;
   }
 }
+
+/* AJI FRUIT FARM - COMPACT NAVY CONTACT DESIGN */
+
+.contact.contact--compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 75%;
+  max-width: 1200px;
+  margin: 40px auto;
+  background: #142b3b;
+  color: #fff;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.contact--compact .contact-info {
+  background: #142b3b;
+  padding: 35px;
+  color: #fff;
+}
+
+.contact-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.contact-brand img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+}
+
+.contact-brand h2 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.contact-brand p {
+  color: rgba(255,255,255,0.7);
+  margin: 4px 0 0;
+}
+
+.contact--compact .contact-heading,
+.contact--compact .dp-heading {
+  color: #fff;
+}
+
+.contact--compact address,
+.contact--compact .contact-details,
+.contact--compact .contact-details p {
+  color: rgba(255,255,255,0.78);
+  line-height: 1.7;
+}
+
+.contact-social {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.contact-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.contact-social a:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.25);
+}
+
+.contact-social svg {
+  width: 19px;
+  height: 19px;
+}
+
+.contact--compact .contact-map {
+  min-height: 500px;
+}
+
+.contact--compact .contact-map iframe {
+  min-height: 500px;
+}
+
+@media (max-width: 860px) {
+  .contact.contact--compact {
+    width: 100%;
+    grid-template-columns: 1fr;
+    margin: 25px auto;
+    border-radius: 0;
+  }
+
+  .contact--compact .contact-info {
+    padding: 28px 22px;
+  }
+
+  .contact--compact .contact-map {
+    min-height: 300px;
+  }
+
+  .contact--compact .contact-map iframe {
+    min-height: 300px;
+  }
+}
