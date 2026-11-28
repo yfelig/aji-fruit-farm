@@ -3735,166 +3735,297 @@ object-fit: contain;
 
 .contact.contact--compact {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1.5fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1.1fr) minmax(0, 1fr);
   width: 100%;
   max-width: none;
   margin: 40px 0 0;
-  padding: 30px 4%;
+  padding: 22px 3% 30px;
   box-sizing: border-box;
-  gap: 24px;
+  gap: 28px;
   background: #142b3b;
   color: #fff;
   border-radius: 0;
-  align-items: center;
+  align-items: stretch;
+  position: relative;
 }
 
-.contact--compact .contact-info {
-  display: contents;
+/* Bottom divider */
+
+.contact.contact--compact::after {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  left: 3%;
+  right: 3%;
+  height: 1px;
+  background: rgba(255,255,255,0.22);
 }
+
+/* Four balanced columns */
+
+.contact--compact > div {
+  min-width: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.contact--compact > div:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -14px;
+  top: 16px;
+  bottom: 16px;
+  width: 1px;
+  background: rgba(255,255,255,0.22);
+}
+
+/* Column 1 - Farm identity */
 
 .contact--compact .contact-brand {
-  grid-column: 1;
-  grid-row: 1 / 6;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 12px;
+  justify-content: flex-start;
+  padding: 12px 0;
+  gap: 20px;
 }
 
-.contact-brand img {
-  width: 140px;
-  height: 140px;
+.contact--compact .contact-brand-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.contact--compact .contact-brand img {
+  width: 58px;
+  height: 58px;
   object-fit: contain;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
-.contact-brand h2 {
+.contact--compact .contact-brand h2 {
   color: #fff;
   margin: 0;
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 1.6vw, 1.7rem);
+  line-height: 1.2;
 }
 
-.contact-brand p {
+.contact--compact .contact-brand p {
   color: #d3dce3;
-  margin: 4px 0;
-}
-
-.contact--compact .label {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.contact--compact .contact-heading {
-  grid-column: 2;
-  grid-row: 2;
-  color: #fff;
-  margin: 0;
-  font-size: 1.4rem;
+  font-size: 13px;
+  margin: 5px 0 0;
 }
 
 .contact--compact address {
-  grid-column: 2;
-  grid-row: 3;
   color: #d3dce3;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Column 2 - Stay and booking */
+
+.contact--compact .contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: transparent;
+  padding: 12px 0;
+  gap: 10px;
+}
+
+.contact--compact .contact-heading {
+  color: #fff;
+  margin: 0;
+  font-size: 1.4rem;
+  text-align: center;
 }
 
 .contact--compact .contact-details {
-  grid-column: 2;
-  grid-row: 4;
+  text-align: center;
 }
 
 .contact--compact .contact-details p {
   color: #d3dce3;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.5;
-  margin: 4px 0;
+  margin: 3px 0;
 }
 
 .contact--compact .contact-wa {
-  grid-column: 2;
-  grid-row: 5;
   min-width: 0;
   margin: 0;
+  text-align: center;
+}
+
+.contact--compact .fact-line {
+  font-size: 10px;
+  line-height: 1.5;
 }
 
 .contact--compact .dp-heading {
   color: #fff;
+  margin: 8px 0;
 }
 
+.contact--compact .date-picker {
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 5px;
+  margin: 0 auto 10px;
+  text-align: left;
+}
+
+.contact--compact .dp-field {
+  min-width: 0;
+}
+
+.contact--compact .dp-field input {
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 6px;
+  font-size: 12px;
+}
+
+.contact--compact .dp-send {
+  margin-bottom: 8px;
+}
+
+.contact--compact .dp-note {
+  font-size: 11px !important;
+}
+
+/* Column 3 - Google Map */
+
 .contact--compact .contact-map {
-  grid-column: 3;
-  grid-row: 1 / 6;
   width: 100%;
-  height: 360px;
-  min-height: 0;
-  overflow: hidden;
-  border-radius: 6px;
+  height: auto;
+  min-height: 280px;
+  border-radius: 5px;
 }
 
 .contact--compact .contact-map iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   min-height: 0;
   display: block;
+  border-radius: 5px;
+  filter: saturate(0.65) brightness(0.92);
 }
 
-.contact--compact .contact-social {
-  grid-column: 4;
-  grid-row: 1 / 6;
+/* Column 4 - Follow Us */
+
+.contact--compact .contact-follow {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 12px 0;
+  gap: 16px;
+}
+
+.contact--compact .contact-follow h3 {
+  color: #fff;
+  font-size: 1.6rem;
   margin: 0;
 }
 
-.contact-social a {
+.contact--compact .contact-follow p {
+  color: #d3dce3;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 240px;
+}
+
+.contact--compact .contact-social {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 4px 0 0;
+}
+
+.contact--compact .contact-social a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: clamp(34px, 3.5vw, 50px);
+  height: clamp(34px, 3.5vw, 50px);
   border-radius: 50%;
   background: rgba(255,255,255,0.12);
   color: #fff;
   transition: background 0.2s;
 }
 
-.contact-social a:hover {
+.contact--compact .contact-social a:hover {
   background: rgba(255,255,255,0.25);
 }
 
-.contact-social svg {
-  width: 23px;
-  height: 23px;
+.contact--compact .contact-social svg {
+  width: 25px;
+  height: 25px;
 }
 
-@media (max-width: 860px) {
+/* Tablet and mobile */
+
+@media (max-width: 1100px) {
+  .contact.contact--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    padding: 24px 5% 32px;
+  }
+
+  .contact--compact > div::after {
+    display: none;
+  }
+
+  .contact--compact .contact-social a {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 700px) {
   .contact.contact--compact {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding: 28px 22px;
-    gap: 16px;
+    gap: 30px;
+    padding: 24px 22px 36px;
   }
 
-  .contact--compact .contact-brand {
-    order: 0;
-  }
-
-  .contact--compact .contact-wa {
-    order: 1;
+  .contact--compact > div:not(:last-child)::after {
+    display: block;
+    top: auto;
+    bottom: -15px;
+    left: 15%;
+    right: 15%;
+    width: 70%;
+    height: 1px;
   }
 
   .contact--compact .contact-map {
-    order: 2;
-    height: 195px;
+    height: 240px;
+    min-height: 240px;
+  }
+
+  .contact--compact .contact-brand h2 {
+    font-size: 1.6rem;
+  }
+
+  .contact--compact .dp-field:first-child {
+    grid-column: auto;
   }
 
   .contact--compact .contact-social {
-    order: 3;
-    flex-direction: row;
-    justify-content: center;
     flex-wrap: wrap;
   }
 }
