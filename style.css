@@ -3735,7 +3735,7 @@ object-fit: contain;
 
 .contact.contact--compact {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1.1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1.25fr) minmax(0, 1fr);
   width: 100%;
   max-width: none;
   margin: 40px 0 0;
@@ -3782,25 +3782,27 @@ object-fit: contain;
 /* Column 1 - Farm identity */
 
 .contact--compact .contact-brand {
+  order: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: flex-start;
-  padding: 12px 0;
-  gap: 20px;
+  justify-content: center;
+  padding: 20px 0;
+  gap: 18px;
 }
 
 .contact--compact .contact-brand-title {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .contact--compact .contact-brand img {
-  width: 58px;
-  height: 58px;
+  width: 85px;
+  height: 85px;
   object-fit: contain;
   border-radius: 50%;
   flex-shrink: 0;
@@ -3809,13 +3811,13 @@ object-fit: contain;
 .contact--compact .contact-brand h2 {
   color: #fff;
   margin: 0;
-  font-size: clamp(1.2rem, 1.6vw, 1.7rem);
+  font-size: clamp(1.5rem, 2vw, 2rem);
   line-height: 1.2;
 }
 
 .contact--compact .contact-brand p {
   color: #d3dce3;
-  font-size: 13px;
+  font-size: 15px;
   margin: 5px 0 0;
 }
 
@@ -3827,9 +3829,32 @@ object-fit: contain;
   text-align: center;
 }
 
-/* Column 2 - Stay and booking */
+/* Column 2 - Google Map */
+
+.contact--compact .contact-map {
+  order: 2;
+  width: 100%;
+  height: auto;
+  min-height: 280px;
+  border-radius: 5px;
+  overflow: visible;
+}
+
+.contact--compact .contact-map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: block;
+  border-radius: 5px;
+  filter: saturate(0.65) brightness(0.92);
+}
+
+/* Column 3 - Stay and booking */
 
 .contact--compact .contact-info {
+  order: 3;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -3873,17 +3898,23 @@ object-fit: contain;
 }
 
 .contact--compact .date-picker {
+  display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
   gap: 5px;
   margin: 0 auto 10px;
   text-align: left;
+  width: 100%;
 }
 
 .contact--compact .dp-field {
   min-width: 0;
+  width: 100%;
 }
 
 .contact--compact .dp-field input {
+  display: block;
+  width: 100%;
+  max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
   padding: 6px;
@@ -3898,47 +3929,28 @@ object-fit: contain;
   font-size: 11px !important;
 }
 
-/* Column 3 - Google Map */
-
-.contact--compact .contact-map {
-  width: 100%;
-  height: auto;
-  min-height: 280px;
-  border-radius: 5px;
-}
-
-.contact--compact .contact-map iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  display: block;
-  border-radius: 5px;
-  filter: saturate(0.65) brightness(0.92);
-}
-
 /* Column 4 - Follow Us */
 
 .contact--compact .contact-follow {
+  order: 4;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   text-align: center;
-  padding: 12px 0;
+  padding: 20px 0;
   gap: 16px;
 }
 
 .contact--compact .contact-follow h3 {
   color: #fff;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   margin: 0;
 }
 
 .contact--compact .contact-follow p {
   color: #d3dce3;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.7;
   margin: 0;
   max-width: 240px;
@@ -3949,16 +3961,17 @@ object-fit: contain;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin: 4px 0 0;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 0;
 }
 
 .contact--compact .contact-social a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(34px, 3.5vw, 50px);
-  height: clamp(34px, 3.5vw, 50px);
+  width: clamp(42px, 3.8vw, 58px);
+  height: clamp(42px, 3.8vw, 58px);
   border-radius: 50%;
   background: rgba(255,255,255,0.12);
   color: #fff;
@@ -3970,8 +3983,8 @@ object-fit: contain;
 }
 
 .contact--compact .contact-social svg {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
 }
 
 /* Tablet and mobile */
@@ -3983,13 +3996,13 @@ object-fit: contain;
     padding: 24px 5% 32px;
   }
 
-  .contact--compact > div::after {
+  .contact--compact > div:not(:last-child)::after {
     display: none;
   }
 
   .contact--compact .contact-social a {
-    width: 48px;
-    height: 48px;
+    width: 54px;
+    height: 54px;
   }
 }
 
@@ -4018,14 +4031,34 @@ object-fit: contain;
   }
 
   .contact--compact .contact-brand h2 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+  }
+
+  .contact--compact .date-picker {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .contact--compact .dp-field:first-child {
-    grid-column: auto;
+    grid-column: 1 / -1;
+  }
+
+  .contact--compact .dp-field input {
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  .contact--compact .dp-field input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .contact--compact .dp-field input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
   }
 
   .contact--compact .contact-social {
     flex-wrap: wrap;
+    gap: 12px;
   }
 }
